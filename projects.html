@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Works — Ayush Sonare</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    html,
+    body {
+      margin: 0;
+      background: #030708;
+      color: #f5f4ee;
+      overflow-x: hidden;
+      overflow-y: auto !important
+    }
+
+    .works-panel.static-works {
+      position: relative !important;
+      inset: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      height: auto !important;
+      max-height: none !important;
+      min-height: 100vh;
+      overflow: visible !important
+    }
+
+    .library-card {
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      display: block;
+      opacity: 1 !important;
+      transform: none !important
+    }
+
+    .library-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #0c1014;
+      border: 1px solid rgba(255, 255, 255, .15)
+    }
+
+    .library-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .library-card:hover .library-media img {
+      transform: scale(1.04)
+    }
+
+    .library-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-family: var(--font-mono, monospace);
+      font-size: 11px;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .library-name {
+      margin: 8px 0 0;
+      font-size: clamp(18px, 1.6vw, 26px);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .library-name span {
+      font-size: 16px;
+      opacity: .5;
+      transition: transform .2s ease, opacity .2s ease
+    }
+
+    .library-card:hover .library-name span {
+      opacity: 1;
+      transform: translate(2px, -2px);
+      color: var(--accent, #00f0ff)
+    }
+
+    @media(max-width:620px) {
+      .works-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+        padding-top: 30px !important
+      }
+
+      .works-title {
+        font-size: 48px !important;
+        margin-bottom: 20px !important
+      }
+
+      .works-sidebar {
+        padding-top: 10px !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas class="interaction-canvas" id="interactionCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <main class="works-panel is-open static-works">
+    <div class="works-shell">
+      <div class="works-topbar">
+        <div class="works-brand">AYUSH / WORKS</div>
+        <a class="works-close" href="index.html#projects" aria-label="Back to home">×</a>
+      </div>
+      <div class="works-layout">
+        <aside class="works-sidebar">
+          <h1 class="works-title">Works</h1>
+          <p style="max-width:25ch;color:rgba(255,255,255,.55);line-height:1.6">Selected game development, multiplayer,
+            AI, mobile and Unreal Engine work.</p>
+        </aside>
+        <main class="works-grid">
+
+          <!-- 01. ROAR -->
+          <a class="library-card" data-category="multiplayer gameplay ai" href="projects/roar.html">
+            <div class="library-media"><video src="Assets/Video/ROAR.mp4" autoplay muted loop playsinline
+                preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            </div>
+            <div class="library-meta"><span>2025 — Present</span><span class="library-tags">Multiplayer FPS</span></div>
+            <h2 class="library-name">ROAR <span>↗</span></h2>
+          </a>
+
+          <!-- 02. LEKH -->
+          <a class="library-card" data-category="gameplay ai" href="projects/lekh.html">
+            <div class="library-media"><video src="Assets/Video/Lekh.mp4" autoplay muted loop playsinline
+                preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            </div>
+            <div class="library-meta"><span>2025</span><span class="library-tags">Action RPG</span></div>
+            <h2 class="library-name">LEKH <span>↗</span></h2>
+          </a>
+
+          <!-- 03. FLAWS -->
+          <a class="library-card" data-category="gameplay" href="projects/flaws.html">
+            <div class="library-media"><video src="Assets/Video/Flaws.mp4" autoplay muted loop playsinline
+                preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            </div>
+            <div class="library-meta"><span>2025</span><span class="library-tags">Gameplay Prototype</span></div>
+            <h2 class="library-name">FLAWS <span>↗</span></h2>
+          </a>
+
+          <!-- 05. RED BAMBOO 
+          <a class="library-card" data-category="gameplay ai" href="projects/red-bamboo.html">
+            <div class="library-media"><img src="assets/images/projects/red-bamboo.svg" alt="RED BAMBOO" loading="lazy">
+            </div>
+            <div class="library-meta"><span>2025</span><span class="library-tags">Survival Horror</span></div>
+            <h2 class="library-name">RED BAMBOO <span>↗</span></h2>
+          </a>-->
+
+          <!-- 06. GRIDFALL -->
+          <a class="library-card" data-category="gameplay ai" href="projects/gridfall.html">
+            <div class="library-media"><img src="assets/images/GridFall/GridFall_Logo.png" alt="GRIDFALL"
+                loading="lazy">
+            </div>
+            <div class="library-meta"><span>2025</span><span class="library-tags">Shooter FPS</span></div>
+            <h2 class="library-name">GRIDFALL <span>↗</span></h2>
+          </a>
+
+          <!-- 07. HAPPY NOW 2 -->
+          <a class="library-card" data-category="mobile gameplay" href="projects/happy-now-2.html">
+            <div class="library-media"><img src="assets/images/HN2/Happy Now 2.png" alt="HAPPY NOW 2" loading="lazy">
+            </div>
+            <div class="library-meta"><span>2024</span><span class="library-tags">Mobile Arcade Game</span></div>
+            <h2 class="library-name">HAPPY NOW 2 <span>↗</span></h2>
+          </a>
+
+          <!-- 08. SOUL EATER -->
+          <a class="library-card" data-category="mobile gameplay" href="projects/soul-eater.html">
+            <div class="library-media"><img src="assets/images/SoulEater/SoulEater_logo.png" alt="SOUL EATER"
+                loading="lazy">
+            </div>
+            <div class="library-meta"><span>2024</span><span class="library-tags">Roguelike Survival</span></div>
+            <h2 class="library-name">SOUL EATER <span>↗</span></h2>
+          </a>
+
+          <!-- 09. METAVERSE MEETING 
+          <a class="library-card" data-category="multiplayer gameplay" href="projects/metaverse-meeting.html">
+            <div class="library-media"><img src="assets/images/projects/metaverse-meeting.svg" alt="METAVERSE MEETING"
+                loading="lazy"></div>
+            <div class="library-meta"><span>2025</span><span class="library-tags">Virtual World</span></div>
+            <h2 class="library-name">METAVERSE MEETING <span>↗</span></h2>
+          </a> -->
+        </main>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    'use strict';
+    // Sleek Minimal Liquid Cursor
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    const cursorSpotlight = document.getElementById('cursorSpotlight');
+    const interactionCanvas = document.getElementById('interactionCanvas');
+    const ctx = interactionCanvas?.getContext('2d');
+
+    let mouseScreenX = -1000;
+    let mouseScreenY = -1000;
+    let ringScreenX = -1000;
+    let ringScreenY = -1000;
+    let spotScreenX = -1000;
+    let spotScreenY = -1000;
+    let isMouseActive = false;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const FLUID_NODE_COUNT = 16;
+    const fluidNodes = [];
+    for (let i = 0; i < FLUID_NODE_COUNT; i++) {
+      fluidNodes.push({ x: -1000, y: -1000, vx: 0, vy: 0 });
+    }
+    const ripples = [];
+
+    function resizeCanvas() {
+      if (!interactionCanvas || !ctx) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      interactionCanvas.width = window.innerWidth * dpr;
+      interactionCanvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    window.addEventListener('mousemove', (e) => {
+      mouseScreenX = e.clientX;
+      mouseScreenY = e.clientY;
+      if (!isMouseActive) {
+        isMouseActive = true;
+        ringScreenX = mouseScreenX;
+        ringScreenY = mouseScreenY;
+        spotScreenX = mouseScreenX;
+        spotScreenY = mouseScreenY;
+        fluidNodes.forEach(node => { node.x = mouseScreenX; node.y = mouseScreenY; });
+        if (cursorDot) cursorDot.style.opacity = '1';
+        if (cursorRing) cursorRing.style.opacity = '1';
+        if (cursorSpotlight) cursorSpotlight.style.opacity = '1';
+        document.body.classList.add('has-custom-cursor');
+      }
+    }, { passive: true });
+
+    window.addEventListener('mousedown', (e) => {
+      if (cursorRing) cursorRing.classList.add('is-clicking');
+      ripples.push({ x: e.clientX, y: e.clientY, radius: 8, maxRadius: 80, alpha: 0.85, speed: 2.8, lineWidth: 2 });
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (cursorRing) cursorRing.classList.remove('is-clicking');
+    });
+
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a, button, .library-card, .works-close')) {
+        cursorRing?.classList.add('is-hovering');
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a, button, .library-card, .works-close')) {
+        cursorRing?.classList.remove('is-hovering');
+      }
+    }, { passive: true });
+
+    function renderInteractions() {
+      if (isMouseActive && cursorDot && cursorRing && cursorSpotlight) {
+        ringScreenX = lerp(ringScreenX, mouseScreenX, 0.22);
+        ringScreenY = lerp(ringScreenY, mouseScreenY, 0.22);
+        spotScreenX = lerp(spotScreenX, mouseScreenX, 0.08);
+        spotScreenY = lerp(spotScreenY, mouseScreenY, 0.08);
+
+        cursorDot.style.transform = `translate3d(${mouseScreenX}px, ${mouseScreenY}px, 0)`;
+        cursorRing.style.transform = `translate3d(${ringScreenX}px, ${ringScreenY}px, 0)`;
+        cursorSpotlight.style.transform = `translate3d(${spotScreenX}px, ${spotScreenY}px, 0)`;
+
+        fluidNodes[0].x = lerp(fluidNodes[0].x, mouseScreenX, 0.5);
+        fluidNodes[0].y = lerp(fluidNodes[0].y, mouseScreenY, 0.5);
+
+        for (let i = 1; i < FLUID_NODE_COUNT; i++) {
+          const leader = fluidNodes[i - 1];
+          const follower = fluidNodes[i];
+          follower.vx = (follower.vx + (leader.x - follower.x) * 0.32) * 0.58;
+          follower.vy = (follower.vy + (leader.y - follower.y) * 0.32) * 0.58;
+          follower.x += follower.vx;
+          follower.y += follower.vy;
+        }
+      }
+
+      if (ctx) {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        if (isMouseActive && fluidNodes[0].x > -500) {
+          ctx.save();
+          for (let i = 0; i < FLUID_NODE_COUNT - 1; i++) {
+            const curr = fluidNodes[i];
+            const next = fluidNodes[i + 1];
+            const seg = i / FLUID_NODE_COUNT;
+            const alpha = (1 - seg) * 0.42;
+            const lineWidth = Math.max(0.6, (1 - seg) * 4.5);
+
+            ctx.beginPath();
+            ctx.moveTo(curr.x, curr.y);
+            ctx.lineTo(next.x, next.y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = `rgba(0, 240, 255, ${alpha * 0.9})`;
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        for (let i = ripples.length - 1; i >= 0; i--) {
+          const r = ripples[i];
+          r.radius += r.speed;
+          r.alpha -= 0.024;
+          if (r.alpha <= 0 || r.radius >= r.maxRadius) {
+            ripples.splice(i, 1);
+            continue;
+          }
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 240, 255, ${r.alpha})`;
+          ctx.lineWidth = 2;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `rgba(0, 240, 255, 0.7)`;
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      requestAnimationFrame(renderInteractions);
+    }
+    requestAnimationFrame(renderInteractions);
+
+    document.querySelector('.works-close')?.addEventListener('click', () => {
+      sessionStorage.setItem('skipIntroScreen', 'true');
+    });
+  </script>
+</body>
+
+</html>

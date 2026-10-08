@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ROAR — Ayush Sonare</title>
+  <meta name="description"
+    content="ROAR — Multiplayer FPS gameplay and online systems built with Unreal Engine 5 and EOS." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050708;
+      --text-main: #f5f4ee;
+      --text-muted: rgba(245, 244, 238, 0.68);
+      --text-faint: rgba(245, 244, 238, 0.4);
+      --border-line: rgba(255, 255, 255, 0.15);
+      --border-line-subtle: rgba(255, 255, 255, 0.08);
+      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', "Courier New", monospace;
+      --gutter: clamp(24px, 6.5vw, 96px);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      width: 100vw;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto !important;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Motion Graphics & Ambient Background */
+    .ambient-rhythm-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: #050708;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      mix-blend-mode: screen;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    .aurora-blob.blob-1 {
+      top: -15%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      max-width: 800px;
+      max-height: 800px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.35) 0%, rgba(0, 150, 255, 0.1) 50%, transparent 75%);
+      animation: rhythmFloat1 16s ease-in-out infinite alternate;
+    }
+
+    .aurora-blob.blob-2 {
+      bottom: -20%;
+      right: -10%;
+      width: 65vw;
+      height: 65vw;
+      max-width: 850px;
+      max-height: 850px;
+      background: radial-gradient(circle, rgba(140, 50, 255, 0.28) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 75%);
+      animation: rhythmFloat2 20s ease-in-out infinite alternate;
+    }
+
+    .aurora-blob.blob-3 {
+      top: 40%;
+      right: 10%;
+      width: 45vw;
+      height: 45vw;
+      max-width: 600px;
+      max-height: 600px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, rgba(16, 185, 129, 0.1) 50%, transparent 75%);
+      animation: rhythmFloat3 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes rhythmFloat1 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.28;
+      }
+
+      100% {
+        transform: translate3d(8vw, 12vh, 0) scale(1.15);
+        opacity: 0.42;
+      }
+    }
+
+    @keyframes rhythmFloat2 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1.1);
+        opacity: 0.32;
+      }
+
+      100% {
+        transform: translate3d(-10vw, -10vh, 0) scale(0.95);
+        opacity: 0.22;
+      }
+    }
+
+    @keyframes rhythmFloat3 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.95);
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translate3d(-6vw, 8vh, 0) scale(1.1);
+        opacity: 0.38;
+      }
+    }
+
+    /* Fullscreen Architectural Blueprint Grid */
+    .blueprint-grid {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+      background-size: clamp(32px, 3vw, 48px) clamp(32px, 3vw, 48px);
+      background-position: center center;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Cursor Spotlight */
+    .cursor-spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.09) 0%, rgba(0, 240, 255, 0.02) 45%, transparent 70%);
+      will-change: transform;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+
+    /* Interactive Motion Graphics Canvas (Strictly in Background) */
+    .interaction-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Tactical HUD Laser Scanline */
+    .tactical-scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.35) 50%, transparent 100%);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0.5;
+      animation: scanlineSweep 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes scanlineSweep {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.7;
+      }
+
+      90% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(105vh);
+        opacity: 0;
+      }
+    }
+
+    ::selection {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Custom Cursor */
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffffff;
+      pointer-events: none;
+      z-index: 999999;
+      transform: translate3d(-50%, -50%, 0);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      z-index: 999998;
+      transform: translate3d(-50%, -50%, 0);
+      opacity: 0;
+      transition: width .25s var(--ease), height .25s var(--ease), border-color .2s ease, opacity .2s ease;
+    }
+
+    .cursor-ring.is-hovering {
+      width: 52px;
+      height: 52px;
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (pointer: coarse) {
+
+      .cursor-dot,
+      .cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* Fullscreen Detail Shell (Content strictly above background animations) */
+    .detail-shell {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      padding: 0 var(--gutter) 100px;
+    }
+
+    /* Topbar */
+    .detail-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(20px, 3vh, 36px) 0;
+      width: 100%;
+    }
+
+    .detail-brand {
+      font-family: var(--font-heading);
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .detail-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(38px, 3.2vw, 46px);
+      height: clamp(38px, 3.2vw, 46px);
+      border-radius: 50%;
+      border: 1px solid var(--border-line);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: clamp(20px, 1.8vw, 26px);
+      line-height: 1;
+      transition: all 0.25s ease;
+    }
+
+    .detail-close:hover {
+      background: #ffffff;
+      color: #050708;
+      border-color: #ffffff;
+      transform: scale(1.06);
+    }
+
+    /* Hero Section */
+    .detail-hero {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .detail-hero-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border-line);
+      background: #000000;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+    }
+
+    .detail-hero-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-audio-badge {
+      position: absolute;
+      bottom: clamp(14px, 2vh, 24px);
+      right: clamp(14px, 2vw, 24px);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.85vw, 11px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .video-audio-badge:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    .detail-hero-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: clamp(20px, 3vh, 32px);
+      flex-wrap: wrap;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .detail-kicker {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.95vw, 13px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .detail-title {
+      font-family: var(--font-heading);
+      font-size: clamp(64px, 9.5vw, 150px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .detail-year {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 1.1vw, 14px);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-bottom: 8px;
+    }
+
+    /* Full-Bleed Marquee Strip */
+    .detail-marquee {
+      width: calc(100% + (2 * var(--gutter)));
+      margin-left: calc(-1 * var(--gutter));
+      margin-right: calc(-1 * var(--gutter));
+      border-top: 1px solid var(--border-line);
+      border-bottom: 1px solid var(--border-line);
+      padding: clamp(18px, 2.5vh, 32px) 0;
+      overflow: hidden;
+      margin-top: clamp(40px, 6vh, 80px);
+      margin-bottom: clamp(40px, 6vh, 80px);
+      background: rgba(255, 255, 255, 0.012);
+    }
+
+    .detail-marquee-track {
+      display: flex;
+      white-space: nowrap;
+      gap: clamp(24px, 4vw, 60px);
+      animation: marqueeSlide 30s linear infinite;
+      user-select: none;
+    }
+
+    .detail-marquee-track span {
+      font-family: var(--font-heading);
+      font-size: clamp(42px, 6vw, 92px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    @keyframes marqueeSlide {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Detail Content Section */
+    .detail-content {
+      display: block;
+      padding-bottom: clamp(48px, 6vh, 84px);
+      border-bottom: 1px solid var(--border-line);
+      width: 100%;
+    }
+
+    /* Right Overview Body */
+    .detail-body {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .detail-body h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4.4vw, 68px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: clamp(20px, 3vh, 32px);
+    }
+
+    .detail-body p {
+      font-size: clamp(15px, 1.25vw, 19px);
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 65ch;
+      margin-bottom: clamp(32px, 4vh, 48px);
+    }
+
+    .detail-body h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(22px, 2.2vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: clamp(14px, 2vh, 22px);
+    }
+
+    /* Points List */
+    .detail-points {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .detail-point {
+      display: grid;
+      grid-template-columns: clamp(40px, 3.5vw, 54px) 1fr;
+      gap: 18px;
+      padding: clamp(16px, 2vh, 24px) 0;
+      border-bottom: 1px solid var(--border-line);
+      align-items: baseline;
+    }
+
+    .detail-point:first-child {
+      border-top: 1px solid var(--border-line);
+    }
+
+    .detail-point span {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.9vw, 13px);
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+
+    .detail-point div {
+      font-size: clamp(13px, 1.15vw, 17px);
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(8px, 0.8vw, 12px);
+      margin-top: clamp(24px, 3vh, 36px);
+    }
+
+    .detail-tag {
+      border: 1px solid var(--border-line);
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.85vw, 12px);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Generic Section Container */
+    .detail-section {
+      padding: clamp(54px, 7vh, 96px) 0;
+      border-bottom: 1px solid var(--border-line);
+      width: 100%;
+    }
+
+    .detail-section-label {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.85vw, 12px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+
+    .detail-section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(26px, 4vw, 62px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: clamp(28px, 3.5vh, 44px);
+    }
+
+    /* 3-Column Story Grid */
+    .detail-story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+      width: 100%;
+    }
+
+    .detail-story-card {
+      border: 1px solid var(--border-line);
+      padding: clamp(24px, 3vw, 40px);
+      background: rgba(255, 255, 255, 0.012);
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .detail-story-card:hover {
+      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .detail-story-card h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 1.9vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .detail-story-card p {
+      font-size: clamp(13px, 1.1vw, 16px);
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* Media Gallery (1 Video + 3 Photos) */
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+      width: 100%;
+    }
+
+    .detail-gallery-item {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border-line);
+      overflow: hidden;
+      background: #0b0f14;
+    }
+
+    .detail-gallery-item.wide {
+      grid-column: 1 / -1;
+    }
+
+    .detail-gallery-item.photo-item {
+      grid-column: span 1;
+    }
+
+    .detail-gallery-item video,
+    .detail-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .detail-gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(0deg, rgba(5, 7, 8, 0.9) 0%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.8vw, 11px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      pointer-events: none;
+    }
+
+    .gallery-caption span:first-child {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Impact Results Grid */
+    .detail-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2vw, 28px);
+      width: 100%;
+    }
+
+    .detail-result {
+      border: 1px solid var(--border-line);
+      padding: clamp(24px, 3vw, 40px);
+      background: rgba(255, 255, 255, 0.012);
+    }
+
+    .detail-result strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: clamp(44px, 5.5vw, 84px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .detail-result span {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.95vw, 13px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Credits Table */
+    .detail-credits {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .detail-credit-row {
+      display: grid;
+      grid-template-columns: clamp(160px, 18vw, 260px) 1fr;
+      gap: 24px;
+      padding: clamp(16px, 2vh, 24px) 0;
+      border-bottom: 1px solid var(--border-line);
+      align-items: baseline;
+    }
+
+    .detail-credit-row:first-child {
+      border-top: 1px solid var(--border-line);
+    }
+
+    .detail-credit-row dt {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.85vw, 12px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .detail-credit-row dd {
+      font-size: clamp(13px, 1.1vw, 16px);
+      color: #ffffff;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* Next Project Bottom Navigation */
+    .detail-next {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(40px, 5vh, 64px) 0 clamp(20px, 3vh, 32px);
+      margin-top: clamp(40px, 5vh, 60px);
+      text-decoration: none;
+      color: #ffffff;
+      border-top: 1px solid var(--border-line);
+      transition: opacity 0.25s ease;
+      width: 100%;
+    }
+
+    .detail-next:hover {
+      opacity: 0.85;
+    }
+
+    .detail-next small {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.85vw, 12px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .detail-next strong {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 68px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .detail-next-arrow {
+      font-size: clamp(32px, 4vw, 54px);
+      transition: transform 0.25s ease;
+    }
+
+    .detail-next:hover .detail-next-arrow {
+      transform: translateX(12px);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      :root {
+        --gutter: 20px;
+      }
+
+      .detail-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .detail-story-grid,
+      .detail-results {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-credit-row {
+        grid-template-columns: 120px 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Motion Graphics & Ambient Fluid Background -->
+  <div class="ambient-rhythm-bg" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
+
+  <!-- Tactical Laser Scanline -->
+  <div class="tactical-scanline" aria-hidden="true"></div>
+
+  <!-- Interactive Particles Canvas -->
+  <canvas class="interaction-canvas" id="interactionCanvas" aria-hidden="true"></canvas>
+
+  <!-- Mouse Ambient Spotlight -->
+  <div class="cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
+
+  <!-- Fullscreen Architectural Blueprint Grid -->
+  <div class="blueprint-grid" aria-hidden="true"></div>
+
+  <!-- Cursor Elements -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <main class="detail-shell">
+
+    <!-- Topbar -->
+    <div class="detail-topbar">
+      <div class="detail-brand">AYUSH / PROJECT</div>
+      <a aria-label="Back to all projects" class="detail-close" href="../projects.html">×</a>
+    </div>
+
+    <!-- Hero Video & Title Section -->
+    <section class="detail-hero">
+      <div class="detail-hero-media">
+        <video id="heroVideo" src="../Assets/Video/ROAR.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <button class="video-audio-badge" id="audioToggleBtn" aria-label="Toggle sound">
+          <span id="soundIcon">🔇</span> <span id="soundText">Sound</span>
+        </button>
+      </div>
+      <div class="detail-hero-copy">
+        <div>
+          <div class="detail-kicker">AYUSH SONARE / MULTIPLAYER FPS</div>
+          <h1 class="detail-title">ROAR</h1>
+        </div>
+        <div class="detail-year">2025 — Present</div>
+      </div>
+    </section>
+
+    <!-- Full-bleed Marquee Banner Strip -->
+    <div class="detail-marquee" aria-hidden="true">
+      <div class="detail-marquee-track">
+        <span>— Multiplayer FPS — ROAR </span>
+        <span>— Multiplayer FPS — ROAR </span>
+        <span>— Multiplayer FPS — ROAR </span>
+        <span>— Multiplayer FPS — ROAR </span>
+        <span>— Multiplayer FPS — ROAR </span>
+        <span>— Multiplayer FPS — ROAR </span>
+      </div>
+    </div>
+
+    <!-- Detail Content (Overview & Breakdown) -->
+    <section class="detail-content">
+      <article class="detail-body">
+        <h2>ROAR — PROJECT OVERVIEW.</h2>
+        <p>Networked shooter gameplay, party systems, EOS flow, and combat support for a large-scale multiplayer
+          production.</p>
+
+        <h3>What I worked on</h3>
+        <div class="detail-points">
+          <div class="detail-point">
+            <span>01</span>
+            <div>EOS authentication, sessions, party flow and invites</div>
+          </div>
+          <div class="detail-point">
+            <span>02</span>
+            <div>Networked weapon, combat and player state support</div>
+          </div>
+          <div class="detail-point">
+            <span>03</span>
+            <div>Companion AI using Behavior Trees</div>
+          </div>
+          <div class="detail-point">
+            <span>04</span>
+            <div>Replication testing and gameplay stabilization</div>
+          </div>
+        </div>
+
+        <div class="detail-tags">
+          <span class="detail-tag">unreal_engine</span>
+          <span class="detail-tag">multiplayer</span>
+          <span class="detail-tag">EOS</span>
+          <span class="detail-tag">AI</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Project Story Section -->
+    <section class="detail-section">
+      <div class="detail-section-label">PROJECT STORY</div>
+      <h2 class="detail-section-title">FROM CHALLENGE TO PLAYABLE RESULT.</h2>
+      <div class="detail-story-grid">
+        <article class="detail-story-card">
+          <h3>Challenge</h3>
+          <p>The challenge was to deliver multiplayer fps systems that remained responsive, scalable and practical for
+            production.</p>
+        </article>
+        <article class="detail-story-card">
+          <h3>Approach</h3>
+          <p>I used a Blueprint-first Unreal Engine workflow, supported by C++ where needed, with rapid iteration,
+            debugging and player-facing polish.</p>
+        </article>
+        <article class="detail-story-card">
+          <h3>Outcome</h3>
+          <p>The result was a maintainable gameplay implementation focused on reliability, multiplayer readiness and a
+            stronger moment-to-moment player experience.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Media Gallery Section (1 Video + 3 Photos) -->
+    <section class="detail-section">
+      <div class="detail-section-label">MEDIA GALLERY</div>
+      <h2 class="detail-section-title">GAMEPLAY, SYSTEMS AND PRODUCTION.</h2>
+      <div class="detail-gallery">
+        <!-- 01. Video Option -->
+        <figure class="detail-gallery-item wide">
+          <video src="../Assets/Video/ROAR.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="gallery-caption">
+            <span>01 // GAMEPLAY REEL</span>
+            <span>UNREAL ENGINE 5 · EOS MULTIPLAYER</span>
+          </div>
+        </figure>
+
+        <!-- 02. Photo Option 1 -->
+        <figure class="detail-gallery-item photo-item">
+          <img src="../Assets/Images/Roar/Screenshot 2026-10-08 232159.png" alt="ROAR Combat & Weapon Systems"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2300f0ff\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 01 // COMBAT &amp; WEAPONS</text></svg>';" />
+          <div class="gallery-caption">
+            <span>02 // PHOTO</span>
+            <span>COMBAT &amp; HITREG</span>
+          </div>
+        </figure>
+
+        <!-- 03. Photo Option 2 -->
+        <figure class="detail-gallery-item photo-item">
+          <img src="../Assets/Images/Roar/Screenshot 2026-10-08 232215.png" alt="ROAR Companion AI & Perception"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2300f0ff\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 02 // COMPANION AI</text></svg>';" />
+          <div class="gallery-caption">
+            <span>03 // PHOTO</span>
+            <span>Knock Down &amp; GAMEPLAY</span>
+          </div>
+        </figure>
+
+        <!-- 04. Photo Option 3 -->
+        <figure class="detail-gallery-item photo-item">
+          <img src="../Assets/Images/Roar/Screenshot 2026-10-08 232247.png" alt="ROAR EOS Lobbies & Matchmaking"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2300f0ff\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 03 // EOS SESSIONS</text></svg>';" />
+          <div class="gallery-caption">
+            <span>04 // PHOTO</span>
+            <span>PICKUP &amp; GAMEPLAY</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="detail-section">
+      <div class="detail-section-label">IMPACT</div>
+      <h2 class="detail-section-title">WHAT THE WORK DELIVERED.</h2>
+      <div class="detail-results">
+        <div class="detail-result">
+          <strong>01</strong>
+          <span>CORE SYSTEM DELIVERED</span>
+        </div>
+        <div class="detail-result">
+          <strong>UE5</strong>
+          <span>PRODUCTION WORKFLOW</span>
+        </div>
+        <div class="detail-result">
+          <strong>MP</strong>
+          <span>MULTIPLAYER READY</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credits & Details Section -->
+    <section class="detail-section">
+      <div class="detail-section-label">CREDITS &amp; DETAILS</div>
+      <h2 class="detail-section-title">PROJECT INFORMATION.</h2>
+      <dl class="detail-credits">
+        <div class="detail-credit-row">
+          <dt>Client / Studio</dt>
+          <dd>CarinaSoftLabs</dd>
+        </div>
+        <div class="detail-credit-row">
+          <dt>My Role</dt>
+          <dd>Gameplay &amp; Online Systems</dd>
+        </div>
+        <div class="detail-credit-row">
+          <dt>Engine</dt>
+          <dd>Unreal Engine 5</dd>
+        </div>
+        <div class="detail-credit-row">
+          <dt>Platform</dt>
+          <dd>PC / Multiplayer</dd>
+        </div>
+        <div class="detail-credit-row">
+          <dt>Responsibilities</dt>
+          <dd>Gameplay systems, networking, AI, implementation, debugging and production support.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Next Project Navigation Link -->
+    <a class="detail-next" href="lekh.html">
+      <div>
+        <small>NEXT PROJECT</small>
+        <strong>LEKH</strong>
+      </div>
+      <div class="detail-next-arrow">→</div>
+    </a>
+
+  </main>
+
+  <script>
+    'use strict';
+
+    // Video Audio Toggle
+    const heroVideo = document.getElementById('heroVideo');
+    const audioToggleBtn = document.getElementById('audioToggleBtn');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundText = document.getElementById('soundText');
+
+    if (audioToggleBtn && heroVideo) {
+      audioToggleBtn.addEventListener('click', () => {
+        if (heroVideo.muted) {
+          heroVideo.muted = false;
+          soundIcon.textContent = '🔊';
+          soundText.textContent = 'Mute';
+        } else {
+          heroVideo.muted = true;
+          soundIcon.textContent = '🔇';
+          soundText.textContent = 'Sound';
+        }
+      });
+    }
+
+    // Motion Graphics Canvas (Particles, Constellation Mesh, & Shockwaves)
+    const canvas = document.getElementById('interactionCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    const spotlight = document.getElementById('cursorSpotlight');
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resizeCanvas() {
+      if (!canvas || !ctx) return;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    // Particle nodes for high-tech tactical constellation
+    const PARTICLE_COUNT = Math.min(Math.floor(window.innerWidth / 35), 45);
+    const particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.5 + 0.8,
+        baseAlpha: Math.random() * 0.4 + 0.2
+      });
+    }
+
+    const shockwaves = [];
+
+    // Interactive mouse tracking
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let spotX = mouseX;
+    let spotY = mouseY;
+    let isMouseActive = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isMouseActive) {
+        isMouseActive = true;
+        ringX = mouseX;
+        ringY = mouseY;
+        spotX = mouseX;
+        spotY = mouseY;
+        if (dot) dot.style.opacity = '1';
+        if (ring) ring.style.opacity = '1';
+        if (spotlight) spotlight.style.opacity = '1';
+      }
+    }, { passive: true });
+
+    window.addEventListener('mousedown', (e) => {
+      shockwaves.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: 4,
+        maxRadius: 120,
+        alpha: 0.65,
+        speed: 3.5
+      });
+    });
+
+    function drawMotionGraphics() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      // Update & Draw Particles
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        // Proximity to mouse
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const distToMouse = Math.sqrt(dx * dx + dy * dy);
+        let alpha = p.baseAlpha;
+        if (distToMouse < 180) {
+          alpha = p.baseAlpha + (1 - distToMouse / 180) * 0.5;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 240, 255, ${alpha})`;
+        ctx.fill();
+
+        // Connect nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            const lineAlpha = (1 - dist / 130) * 0.12;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw Click Shockwaves
+      for (let i = shockwaves.length - 1; i >= 0; i--) {
+        const sw = shockwaves[i];
+        sw.radius += sw.speed;
+        sw.alpha -= 0.015;
+
+        if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) {
+          shockwaves.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 240, 255, ${sw.alpha})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      // Smooth Cursor & Spotlight Animation
+      if (isMouseActive) {
+        ringX += (mouseX - ringX) * 0.22;
+        ringY += (mouseY - ringY) * 0.22;
+        spotX += (mouseX - spotX) * 0.08;
+        spotY += (mouseY - spotY) * 0.08;
+
+        if (dot) dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        if (ring) ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+        if (spotlight) spotlight.style.transform = `translate3d(${spotX}px, ${spotY}px, 0)`;
+      }
+
+      requestAnimationFrame(drawMotionGraphics);
+    }
+    requestAnimationFrame(drawMotionGraphics);
+
+    // Interactive Hover Classes
+    const hoverTargets = document.querySelectorAll('a, button, .detail-story-card, .detail-result, .detail-gallery-item');
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => ring?.classList.add('is-hovering'));
+      el.addEventListener('mouseleave', () => ring?.classList.remove('is-hovering'));
+    });
+  </script>
+
+</body>
+
+</html>
