@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>METAVERSE MEETING — Ayush Sonare</title>
   <meta name="description"
-    content="METAVERSE MEETING — Multiplayer virtual social-space with avatar synchronization, spatial audio, and interactive media interfaces." />
+    content="METAVERSE MEETING — Virtual 3D meeting and networking platform built with Unreal Engine 5, AWS infrastructure, runtime environment configuration, multiplayer interactions, and interactive presentation systems." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,18 +106,39 @@
     }
 
     @keyframes rhythmFloat1 {
-      0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.28; }
-      100% { transform: translate3d(8vw, 12vh, 0) scale(1.15); opacity: 0.42; }
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.28;
+      }
+
+      100% {
+        transform: translate3d(8vw, 12vh, 0) scale(1.15);
+        opacity: 0.42;
+      }
     }
 
     @keyframes rhythmFloat2 {
-      0% { transform: translate3d(0, 0, 0) scale(1.1); opacity: 0.32; }
-      100% { transform: translate3d(-10vw, -10vh, 0) scale(0.95); opacity: 0.22; }
+      0% {
+        transform: translate3d(0, 0, 0) scale(1.1);
+        opacity: 0.32;
+      }
+
+      100% {
+        transform: translate3d(-10vw, -10vh, 0) scale(0.95);
+        opacity: 0.22;
+      }
     }
 
     @keyframes rhythmFloat3 {
-      0% { transform: translate3d(0, 0, 0) scale(0.95); opacity: 0.2; }
-      100% { transform: translate3d(-6vw, 8vh, 0) scale(1.1); opacity: 0.38; }
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.95);
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translate3d(-6vw, 8vh, 0) scale(1.1);
+        opacity: 0.38;
+      }
     }
 
     /* Fullscreen Architectural Blueprint Grid */
@@ -178,10 +199,23 @@
     }
 
     @keyframes scanlineSweep {
-      0% { transform: translateY(-100px); opacity: 0; }
-      10% { opacity: 0.7; }
-      90% { opacity: 0.7; }
-      100% { transform: translateY(105vh); opacity: 0; }
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.7;
+      }
+
+      90% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(105vh);
+        opacity: 0;
+      }
     }
 
     ::selection {
@@ -229,6 +263,7 @@
     }
 
     @media (pointer: coarse) {
+
       .cursor-dot,
       .cursor-ring {
         display: none !important;
@@ -376,8 +411,13 @@
     }
 
     @keyframes marqueeSlide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     /* Detail Content Section */
@@ -561,6 +601,7 @@
       grid-column: span 1;
     }
 
+    .detail-gallery-item video,
     .detail-gallery-item img {
       width: 100%;
       height: 100%;
@@ -569,6 +610,7 @@
       transition: transform 0.4s var(--ease);
     }
 
+    .detail-gallery-item:hover video,
     .detail-gallery-item:hover img {
       transform: scale(1.04);
     }
@@ -767,7 +809,7 @@
     <!-- Hero Visual & Title Section -->
     <section class="detail-hero">
       <div class="detail-hero-media">
-        <img src="../assets/images/projects/metaverse-meeting.svg" alt="METAVERSE MEETING" draggable="false" />
+        <video src="../assets/Video/AirEvent/Gameplay.mp4" autoplay muted loop playsinline preload="metadata"></video>
       </div>
       <div class="detail-hero-copy">
         <div>
@@ -781,12 +823,12 @@
     <!-- Full-bleed Marquee Banner Strip -->
     <div class="detail-marquee" aria-hidden="true">
       <div class="detail-marquee-track">
+        <span>— Virtual Events — METAVERSE MEETING </span>
         <span>— Networked Social Space — METAVERSE MEETING </span>
-        <span>— Networked Social Space — METAVERSE MEETING </span>
-        <span>— Networked Social Space — METAVERSE MEETING </span>
-        <span>— Networked Social Space — METAVERSE MEETING </span>
-        <span>— Networked Social Space — METAVERSE MEETING </span>
-        <span>— Networked Social Space — METAVERSE MEETING </span>
+        <span>— Dynamic Environments — METAVERSE MEETING </span>
+        <span>— Virtual Events — METAVERSE MEETING </span>
+        <span>— Multiplayer Networking — METAVERSE MEETING </span>
+        <span>— Dynamic Environments — METAVERSE MEETING </span>
       </div>
     </div>
 
@@ -794,35 +836,45 @@
     <section class="detail-content">
       <article class="detail-body">
         <h2>METAVERSE MEETING — PROJECT OVERVIEW.</h2>
-        <p>A multiplayer virtual social-space project focused on networked player presence, avatar locomotion
-          synchronization, spatialized voice communication, and interactive presentation interfaces.</p>
+        <p>A virtual 3D meeting and networking platform that
+          enables participants to attend events inside interactive,
+          multiplayer environments. Built with Unreal Engine 5 and
+          integrated with web-based services and AWS infrastructure,
+          the platform combines personalized avatars, real-time
+          interactions, digital business cards, presentation media,
+          and configurable virtual venues.</p>
 
         <h3>What I worked on</h3>
         <div class="detail-points">
           <div class="detail-point">
             <span>01</span>
-            <div>EOS authentication, session matchmaking, and synchronized room instances</div>
+            <div>Multiplayer systems, player synchronization, and
+              real-time interactions between participants</div>
           </div>
           <div class="detail-point">
             <span>02</span>
-            <div>Avatar locomotion synchronization, head orientation tracking, and gesture states</div>
+            <div>AWS-backed integration for user content, profile
+              assets, and event-related media workflows</div>
           </div>
           <div class="detail-point">
             <span>03</span>
-            <div>Interactive spatial media screens, whiteboard sync, and slide presentation controllers</div>
+            <div>Runtime environment configuration and integration
+              of customizable virtual event spaces</div>
           </div>
           <div class="detail-point">
             <span>04</span>
-            <div>Voice chat spatial attenuation and bandwidth-efficient replication pipelines</div>
+            <div>Character customization, profile presentation,
+              interactive media screens, and presentation systems</div>
           </div>
         </div>
 
         <div class="detail-tags">
-          <span class="detail-tag">multiplayer</span>
+          <span class="detail-tag">Multiplayer Systems</span>
           <span class="detail-tag">EOS</span>
-          <span class="detail-tag">social_vr</span>
+          <span class="detail-tag">AWS</span>
+          <span class="detail-tag">api_integration</span>
           <span class="detail-tag">spatial_audio</span>
-          <span class="detail-tag">networking</span>
+          <span class="detail-tag">runtime_systems</span>
         </div>
       </article>
     </section>
@@ -834,18 +886,24 @@
       <div class="detail-story-grid">
         <article class="detail-story-card">
           <h3>Challenge</h3>
-          <p>The challenge was to deliver networked social space systems that remained responsive, scalable and practical
-            for production.</p>
+          <p>The platform required a flexible virtual event experience
+            connecting multiplayer interactions, user profiles,
+            configurable venues, presentation media, and web-based
+            event management.</p>
         </article>
         <article class="detail-story-card">
           <h3>Approach</h3>
-          <p>I used a Blueprint-first Unreal Engine workflow, supported by C++ where needed, with rapid iteration,
-            debugging and player-facing polish.</p>
+          <p> The implementation connected Unreal Engine gameplay
+            systems with backend APIs and AWS-backed asset workflows,
+            using reusable components to support configurable
+            environments and interactive event spaces.</p>
         </article>
         <article class="detail-story-card">
           <h3>Outcome</h3>
-          <p>The result was a maintainable gameplay implementation focused on reliability, multiplayer readiness and a
-            stronger moment-to-moment player experience.</p>
+          <p> The project brought together virtual networking,
+            customizable participant identities, environmental
+            interactions, and presentation experiences within a
+            shared 3D event platform.</p>
         </article>
       </div>
     </section>
@@ -857,36 +915,36 @@
       <div class="detail-gallery">
         <!-- 01. Wide Hero Visual -->
         <figure class="detail-gallery-item wide">
-          <img src="../assets/images/projects/metaverse-meeting.svg" alt="METAVERSE MEETING Showcase" />
+          <video src="../Assets/Video/AirEvent/Gameplay.mp4" autoplay muted loop playsinline preload="metadata"></video>
           <div class="gallery-caption">
-            <span>01 // SHOWCASE</span>
+            <span>01 // GAMEPLAY REEL</span>
             <span>UNREAL ENGINE 5 · MULTIPLAYER SOCIAL SPACE</span>
           </div>
         </figure>
 
-        <!-- 02. Photo Option 1 -->
+        <!-- 02. Video Option 1 -->
         <figure class="detail-gallery-item photo-item">
-          <img src="../Assets/Images/metaverse-1.jpg" alt="METAVERSE MEETING Avatar Synchronization"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 01 // AVATAR SYNC</text></svg>';" />
+          <video src="../Assets/Video/AirEvent/CharacterCustomizer.mp4" autoplay muted loop playsinline
+            preload="metadata"></video>
           <div class="gallery-caption">
-            <span>02 // PHOTO</span>
-            <span>GESTURES &amp; HEAD TRACKING</span>
+            <span>02 // VIDEO</span>
+            <span>AVATAR &amp; CUSTOMIZER</span>
           </div>
         </figure>
 
-        <!-- 03. Photo Option 2 -->
+        <!-- 03. Video Option 2 -->
         <figure class="detail-gallery-item photo-item">
-          <img src="../Assets/Images/metaverse-2.jpg" alt="METAVERSE MEETING Presentation Media"
-            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 02 // MEDIA SCREENS</text></svg>';" />
+          <video src="../Assets/Video/AirEvent/FireWorks.mp4" autoplay muted loop playsinline
+            preload="metadata"></video>
           <div class="gallery-caption">
-            <span>03 // PHOTO</span>
-            <span>WHITEBOARD &amp; SLIDES</span>
+            <span>03 // VIDEO</span>
+            <span>ACTIVITIES &amp; FIREWORKS</span>
           </div>
         </figure>
 
         <!-- 04. Photo Option 3 -->
         <figure class="detail-gallery-item photo-item">
-          <img src="../Assets/Images/metaverse-3.jpg" alt="METAVERSE MEETING EOS Lobby"
+          <img src="../Assets/Video/AirEvent/Lobby.png" alt="METAVERSE MEETING EOS Lobby"
             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'450\' viewBox=\'0 0 800 450\'><rect width=\'800\' height=\'450\' fill=\'%230b0f14\'/><path d=\'M0 0l800 450M800 0L0 450\' stroke=\'%23ffffff\' stroke-width=\'1\' stroke-opacity=\'0.06\'/><circle cx=\'400\' cy=\'225\' r=\'40\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'1.5\' stroke-opacity=\'0.5\'/><text x=\'50%25\' y=\'52%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'13\' fill=\'%23ffffff\' letter-spacing=\'2\'>PHOTO 03 // EOS SESSIONS</text></svg>';" />
           <div class="gallery-caption">
             <span>04 // PHOTO</span>
@@ -902,16 +960,16 @@
       <h2 class="detail-section-title">WHAT THE WORK DELIVERED.</h2>
       <div class="detail-results">
         <div class="detail-result">
-          <strong>01</strong>
-          <span>NETWORKED HUB</span>
-        </div>
-        <div class="detail-result">
           <strong>EOS</strong>
-          <span>MULTIPLAYER SUITE</span>
+          <span>VIRTUAL EVENT SPACES</span>
         </div>
         <div class="detail-result">
-          <strong>3D</strong>
-          <span>SPATIAL AUDIO</span>
+          <strong>API</strong>
+          <span>WEB & BACKEND INTEGRATION</span>
+        </div>
+        <div class="detail-result">
+          <strong>AWS</strong>
+          <span>CLOUD & MEDIA WORKFLOWS</span>
         </div>
       </div>
     </section>
@@ -939,16 +997,17 @@
         </div>
         <div class="detail-credit-row">
           <dt>Responsibilities</dt>
-          <dd>Networking replication, EOS session integration, spatial media interaction, avatar synchronization, and performance optimization.</dd>
+          <dd>Networking replication, EOS session integration, spatial media interaction, avatar synchronization, and
+            performance optimization.</dd>
         </div>
       </dl>
     </section>
 
     <!-- Next Project Navigation Link -->
-    <a class="detail-next" href="checkpointerz.html">
+    <a class="detail-next" href="flaws.html">
       <div>
         <small>NEXT PROJECT</small>
-        <strong>CHECKPOINTERZ</strong>
+        <strong>FLAWS</strong>
       </div>
       <div class="detail-next-arrow">→</div>
     </a>
