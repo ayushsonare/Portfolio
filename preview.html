@@ -5564,7 +5564,7 @@
           data-image="assets/images/BHR Thumbnail.png" data-video="https://www.youtube-nocookie.com/embed/7mJBKVK88fc" data-link="projects/roar.html"
           data-featured="true">
           <div class="youtube-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" title="ROAR"></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="ROAR"></iframe>
           </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
@@ -5574,11 +5574,9 @@
           data-subtitle="Indian Fantasy RPG" data-role="Gameplay Systems &amp; Locomotion" data-year="2025"
           data-description="An Indian-fantasy RPG project focused on fluid melee combat feel, companion AI, and responsive locomotion systems."
           data-tags="unreal_engine, RPG, combat, AI, locomotion" data-categories="gameplay, ai"
-          data-image="Assets/Images/Lekh/Lekh.png" data-video="https://www.youtube-nocookie.com/embed/jDXf9jH3NU0" data-link="projects/lekh.html"
+          data-image="Assets/Images/Lekh/Lekh.png" data-video="Assets/Video/Lekh.mp4" data-link="projects/lekh.html"
           data-featured="true">
-          <div class="youtube-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/jDXf9jH3NU0?autoplay=1&mute=1&loop=1&playlist=jDXf9jH3NU0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" title="LEKH"></iframe>
-          </div>
+          <video class="project-video" src="Assets/Video/Lekh.mp4" autoplay muted loop playsinline preload="metadata"></video>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>
@@ -5587,11 +5585,9 @@
           data-subtitle="Gameplay &amp; Systems Prototype" data-role="Gameplay Systems &amp; Mechanics" data-year="2025"
           data-description="Experimental gameplay mechanics, responsive character interaction, physics-driven gameplay systems, and prototype iteration."
           data-tags="unreal_engine, gameplay, physics, mechanics" data-categories="gameplay"
-          data-image="Assets/Images/Flaws/ADS.png" data-video="https://www.youtube-nocookie.com/embed/pwVN_OQtCug"
+          data-image="Assets/Images/Flaws/ADS.png" data-video="Assets/Video/Flaws.mp4"
           data-link="projects/flaws.html" data-featured="true">
-          <div class="youtube-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/pwVN_OQtCug?autoplay=1&mute=1&loop=1&playlist=pwVN_OQtCug&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" title="FLAWS"></iframe>
-          </div>
+          <video class="project-video" src="Assets/Video/Flaws.mp4" autoplay muted loop playsinline preload="metadata"></video>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>
@@ -6061,6 +6057,17 @@
                 vid.pause();
               }
             }
+          }
+
+          const ifr = card.querySelector('iframe');
+          if (ifr && ifr.contentWindow) {
+            try {
+              if (diff === 0) {
+                ifr.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+              } else {
+                ifr.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+              }
+            } catch (e) {}
           }
         });
 
