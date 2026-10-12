@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -41,7 +41,7 @@ body {
   background: var(--bg);
   color: var(--text-main);
   font-family: var(--font-sans);
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto !important;
@@ -120,7 +120,7 @@ body {
 .blueprint-grid {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
@@ -152,7 +152,7 @@ body {
 .interaction-canvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   pointer-events: none;
   z-index: 3;
@@ -163,7 +163,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 2px;
   background: linear-gradient(90deg, transparent 0%, rgba(239, 68, 68, 0.35) 50%, transparent 100%);
   box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
@@ -225,25 +225,34 @@ body {
 }
 
 @media (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none !important; }
-}
+      .cursor-dot,
+      .cursor-ring,
+      .cursor-spotlight,
+      .interaction-canvas {
+        display: none !important;
+      }
+    }
 
 /* Fullscreen Detail Shell */
-.detail-shell {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  padding: 0 var(--gutter) 100px;
-}
+    .detail-shell {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 0 max(var(--gutter), env(safe-area-inset-right)) max(90px, env(safe-area-inset-bottom)) max(var(--gutter), env(safe-area-inset-left));
+      box-sizing: border-box;
+      overflow-x: clip;
+    }
 
 /* Topbar */
 .detail-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: clamp(20px, 3vh, 36px) 0;
-  width: 100%;
-}
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: max(clamp(18px, 2.8vh, 32px), env(safe-area-inset-top)) 0 clamp(16px, 2vh, 24px);
+      width: 100%;
+    }
 
 .detail-brand {
   font-family: var(--font-heading);
@@ -255,11 +264,14 @@ body {
 }
 
 .detail-close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(38px, 3.2vw, 46px);
-  height: clamp(38px, 3.2vw, 46px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(42px, 3.2vw, 46px);
+      height: clamp(42px, 3.2vw, 46px);
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
   border-radius: 50%;
   border: 1px solid var(--border-line);
   color: #ffffff;
@@ -702,21 +714,89 @@ body {
 }
 
 /* Responsive Breakpoints */
-@media (max-width: 900px) {
-  :root {
-    --gutter: 20px;
-  }
-  .detail-story-grid,
-  .detail-results {
-    grid-template-columns: 1fr;
-  }
-  .detail-gallery {
-    grid-template-columns: 1fr;
-  }
-  .detail-credit-row {
-    grid-template-columns: 120px 1fr;
-  }
-}
+    @media (max-width: 900px) {
+      :root {
+        --gutter: 20px;
+      }
+
+      .detail-story-grid,
+      .detail-results {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .detail-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .detail-credit-row {
+        grid-template-columns: 140px 1fr;
+        gap: 16px;
+      }
+
+      .detail-hero-copy {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --gutter: 16px;
+      }
+
+      .detail-title {
+        font-size: clamp(28px, 10vw, 48px);
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+      }
+
+      .detail-credit-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 14px 0;
+      }
+
+      .detail-credit-row dt {
+        font-size: 10px;
+        color: var(--text-faint);
+      }
+
+      .detail-credit-row dd {
+        font-size: 14px;
+      }
+
+      .detail-point {
+        grid-template-columns: 32px 1fr;
+        gap: 12px;
+      }
+
+      .detail-marquee-track span {
+        font-size: clamp(32px, 8.5vw, 54px);
+      }
+
+      .detail-next {
+        gap: 16px;
+      }
+
+      .detail-next strong {
+        font-size: clamp(20px, 6.5vw, 34px);
+        word-break: break-word;
+      }
+
+      .detail-next-arrow {
+        font-size: 28px;
+      }
+
+      .video-audio-badge {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 11px;
+        font-size: 9.5px;
+      }
+    }
 </style>
 </head>
 <body>

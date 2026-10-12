@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta content="Ayush Sonare — Unreal Engine developer focused on multiplayer, AI and gameplay systems."
     name="description" />
   <title>Ayush Sonare — Unreal Engine Developer</title>
@@ -140,7 +140,8 @@
 
       .cursor-dot,
       .cursor-ring,
-      .cursor-spotlight {
+      .cursor-spotlight,
+      .interaction-canvas {
         display: none !important;
       }
     }
@@ -1627,8 +1628,8 @@
     @media (max-width: 900px) {
       .site-header {
         grid-template-columns: 1fr auto;
-        height: 68px;
-        padding: 0 18px;
+        height: calc(68px + env(safe-area-inset-top));
+        padding: env(safe-area-inset-top) max(18px, env(safe-area-inset-right)) 0 max(18px, env(safe-area-inset-left));
       }
 
       .desktop-nav,
@@ -1639,11 +1640,16 @@
       .menu-toggle {
         display: grid;
         place-items: center;
-        width: 38px;
-        height: 38px;
+        width: 42px;
+        height: 42px;
+        min-width: 44px;
+        min-height: 44px;
         border: 1px solid rgba(255, 255, 255, .4);
+        border-radius: 4px;
         color: #fff;
         background: transparent;
+        touch-action: manipulation;
+        cursor: pointer;
       }
 
       .brand {
@@ -1666,7 +1672,7 @@
       .section,
       .section:nth-child(even) {
         min-height: 100svh;
-        padding: 88px 18px 30px;
+        padding: calc(88px + env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(30px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
         grid-template-columns: 1fr;
         align-content: end;
         gap: 18px;
@@ -1679,8 +1685,10 @@
 
       h1,
       h2 {
-        font-size: clamp(2.8rem, 14vw, 5.2rem);
-        max-width: 8ch;
+        font-size: clamp(2.4rem, 12vw, 4.6rem);
+        max-width: 10ch;
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
 
       .copy p {
@@ -1694,7 +1702,8 @@
       }
 
       .meta-row {
-        grid-template-columns: 76px 1fr;
+        grid-template-columns: 82px 1fr;
+        gap: 14px;
       }
 
       .section-label {
@@ -1706,33 +1715,91 @@
       }
 
       footer {
-        padding: 55px 18px 28px;
-        min-height: 78vh;
+        padding: 55px max(18px, env(safe-area-inset-right)) max(34px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+        min-height: 70vh;
       }
 
       .footer-main {
         grid-template-columns: 1fr;
-        gap: 58px;
+        gap: 44px;
       }
 
       .footer-links {
         justify-self: start;
         grid-template-columns: repeat(2, minmax(100px, 1fr));
         gap: 13px 30px;
-        width: min(100%, 290px);
+        width: min(100%, 320px);
       }
 
       .footer-brand {
         justify-content: flex-start;
-        gap: 18px;
+        align-items: center;
+        gap: clamp(14px, 3.5vw, 24px);
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .footer-title {
+        font-size: clamp(3rem, 14vw, 6.5rem);
       }
 
       .footer-logo {
-        width: 92px;
+        width: clamp(60px, 15vw, 92px);
       }
 
       .footer-bottom {
         flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .cta {
+        max-width: 100%;
+        word-break: break-all;
+        text-align: center;
+      }
+
+      #contact .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .experience-item,
+      .plugin-item {
+        grid-template-columns: 28px 1fr auto;
+        gap: 10px;
+        padding: 14px 0;
+      }
+
+      .item-no {
+        font-size: 9px;
+      }
+
+      .item-title {
+        font-size: 13.5px;
+      }
+
+      .item-sub {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .meta-row {
+        grid-template-columns: 78px 1fr;
+        gap: 10px;
+      }
+
+      .meta-label {
+        font-size: 8.5px;
+      }
+
+      .meta-value {
+        font-size: 12px;
       }
     }
 
@@ -3624,13 +3691,13 @@
     @media (min-width: 1280px) {
       .section:not(.project-section) {
         padding: 112px 5.2vw 54px;
-        grid-template-columns: minmax(600px, .9fr) minmax(560px, 1.45fr);
-        gap: clamp(52px, 5vw, 110px);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+        gap: clamp(48px, 4.5vw, 96px);
         align-items: center;
       }
 
       .section:not(.project-section):nth-child(even) {
-        grid-template-columns: minmax(500px, 620px) minmax(700px, 1fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       }
 
       .section:not(.project-section)>.copy {
@@ -3748,11 +3815,11 @@
       .section:not(.project-section) {
         padding-left: 6.8vw;
         padding-right: 5.5vw;
-        grid-template-columns: minmax(680px, .95fr) minmax(760px, 1.4fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
       }
 
       .section:not(.project-section):nth-child(even) {
-        grid-template-columns: minmax(560px, 680px) minmax(850px, 1fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       }
 
       .section:not(.project-section)>.copy {
@@ -5561,10 +5628,11 @@
           data-subtitle="Multiplayer FPS" data-role="Gameplay &amp; Online Systems" data-year="2025 — Present"
           data-description="Networked shooter gameplay, party systems, EOS flow, and combat support for a large-scale multiplayer production."
           data-tags="unreal_engine, multiplayer, EOS, AI" data-categories="multiplayer, gameplay, ai"
-          data-image="assets/images/BHR Thumbnail.png" data-video="Assets/Video/ROAR.mp4" data-link="projects/roar.html"
+          data-image="assets/images/BHR Thumbnail.png" data-video="https://www.youtube-nocookie.com/embed/7mJBKVK88fc" data-link="projects/roar.html"
           data-featured="true">
-          <video class="project-video" src="Assets/Video/ROAR.mp4" autoplay muted loop playsinline
-            preload="metadata"></video>
+          <div class="youtube-video-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" title="ROAR"></iframe>
+          </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>

@@ -45,7 +45,7 @@
       background: var(--bg);
       color: var(--text-main);
       font-family: var(--font-sans);
-      width: 100vw;
+      width: 100%;
       min-height: 100vh;
       overflow-x: hidden;
       overflow-y: auto !important;
@@ -145,7 +145,7 @@
     .blueprint-grid {
       position: fixed;
       inset: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       background-image:
         linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
@@ -177,7 +177,7 @@
     .interaction-canvas {
       position: fixed;
       inset: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       pointer-events: none;
       z-index: 3;
@@ -188,7 +188,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 2px;
       background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.35) 50%, transparent 100%);
       box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
@@ -263,9 +263,10 @@
     }
 
     @media (pointer: coarse) {
-
       .cursor-dot,
-      .cursor-ring {
+      .cursor-ring,
+      .cursor-spotlight,
+      .interaction-canvas {
         display: none !important;
       }
     }
@@ -283,7 +284,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: clamp(20px, 3vh, 36px) 0;
+      padding: max(clamp(18px, 2.8vh, 32px), env(safe-area-inset-top)) 0 clamp(16px, 2vh, 24px);
       width: 100%;
     }
 
@@ -300,8 +301,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: clamp(38px, 3.2vw, 46px);
-      height: clamp(38px, 3.2vw, 46px);
+      width: clamp(42px, 3.2vw, 46px);
+      height: clamp(42px, 3.2vw, 46px);
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
       border-radius: 50%;
       border: 1px solid var(--border-line);
       color: #ffffff;
@@ -334,11 +338,14 @@
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
     }
 
-    .detail-hero-media img {
+    .detail-hero-media img,
+    .detail-hero-media video,
+    .detail-hero-media iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      border: 0;
     }
 
     .detail-hero-copy {
@@ -362,12 +369,14 @@
 
     .detail-title {
       font-family: var(--font-heading);
-      font-size: clamp(64px, 9.5vw, 150px);
+      font-size: clamp(34px, 8.5vw, 140px);
       font-weight: 900;
       letter-spacing: -0.05em;
-      line-height: 0.88;
+      line-height: 0.9;
       color: #ffffff;
       text-transform: uppercase;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .detail-year {
@@ -602,11 +611,13 @@
     }
 
     .detail-gallery-item video,
+    .detail-gallery-item iframe,
     .detail-gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      border: 0;
       transition: transform 0.4s var(--ease);
     }
 
@@ -760,14 +771,79 @@
       .detail-story-grid,
       .detail-results {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .detail-gallery {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .detail-credit-row {
-        grid-template-columns: 120px 1fr;
+        grid-template-columns: 140px 1fr;
+        gap: 16px;
+      }
+
+      .detail-hero-copy {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --gutter: 16px;
+      }
+
+      .detail-title {
+        font-size: clamp(28px, 10vw, 48px);
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+      }
+
+      .detail-credit-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 14px 0;
+      }
+
+      .detail-credit-row dt {
+        font-size: 10px;
+        color: var(--text-faint);
+      }
+
+      .detail-credit-row dd {
+        font-size: 14px;
+      }
+
+      .detail-point {
+        grid-template-columns: 32px 1fr;
+        gap: 12px;
+      }
+
+      .detail-marquee-track span {
+        font-size: clamp(32px, 8.5vw, 54px);
+      }
+
+      .detail-next {
+        gap: 16px;
+      }
+
+      .detail-next strong {
+        font-size: clamp(20px, 6.5vw, 34px);
+        word-break: break-word;
+      }
+
+      .detail-next-arrow {
+        font-size: 28px;
+      }
+
+      .video-audio-badge {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 11px;
+        font-size: 9.5px;
       }
     }
   </style>
@@ -809,7 +885,7 @@
     <!-- Hero Visual & Title Section -->
     <section class="detail-hero">
       <div class="detail-hero-media">
-        <video src="../assets/Video/BBall.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <iframe src="https://www.youtube-nocookie.com/embed/AhCk1IuZI0k?autoplay=1&mute=1&loop=1&playlist=AhCk1IuZI0k&rel=0&playsinline=1" title="Basketball Mobile Gameplay Reel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="detail-hero-copy">
         <div>
@@ -904,10 +980,10 @@
       <div class="detail-gallery">
         <!-- 01. Wide Hero Visual -->
         <figure class="detail-gallery-item wide">
-          <video src="../Assets/Video/BBall.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <iframe src="https://www.youtube-nocookie.com/embed/AhCk1IuZI0k?rel=0&playsinline=1" title="Basketball Mobile Gameplay Reel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div class="gallery-caption">
             <span>01 // GAMEPLAY REEL</span>
-            <span>UNREAL ENGINE 5 · MULTIPLAYER SOCIAL SPACE</span>
+            <span>UNREAL ENGINE 5 · MULTIPLAYER BASKETBALL</span>
           </div>
         </figure>
 

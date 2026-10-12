@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta content="Ayush Sonare — Unreal Engine developer focused on multiplayer, AI and gameplay systems."
     name="description" />
   <title>Ayush Sonare — Unreal Engine Developer</title>
@@ -3624,13 +3624,13 @@
     @media (min-width: 1280px) {
       .section:not(.project-section) {
         padding: 112px 5.2vw 54px;
-        grid-template-columns: minmax(600px, .9fr) minmax(560px, 1.45fr);
-        gap: clamp(52px, 5vw, 110px);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+        gap: clamp(48px, 4.5vw, 96px);
         align-items: center;
       }
 
       .section:not(.project-section):nth-child(even) {
-        grid-template-columns: minmax(500px, 620px) minmax(700px, 1fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       }
 
       .section:not(.project-section)>.copy {
@@ -3748,11 +3748,11 @@
       .section:not(.project-section) {
         padding-left: 6.8vw;
         padding-right: 5.5vw;
-        grid-template-columns: minmax(680px, .95fr) minmax(760px, 1.4fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
       }
 
       .section:not(.project-section):nth-child(even) {
-        grid-template-columns: minmax(560px, 680px) minmax(850px, 1fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       }
 
       .section:not(.project-section)>.copy {
@@ -5561,10 +5561,11 @@
           data-subtitle="Multiplayer FPS" data-role="Gameplay &amp; Online Systems" data-year="2025 — Present"
           data-description="Networked shooter gameplay, party systems, EOS flow, and combat support for a large-scale multiplayer production."
           data-tags="unreal_engine, multiplayer, EOS, AI" data-categories="multiplayer, gameplay, ai"
-          data-image="assets/images/BHR Thumbnail.png" data-video="Assets/Video/ROAR.mp4" data-link="projects/roar.html"
+          data-image="assets/images/BHR Thumbnail.png" data-video="https://www.youtube-nocookie.com/embed/7mJBKVK88fc" data-link="projects/roar.html"
           data-featured="true">
-          <video class="project-video" src="Assets/Video/ROAR.mp4" autoplay muted loop playsinline
-            preload="metadata"></video>
+          <div class="youtube-video-wrap">
+            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" title="ROAR"></iframe>
+          </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>

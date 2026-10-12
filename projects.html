@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -10,10 +10,12 @@
     html,
     body {
       margin: 0;
+      width: 100%;
       background: #030708;
       color: #f5f4ee;
       overflow-x: hidden;
-      overflow-y: auto !important
+      overflow-y: auto !important;
+      -webkit-font-smoothing: antialiased;
     }
 
     .works-panel.static-works {
@@ -25,7 +27,60 @@
       height: auto !important;
       max-height: none !important;
       min-height: 100vh;
-      overflow: visible !important
+      overflow: visible !important;
+    }
+
+    .works-shell {
+      max-width: 1600px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: clamp(24px, 3.5vw, 54px) max(clamp(20px, 4vw, 72px), env(safe-area-inset-right)) max(80px, env(safe-area-inset-bottom)) max(clamp(20px, 4vw, 72px), env(safe-area-inset-left));
+    }
+
+    .works-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: max(16px, env(safe-area-inset-top)) 0 24px;
+      background: linear-gradient(180deg, #030708 72%, rgba(3, 7, 8, 0.8) 90%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .works-brand {
+      font-size: clamp(20px, 2.2vw, 34px);
+      letter-spacing: -.05em;
+    }
+
+    .works-close {
+      width: clamp(42px, 3.5vw, 48px);
+      height: clamp(42px, 3.5vw, 48px);
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+
+    .works-layout {
+      grid-template-columns: minmax(180px, 22vw) 1fr !important;
+      gap: clamp(36px, 4.5vw, 90px) !important;
+    }
+
+    .works-sidebar {
+      position: sticky;
+      top: 100px;
+      padding-top: 36px;
+    }
+
+    .works-title {
+      font-size: clamp(52px, 6.5vw, 110px) !important;
+      margin-bottom: 24px !important;
+      letter-spacing: -.06em;
+      line-height: .86;
+    }
+
+    .works-grid {
+      padding-top: 36px !important;
+      gap: clamp(32px, 3.2vw, 54px) clamp(22px, 2.2vw, 40px) !important;
     }
 
     .library-card {
@@ -34,7 +89,7 @@
       min-width: 0;
       display: block;
       opacity: 1 !important;
-      transform: none !important
+      transform: none !important;
     }
 
     .library-media {
@@ -43,19 +98,25 @@
       aspect-ratio: 16/9;
       overflow: hidden;
       background: #0c1014;
-      border: 1px solid rgba(255, 255, 255, .15)
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 4px;
     }
 
-    .library-media img {
+    .library-media img,
+    .library-media video,
+    .library-media iframe {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .5s cubic-bezier(.22, 1, .36, 1)
+      border: 0;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1);
     }
 
-    .library-card:hover .library-media img {
-      transform: scale(1.04)
+    .library-card:hover .library-media img,
+    .library-card:hover .library-media video,
+    .library-card:hover .library-media iframe {
+      transform: scale(1.04);
     }
 
     .library-meta {
@@ -64,10 +125,18 @@
       align-items: center;
       margin-top: 14px;
       font-family: var(--font-mono, monospace);
-      font-size: 11px;
+      font-size: clamp(10px, 0.9vw, 11.5px);
       color: rgba(255, 255, 255, .6);
       letter-spacing: .06em;
-      text-transform: uppercase
+      text-transform: uppercase;
+      gap: 12px;
+    }
+
+    .library-tags {
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .library-name {
@@ -78,35 +147,100 @@
       color: #fff;
       display: flex;
       justify-content: space-between;
-      align-items: center
+      align-items: center;
+      gap: 10px;
+      word-break: break-word;
     }
 
     .library-name span {
       font-size: 16px;
       opacity: .5;
-      transition: transform .2s ease, opacity .2s ease
+      transition: transform .2s ease, opacity .2s ease;
+      flex-shrink: 0;
     }
 
     .library-card:hover .library-name span {
       opacity: 1;
       transform: translate(2px, -2px);
-      color: var(--accent, #00f0ff)
+      color: var(--accent, #00f0ff);
     }
 
-    @media(max-width:620px) {
-      .works-grid {
+    /* Tablet breakpoint */
+    @media (max-width: 960px) {
+      .works-layout {
         grid-template-columns: 1fr !important;
-        gap: 36px !important;
-        padding-top: 30px !important
-      }
-
-      .works-title {
-        font-size: 48px !important;
-        margin-bottom: 20px !important
+        gap: 24px !important;
       }
 
       .works-sidebar {
-        padding-top: 10px !important
+        position: relative !important;
+        top: auto !important;
+        padding-top: 10px !important;
+      }
+
+      .works-sidebar p {
+        max-width: 48ch !important;
+      }
+
+      .works-title {
+        font-size: clamp(48px, 9vw, 84px) !important;
+        margin-bottom: 14px !important;
+      }
+
+      .works-grid {
+        padding-top: 16px !important;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 32px !important;
+      }
+    }
+
+    /* Mobile phone breakpoint */
+    @media (max-width: 580px) {
+      .works-shell {
+        padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(60px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)) !important;
+      }
+
+      .works-topbar {
+        padding-bottom: 14px !important;
+      }
+
+      .works-brand {
+        font-size: 18px !important;
+      }
+
+      .works-close {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 20px !important;
+      }
+
+      .works-title {
+        font-size: clamp(38px, 11vw, 54px) !important;
+        margin-bottom: 12px !important;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+        padding-top: 10px !important;
+      }
+
+      .library-name {
+        font-size: 19px !important;
+      }
+
+      .library-meta {
+        font-size: 10px !important;
+      }
+    }
+
+    /* Touch screen cursor hiding */
+    @media (pointer: coarse) {
+      .cursor-dot,
+      .cursor-ring,
+      .cursor-spotlight,
+      .interaction-canvas {
+        display: none !important;
       }
     }
   </style>
@@ -135,8 +269,8 @@
 
           <!-- 01. ROAR -->
           <a class="library-card" data-category="multiplayer gameplay ai" href="projects/roar.html">
-            <div class="library-media"><video src="Assets/Video/ROAR.mp4" autoplay muted loop playsinline
-                preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            <div class="library-media">
+              <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="ROAR" allow="autoplay; encrypted-media" style="width:100%;height:100%;pointer-events:none;border:0;position:absolute;inset:0;"></iframe>
             </div>
             <div class="library-meta"><span>2025 — Present</span><span class="library-tags">Multiplayer FPS</span></div>
             <h2 class="library-name">ROAR <span>↗</span></h2>
@@ -194,8 +328,8 @@
 
           <!-- 09. METAVERSE MEETING -->
           <a class="library-card" data-category="multiplayer gameplay" href="projects/metaverse-meeting.html">
-            <div class="library-media"><video src="Assets/Video/AirEvent/Gameplay.mp4" autoplay muted loop playsinline
-                preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            <div class="library-media">
+              <iframe src="https://www.youtube-nocookie.com/embed/8FmVWWde1FY?autoplay=1&mute=1&loop=1&playlist=8FmVWWde1FY&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="METAVERSE MEETING" allow="autoplay; encrypted-media" style="width:100%;height:100%;pointer-events:none;border:0;position:absolute;inset:0;"></iframe>
             </div>
             <div class="library-meta"><span>2025</span><span class="library-tags">Virtual World</span></div>
             <h2 class="library-name">METAVERSE MEETING <span>↗</span></h2>
@@ -203,9 +337,8 @@
 
           <!-- 10. BASKETBALL -->
           <a class="library-card" data-category="mobile gameplay" href="projects/BasketballMobile.html">
-            <div class="library-media"><video src="assets/Video/BBall.mp4" alt="BASKETBALL MOBILE" autoplay muted loop
-                playsinline preload="metadata"
-                style="width:100%;height:100%;object-fit:cover;display:block;border:0;"></video>
+            <div class="library-media">
+              <iframe src="https://www.youtube-nocookie.com/embed/AhCk1IuZI0k?autoplay=1&mute=1&loop=1&playlist=AhCk1IuZI0k&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="BASKETBALL MOBILE" allow="autoplay; encrypted-media" style="width:100%;height:100%;pointer-events:none;border:0;position:absolute;inset:0;"></iframe>
             </div>
             <div class="library-meta"><span>2025</span><span class="library-tags">Mobile Arcade Game</span></div>
             <h2 class="library-name">BASKETBALL MOBILE <span>↗</span></h2>
