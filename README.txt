@@ -6,6 +6,9 @@ MAIN PAGE
 - Each featured project keeps its text, link, image/video and tags inside one <article class="project-card">.
 - The carousel no longer loads project text from js/project-data.js or an inline JavaScript data array.
 
+#Hosted Link 
+https://ayushsonare.github.io/Portfolio/
+
 EDIT A FEATURED PROJECT
 Change these attributes in its <article>:
 - data-title
