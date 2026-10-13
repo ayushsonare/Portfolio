@@ -5224,9 +5224,25 @@
       overflow: hidden;
       border: 0;
       border-radius: inherit;
-      background: #000;
+      background: transparent;
       pointer-events: none;
       transform: none;
+      z-index: 2;
+    }
+
+    .project-card img,
+    .project-card .project-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 1;
+      transition: transform .94s cubic-bezier(.18, .78, .12, 1), filter .58s ease;
     }
 
     .project-card>video,
@@ -5267,6 +5283,13 @@
       transform: none;
       transform-origin: center;
       pointer-events: none;
+      background: transparent;
+      opacity: 0;
+      transition: opacity .45s ease;
+    }
+
+    .project-card .youtube-video-wrap iframe[src] {
+      opacity: 1;
     }
 
     /* Match the same subtle media motion used by project images without viewport-sized scaling. */
@@ -5299,7 +5322,44 @@
       transform-origin: right center;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      /* Mobile performance optimization: eliminate GPU bottlenecks and thread lag */
+      .aurora-blob {
+        filter: blur(24px) !important;
+        opacity: 0.16 !important;
+        animation: none !important;
+        mix-blend-mode: normal !important;
+        will-change: auto !important;
+      }
+
+      .aurora-blob.blob-3,
+      .aurora-blob.blob-4,
+      .rhythm-glow-mesh {
+        display: none !important;
+      }
+
+      .noise {
+        display: none !important;
+      }
+
+      .cursor-dot,
+      .cursor-ring,
+      .cursor-spotlight,
+      .interaction-canvas {
+        display: none !important;
+      }
+
+      .project-card>video,
+      .project-card .project-video {
+        animation: none !important;
+      }
+
+      .project-card {
+        transition:
+          transform .52s cubic-bezier(.22, .82, .24, 1),
+          opacity .38s ease !important;
+        filter: none !important;
+      }
 
       .project-card>video,
       .project-card .project-video,
@@ -5628,10 +5688,11 @@
           data-subtitle="Multiplayer FPS" data-role="Gameplay &amp; Online Systems" data-year="2025 — Present"
           data-description="Networked shooter gameplay, party systems, EOS flow, and combat support for a large-scale multiplayer production."
           data-tags="unreal_engine, multiplayer, EOS, AI" data-categories="multiplayer, gameplay, ai"
-          data-image="assets/images/BHR Thumbnail.png" data-video="https://www.youtube-nocookie.com/embed/7mJBKVK88fc" data-link="projects/roar.html"
+          data-image="Assets/Images/Roar/Screenshot 2026-10-08 232159.png" data-video="https://www.youtube-nocookie.com/embed/7mJBKVK88fc" data-link="projects/roar.html"
           data-featured="true">
+          <img class="project-poster" src="Assets/Images/Roar/Screenshot 2026-10-08 232159.png" alt="ROAR Gameplay Reel" loading="eager" />
           <div class="youtube-video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" title="ROAR"></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&mute=1&loop=1&playlist=7mJBKVK88fc&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="ROAR"></iframe>
           </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
@@ -5641,9 +5702,12 @@
           data-subtitle="Indian Fantasy RPG" data-role="Gameplay Systems &amp; Locomotion" data-year="2025"
           data-description="An Indian-fantasy RPG project focused on fluid melee combat feel, companion AI, and responsive locomotion systems."
           data-tags="unreal_engine, RPG, combat, AI, locomotion" data-categories="gameplay, ai"
-          data-image="Assets/Images/Lekh/Lekh.png" data-video="Assets/Video/Lekh.mp4" data-link="projects/lekh.html"
+          data-image="Assets/Images/Lekh/Lekh.png" data-video="https://www.youtube-nocookie.com/embed/jDXf9jH3NU0" data-link="projects/lekh.html"
           data-featured="true">
-          <video class="project-video" src="Assets/Video/Lekh.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <img class="project-poster" src="Assets/Images/Lekh/Lekh.png" alt="LEKH Gameplay Reel" loading="lazy" />
+          <div class="youtube-video-wrap">
+            <iframe data-src="https://www.youtube-nocookie.com/embed/jDXf9jH3NU0?autoplay=1&mute=1&loop=1&playlist=jDXf9jH3NU0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="LEKH"></iframe>
+          </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>
@@ -5652,9 +5716,12 @@
           data-subtitle="Gameplay &amp; Systems Prototype" data-role="Gameplay Systems &amp; Mechanics" data-year="2025"
           data-description="Experimental gameplay mechanics, responsive character interaction, physics-driven gameplay systems, and prototype iteration."
           data-tags="unreal_engine, gameplay, physics, mechanics" data-categories="gameplay"
-          data-image="Assets/Images/Flaws/ADS.png" data-video="Assets/Video/Flaws.mp4"
+          data-image="Assets/Images/Flaws/ADS.png" data-video="https://www.youtube-nocookie.com/embed/pwVN_OQtCug"
           data-link="projects/flaws.html" data-featured="true">
-          <video class="project-video" src="Assets/Video/Flaws.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <img class="project-poster" src="Assets/Images/Flaws/ADS.png" alt="FLAWS Gameplay Reel" loading="lazy" />
+          <div class="youtube-video-wrap">
+            <iframe data-src="https://www.youtube-nocookie.com/embed/pwVN_OQtCug?autoplay=1&mute=1&loop=1&playlist=pwVN_OQtCug&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" title="FLAWS"></iframe>
+          </div>
           <div class="video-label">Play reel</div>
           <div class="video-dot"></div>
           <div class="video-bar"></div>
@@ -5940,7 +6007,7 @@
           categories: parseProjectList(element.dataset.categories),
           image: imageElement?.getAttribute('src') || element.dataset.image || '',
           video: videoElement?.getAttribute('src') || element.dataset.video || '',
-          videoUrl: youtubeFrame?.getAttribute('src') || '',
+          videoUrl: youtubeFrame?.getAttribute('src') || youtubeFrame?.dataset?.src || element.dataset.video || '',
           link: element.dataset.link || 'projects.html'
         };
       }
@@ -6140,14 +6207,23 @@
           }
 
           const ifr = card.querySelector('iframe');
-          if (ifr && ifr.contentWindow) {
-            try {
-              if (diff === 0) {
-                ifr.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-              } else {
-                ifr.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          if (ifr) {
+            if (diff === 0) {
+              if (!ifr.getAttribute('src') && ifr.dataset.src) {
+                ifr.setAttribute('src', ifr.dataset.src);
               }
-            } catch (e) {}
+              if (ifr.contentWindow) {
+                try {
+                  ifr.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                } catch (e) {}
+              }
+            } else {
+              if (ifr.contentWindow && ifr.getAttribute('src')) {
+                try {
+                  ifr.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } catch (e) {}
+              }
+            }
           }
         });
 
@@ -6401,15 +6477,32 @@
           if (p && typeof p.catch === 'function') p.catch(() => {});
         }
         const ifr = activeCard.querySelector('iframe');
-        if (ifr && ifr.contentWindow) {
-          try {
-            ifr.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-          } catch (e) {}
+        if (ifr) {
+          if (!ifr.getAttribute('src') && ifr.dataset.src) {
+            ifr.setAttribute('src', ifr.dataset.src);
+          }
+          if (ifr.contentWindow) {
+            try {
+              ifr.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            } catch (e) {}
+          }
         }
       }
       ['click', 'touchstart', 'keydown', 'wheel'].forEach(evt => {
         window.addEventListener(evt, ensureActiveVideoPlays, { passive: true });
       });
+
+      // On non-mobile desktop devices, lazily preload remaining iframe sources after initial page render
+      if (!window.matchMedia('(max-width: 900px), (pointer: coarse)').matches) {
+        window.setTimeout(() => {
+          projectCards.forEach(card => {
+            const ifr = card.querySelector('iframe');
+            if (ifr && !ifr.getAttribute('src') && ifr.dataset.src) {
+              ifr.setAttribute('src', ifr.dataset.src);
+            }
+          });
+        }, 2500);
+      }
 
       // Architectural Schematic Blueprint Sketch Loading (4.2 Seconds with Camera Fly-Through)
       const loaderPercent = document.getElementById('loaderPercent');
@@ -6650,6 +6743,16 @@
         return a + (b - a) * t;
       }
 
+      const isTouchOnly = window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(hover: hover)').matches;
+      const isMobileDevice = window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+      let interactionRafId = 0;
+
+      function requestInteractionFrame() {
+        if (!interactionRafId) {
+          interactionRafId = requestAnimationFrame(renderInteractions);
+        }
+      }
+
       function spawnFluidRipple(x, y) {
         if (reduced) return;
         const rgb = getThemeRgb();
@@ -6663,6 +6766,7 @@
           lineWidth: 2,
           rgb
         });
+        requestInteractionFrame();
       }
 
       // Mouse Listeners (Windows / Desktop)
@@ -6687,6 +6791,7 @@
           if (cursorSpotlight) cursorSpotlight.style.opacity = '1';
           document.body.classList.add('has-custom-cursor');
         }
+        requestInteractionFrame();
       }, { passive: true });
 
       document.addEventListener('mouseleave', () => {
@@ -6701,6 +6806,7 @@
           if (cursorDot) cursorDot.style.opacity = '1';
           if (cursorRing) cursorRing.style.opacity = '1';
           if (cursorSpotlight) cursorSpotlight.style.opacity = '1';
+          requestInteractionFrame();
         }
       });
 
@@ -6737,6 +6843,14 @@
 
       // Interaction Animation Loop
       function renderInteractions() {
+        interactionRafId = 0;
+
+        // On mobile touch-only devices without active ripples, sleep to preserve 60fps and battery
+        if (isTouchOnly && ripples.length === 0) {
+          if (ctx) ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+          return;
+        }
+
         const rgb = getThemeRgb();
 
         if (isMouseActive && cursorDot && cursorRing && cursorSpotlight) {
@@ -6825,9 +6939,13 @@
           }
         }
 
-        requestAnimationFrame(renderInteractions);
+        if (!isTouchOnly || ripples.length > 0) {
+          requestInteractionFrame();
+        }
       }
-      requestAnimationFrame(renderInteractions);
+      if (!isTouchOnly) {
+        requestInteractionFrame();
+      }
 
       // ==========================================
       // INTERACTIVE BACKGROUND TEXT & 3D LOGO SPIN SYSTEM
@@ -6846,33 +6964,35 @@
       const rhythmMesh = document.getElementById('rhythmGlowMesh');
 
       function animateScene(time) {
-        // 1. Dynamic Rhythmic Gradient Background Feel
-        const rhythmWave = Math.sin(time * 0.00065);
-        const rhythmCos = Math.cos(time * 0.00055);
+        // 1. Dynamic Rhythmic Gradient Background Feel (skip heavy blob transform thrashing on mobile)
+        if (!isMobileDevice) {
+          const rhythmWave = Math.sin(time * 0.00065);
+          const rhythmCos = Math.cos(time * 0.00055);
 
-        if (blob1) {
-          const shiftX = pointerX * 20 + rhythmWave * 30;
-          const shiftY = pointerY * 15 + rhythmCos * 25;
-          blob1.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 + rhythmWave * 0.1})`;
-        }
-        if (blob2) {
-          const shiftX = pointerX * -25 - rhythmCos * 25;
-          const shiftY = pointerY * -18 + rhythmWave * 35;
-          blob2.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 - rhythmWave * 0.08})`;
-        }
-        if (blob3) {
-          const shiftX = pointerX * 18 + rhythmCos * 30;
-          const shiftY = pointerY * -20 - rhythmWave * 25;
-          blob3.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 + rhythmCos * 0.12})`;
-        }
-        if (blob4) {
-          const shiftX = pointerX * -20 - rhythmWave * 25;
-          const shiftY = pointerY * 15 + rhythmCos * 30;
-          blob4.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 - rhythmCos * 0.1})`;
-        }
-        if (rhythmMesh) {
-          rhythmMesh.style.transform = `scale(${1 + rhythmWave * 0.05})`;
-          rhythmMesh.style.opacity = `${0.65 + rhythmWave * 0.35}`;
+          if (blob1) {
+            const shiftX = pointerX * 20 + rhythmWave * 30;
+            const shiftY = pointerY * 15 + rhythmCos * 25;
+            blob1.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 + rhythmWave * 0.1})`;
+          }
+          if (blob2) {
+            const shiftX = pointerX * -25 - rhythmCos * 25;
+            const shiftY = pointerY * -18 + rhythmWave * 35;
+            blob2.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 - rhythmWave * 0.08})`;
+          }
+          if (blob3) {
+            const shiftX = pointerX * 18 + rhythmCos * 30;
+            const shiftY = pointerY * -20 - rhythmWave * 25;
+            blob3.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 + rhythmCos * 0.12})`;
+          }
+          if (blob4) {
+            const shiftX = pointerX * -20 - rhythmWave * 25;
+            const shiftY = pointerY * 15 + rhythmCos * 30;
+            blob4.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${1 - rhythmCos * 0.1})`;
+          }
+          if (rhythmMesh) {
+            rhythmMesh.style.transform = `scale(${1 + rhythmWave * 0.05})`;
+            rhythmMesh.style.opacity = `${0.65 + rhythmWave * 0.35}`;
+          }
         }
 
         // 2. Smooth Subtle Logo Tilt (Restricted with Lower Sensitivity)
@@ -7035,14 +7155,16 @@
         window.setTimeout(() => openWorksPanel(projectIndex), 180);
       });
 
-      // Small depth response while scrolling
-      window.addEventListener('scroll', () => {
-        const logoStage = document.querySelector('.logo-stage');
-        if (logoStage) {
-          const shift = Math.sin(scrollY * .002) * 5;
-          logoStage.style.marginTop = `${shift}px`;
-        }
-      }, { passive: true });
+      // Small depth response while scrolling (desktop only, composite-transform without reflow)
+      if (!isMobileDevice) {
+        window.addEventListener('scroll', () => {
+          const logoStage = document.querySelector('.logo-stage');
+          if (logoStage) {
+            const shift = Math.sin(scrollY * .002) * 5;
+            logoStage.style.transform = `translate(-50%, calc(-50% + ${shift}px))`;
+          }
+        }, { passive: true });
+      }
 
 
       // Full project library panel
