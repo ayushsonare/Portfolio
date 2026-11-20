@@ -4,3 +4,4 @@
 
 import './navigation.js';
 import './media.js';
+import './monogram.js';
