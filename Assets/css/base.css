@@ -38,7 +38,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 main, header, footer, section {
