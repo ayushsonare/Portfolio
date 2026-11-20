@@ -999,9 +999,10 @@
         </figure>
 
         <!-- 02. Video Option 1 -->
-        <figure class="detail-gallery-item photo-item">
-          <video src="../Assets/Video/AirEvent/CharacterCustomizer.mp4" autoplay muted loop playsinline
-            preload="metadata"></video>
+        <figure class="detail-gallery-item photo-item video-gallery-item">
+          <video src="../Assets/Video/AirEvent/CharacterCustomizer.mp4" poster="../Assets/Video/AirEvent/CharacterCustomizer_poster.png" autoplay muted loop playsinline preload="auto">
+            <source src="../Assets/Video/AirEvent/CharacterCustomizer.mp4" type="video/mp4">
+          </video>
           <div class="gallery-caption">
             <span>02 // VIDEO</span>
             <span>AVATAR &amp; CUSTOMIZER</span>
@@ -1009,9 +1010,10 @@
         </figure>
 
         <!-- 03. Video Option 2 -->
-        <figure class="detail-gallery-item photo-item">
-          <video src="../Assets/Video/AirEvent/FireWorks.mp4" autoplay muted loop playsinline
-            preload="metadata"></video>
+        <figure class="detail-gallery-item photo-item video-gallery-item">
+          <video src="../Assets/Video/AirEvent/FireWorks.mp4" poster="../Assets/Video/AirEvent/FireWorks_poster.png" autoplay muted loop playsinline preload="auto">
+            <source src="../Assets/Video/AirEvent/FireWorks.mp4" type="video/mp4">
+          </video>
           <div class="gallery-caption">
             <span>03 // VIDEO</span>
             <span>ACTIVITIES &amp; FIREWORKS</span>
@@ -1251,6 +1253,29 @@
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => ring?.classList.add('is-hovering'));
       el.addEventListener('mouseleave', () => ring?.classList.remove('is-hovering'));
+    });
+
+    // Universal Video Autoplay and Click-to-Play Handler
+    document.querySelectorAll('.detail-gallery-item video').forEach(v => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      const playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const startPlayback = () => {
+            v.play();
+            window.removeEventListener('click', startPlayback);
+            window.removeEventListener('touchstart', startPlayback);
+          };
+          window.addEventListener('click', startPlayback, { once: true });
+          window.addEventListener('touchstart', startPlayback, { once: true });
+        });
+      }
+      v.parentElement.addEventListener('click', () => {
+        if (v.paused) v.play();
+        else v.pause();
+      });
     });
   </script>
 
