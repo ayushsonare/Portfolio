@@ -74,7 +74,7 @@
 
         <!-- Filter Controls -->
         <div class="work-filters" role="group" aria-label="Filter projects by category">
-          <button type="button" class="filter-btn is-active" data-filter="all">All Projects</button>
+          <button type="button" class="filter-btn is-active" data-filter="all">All Projects (6)</button>
           <button type="button" class="filter-btn" data-filter="multiplayer">Multiplayer & Online</button>
           <button type="button" class="filter-btn" data-filter="gameplay">Gameplay & AI</button>
           <button type="button" class="filter-btn" data-filter="mobile">Mobile Optimization</button>
@@ -82,6 +82,7 @@
 
         <!-- Projects Grid -->
         <div class="project-grid">
+
           <!-- 01. ROAR -->
           <article class="project-card" data-category="multiplayer gameplay">
             <a class="project-card-media" href="../projects/roar/index.html" aria-label="View ROAR Case Study">
@@ -109,40 +110,68 @@
             </div>
           </article>
 
-          <!-- 02. AIR EVENTS -->
+          <!-- 02. LEKH -->
+          <article class="project-card" data-category="gameplay">
+            <a class="project-card-media" href="../projects/lekh/index.html" aria-label="View LEKH Case Study">
+              <img src="../assets/images/projects/lekh/Lekh.png" alt="LEKH Indian Fantasy Action RPG" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Indian Fantasy RPG</span>
+                <span>2025 · PC</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/lekh/index.html">LEKH</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                Fluid melee combo combat mechanics, responsive 8-way locomotion, directional dodge rolls, dynamic camera warping, and tactical companion AI squad navigation.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">Combat Mechanics</span>
+                <span class="tag">Companion AI</span>
+                <span class="tag">Locomotion</span>
+                <span class="tag">C++</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03. METAVERSE MEETING (AIR EVENTS) -->
           <article class="project-card" data-category="multiplayer gameplay">
             <a class="project-card-media" href="../projects/air-events/index.html" aria-label="View AIR EVENTS Case Study">
               <img src="../assets/images/projects/air-events/lobby.png" alt="AIR EVENTS Virtual Lobbies & Multiplayer Space" loading="lazy">
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
-                <span>Interactive Experience</span>
-                <span>2025 · PC</span>
+                <span>Networked Social Space</span>
+                <span>2025 · PC / Web</span>
               </div>
               <h2 class="project-card-title">
-                <a href="../projects/air-events/index.html">AIR EVENTS</a>
+                <a href="../projects/air-events/index.html">AIR EVENTS (METAVERSE MEETING)</a>
                 <span class="arrow" aria-hidden="true">↗</span>
               </h2>
               <p class="project-card-desc">
-                Multiplayer presence synchronization, avatar customization, presentation media workflows, and connected web services.
+                Multi-user synchronized virtual spaces, 3D character customizer, interactive screen sharing, and cloud database integration.
               </p>
               <div class="project-card-tags">
                 <span class="tag tag-accent">UE5</span>
-                <span class="tag">EOS</span>
-                <span class="tag">AWS Integration</span>
-                <span class="tag">Customization</span>
+                <span class="tag">Multiplayer</span>
+                <span class="tag">Customizer</span>
+                <span class="tag">Cloud APIs</span>
+                <span class="tag">WebRTC</span>
               </div>
             </div>
           </article>
 
-          <!-- 03. FLAWS: The Shadow -->
+          <!-- 04. FLAWS: THE SHADOW -->
           <article class="project-card" data-category="gameplay">
             <a class="project-card-media" href="../projects/flaws-the-shadow/index.html" aria-label="View FLAWS Case Study">
               <img src="../assets/images/projects/flaws-the-shadow/ads.png" alt="FLAWS Dynamic Aiming and Systems" loading="lazy">
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
-                <span>Narrative Horror Shooter</span>
+                <span>Horror Shooter & Systems</span>
                 <span>2025 · PC</span>
               </div>
               <h2 class="project-card-title">
@@ -150,25 +179,26 @@
                 <span class="arrow" aria-hidden="true">↗</span>
               </h2>
               <p class="project-card-desc">
-                First-person horror gameplay systems, enemy AI states, physical decals, dynamic aiming, and progression mechanics.
+                Dynamic ADS camera aiming, physical bullet impact decals, custom weapon recoil patterns, and hostile monster pursuit logic.
               </p>
               <div class="project-card-tags">
                 <span class="tag tag-accent">UE5</span>
-                <span class="tag">Enemy AI</span>
-                <span class="tag">Weapon Handling</span>
-                <span class="tag">Gameplay Systems</span>
+                <span class="tag">Weapon Mechanics</span>
+                <span class="tag">Physical Decals</span>
+                <span class="tag">Horror AI</span>
+                <span class="tag">C++</span>
               </div>
             </div>
           </article>
 
-          <!-- 04. Soul Eater -->
+          <!-- 05. SOUL EATER -->
           <article class="project-card" data-category="mobile gameplay">
             <a class="project-card-media" href="../projects/soul-eater/index.html" aria-label="View Soul Eater Case Study">
               <img src="../assets/images/projects/soul-eater/horde-survival.jpg" alt="Soul Eater 200+ Horde Survival Combat" loading="lazy">
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
-                <span>Roguelike Action</span>
+                <span>Roguelike Survival</span>
                 <span>2024 · Android</span>
               </div>
               <h2 class="project-card-title">
@@ -176,16 +206,45 @@
                 <span class="arrow" aria-hidden="true">↗</span>
               </h2>
               <p class="project-card-desc">
-                Top-down mobile shooter loop engineered with ability cooldowns, interface-based decoupling, asset streaming, and device profiling.
+                200+ simultaneous enemies with 60 FPS mobile performance, modular ability blueprints, and offline progress saving.
               </p>
               <div class="project-card-tags">
-                <span class="tag tag-accent">UE5 Mobile</span>
-                <span class="tag">Android Profiling</span>
-                <span class="tag">Interface Decoupling</span>
-                <span class="tag">Horde Spawners</span>
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">Mobile Optimization</span>
+                <span class="tag">Horde Profiling</span>
+                <span class="tag">Abilities</span>
+                <span class="tag">Android</span>
               </div>
             </div>
           </article>
+
+          <!-- 06. BASKETBALL MOBILE -->
+          <article class="project-card" data-category="mobile multiplayer gameplay">
+            <a class="project-card-media" href="../projects/basketball-mobile/index.html" aria-label="View Basketball Mobile Case Study">
+              <img src="../assets/images/projects/basketball-mobile/Shoot.png" alt="Basketball Mobile Jump Shot Mechanics" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Multiplayer Arcade</span>
+                <span>2025 · Android</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/basketball-mobile/index.html">Basketball Mobile</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                Full-court and 3v3 half-court online multiplayer match flows, gesture swipe touch shooting physics, and mobile GPU optimization.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">EOS</span>
+                <span class="tag">Ball Physics</span>
+                <span class="tag">Mobile Multiplayer</span>
+                <span class="tag">Android</span>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -195,15 +254,15 @@
       <div class="container">
         <div class="contact-banner">
           <div class="contact-banner-content">
-            <div class="section-kicker">GET IN TOUCH</div>
-            <h2 class="section-title" style="margin-bottom: 14px;">Need an Unreal Engine Developer?</h2>
+            <div class="section-kicker">COLLABORATE</div>
+            <h2 class="section-title" style="margin-bottom: 14px;">Have an upcoming game or technical project?</h2>
             <p style="color: var(--color-muted); font-size: var(--text-body); line-height: 1.6;">
-              I am available for employment opportunities and select freelance development contracts.
+              I specialize in Unreal Engine gameplay programming, online networking architecture, and cross-platform performance. Let's discuss your requirements.
             </p>
           </div>
           <div style="display: flex; gap: 14px; flex-wrap: wrap;">
             <a class="btn btn-primary" href="mailto:ayushsonare692@gmail.com">ayushsonare692@gmail.com ↗</a>
-            <a class="btn btn-secondary" href="../contact/index.html">Contact Information</a>
+            <a class="btn btn-secondary" href="../contact/index.html">View Contact Details</a>
           </div>
         </div>
       </div>
@@ -218,6 +277,8 @@
         <div class="footer-sub">Unreal Engine Developer · Gameplay Programmer</div>
       </div>
       <div class="footer-links">
+        <a href="https://www.linkedin.com/in/ayush-sonare-55155221b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/ayushsonare/" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="mailto:ayushsonare692@gmail.com">Email</a>
         <a href="../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume</a>
         <a href="../work/index.html">Work</a>
@@ -228,6 +289,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script type="module" src="../assets/js/main.js"></script>
 </body>
 </html>
