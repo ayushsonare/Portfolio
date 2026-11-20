@@ -27,6 +27,23 @@ body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* Dynamic Interactive Background Canvas */
+.bg-scene-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+main, header, footer, section {
+  position: relative;
+  z-index: 1;
 }
 
 main {
