@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLAWS: The Shadow — Horror Shooter Case Study | Ayush Sonare</title>
+  <meta name="description" content="Technical case study of FLAWS: The Shadow: Narrative horror mechanics, enemy AI perception, physical decals, and dynamic aiming in Unreal Engine 5.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="FLAWS: The Shadow — Horror Shooter Case Study | Ayush Sonare">
+  <meta property="og:description" content="Narrative horror mechanics, enemy AI perception, physical decals, and dynamic aiming in Unreal Engine 5.">
+  <meta property="og:url" content="https://ayushsonare.github.io/Portfolio/projects/flaws-the-shadow/">
+
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/pages.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../index.html" aria-label="Ayush Sonare Home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>AYUSH SONARE</span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <a class="nav-link" href="../../index.html">Home</a>
+        <a class="nav-link is-active" href="../../work/index.html">Work</a>
+        <a class="nav-link" href="../../about/index.html">About</a>
+        <a class="nav-link" href="../../contact/index.html">Contact</a>
+        <a class="nav-resume-btn" href="../../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume ↗</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span class="nav-toggle-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link is-active" href="../../work/index.html">Work</a>
+      <a class="nav-link" href="../../about/index.html">About</a>
+      <a class="nav-link" href="../../contact/index.html">Contact</a>
+      <div style="margin-top: 16px;">
+        <a class="btn btn-primary" style="width: 100%;" href="../../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Download Resume ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Case Header -->
+    <article class="container case-header">
+      <a class="btn-text" href="../../work/index.html" style="margin-bottom: 24px;">
+        <span class="arrow" aria-hidden="true">←</span>
+        <span>Back to All Work</span>
+      </a>
+
+      <div class="case-kicker">CASE STUDY · NARRATIVE HORROR SHOOTER</div>
+      <h1 class="case-title">FLAWS: The Shadow</h1>
+      <p class="case-summary">
+        A narrative first-person horror-shooter focusing on immersive environmental tension, dynamic aiming systems, interactive physical decals, responsive weapon handling, and enemy AI.
+      </p>
+
+      <!-- Snapshot Grid -->
+      <div class="case-snapshot">
+        <div class="snapshot-item">
+          <span class="snapshot-label">Project Type</span>
+          <span class="snapshot-val">Horror Shooter</span>
+        </div>
+        <div class="snapshot-item">
+          <span class="snapshot-label">Platform & Engine</span>
+          <span class="snapshot-val">PC · Unreal Engine 5</span>
+        </div>
+        <div class="snapshot-item">
+          <span class="snapshot-label">My Role</span>
+          <span class="snapshot-val">Solo Developer / Systems</span>
+        </div>
+        <div class="snapshot-item">
+          <span class="snapshot-label">Project Status</span>
+          <span class="snapshot-val">Playable Prototype</span>
+        </div>
+      </div>
+
+      <!-- Hero Video Reel -->
+      <div class="media-frame" style="margin-top: 40px;">
+        <iframe src="https://www.youtube-nocookie.com/embed/pwVN_OQtCug?rel=0&playsinline=1" title="FLAWS: The Shadow Gameplay Reel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="media-caption">Gameplay capture demonstrating weapon recoil, ADS transitions, dynamic decals, and atmospheric horror pacing.</div>
+
+      <!-- Case Content Grid -->
+      <div class="case-content-grid">
+        <div class="case-prose">
+          <h2>Project Overview</h2>
+          <p>
+            FLAWS: The Shadow is an atmospheric first-person project built to test tightly tuned combat loops within high-tension horror scenarios. The design emphasizes tactile player interaction: inspecting items in 3D space, physical blood and bullet decals that react to surfaces, dynamic flashlight attenuation, and stealth-oriented enemy AI.
+          </p>
+
+          <h2>My Technical Contributions</h2>
+          <ul>
+            <li><strong>First-Person Weapon & Locomotion Feel:</strong> Implemented procedural weapon sway, spring-arm camera damping, ADS (Aim Down Sights) lerping, and tactile recoil curves using Animation Blueprints and timeline curves.</li>
+            <li><strong>Surface-Aware Decal System:</strong> Created a dynamic physical decal projector that handles angle-based normal distortion, surface material identification (concrete, wood, metal), and impact particle spawning.</li>
+            <li><strong>Enemy AI State Machine:</strong> Designed sensory perception AI using AIPerception sight and hearing stimuli. Enemies transition between patrol paths, investigation of acoustic disturbances, stalking behaviours, and aggressive confrontation.</li>
+            <li><strong>Interactive Inspection & Pickups:</strong> Built a 3D item inspection system allowing players to examine quest items, rotate props in view, and manage physical inventory state transitions.</li>
+          </ul>
+
+          <h2>Challenges & Engineering Decisions</h2>
+          <p>
+            <strong>Responsive Weapon Handling without Code Clutter:</strong> Weapon states (idle, sprinting, aiming, firing) often devolve into tangled state checks. Refactored the weapon architecture into modular Gameplay Components, separating input interpretation from procedural camera sway and audio cues.
+          </p>
+          <p>
+            <strong>Atmospheric Lighting & Performance:</strong> Horror atmospheres rely on sharp volumetric shadows, but real-time dynamic lights can severely impact frame rate. Optimized shadow cascades, used stationary light sources with baked indirect bounces where possible, and bound volumetric fog quality to player distance.
+          </p>
+
+          <h2>Media Gallery</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 24px;">
+            <div class="media-frame">
+              <img src="../../assets/images/projects/flaws-the-shadow/ads.png" alt="Dynamic Aim Down Sights (ADS) System" loading="lazy">
+            </div>
+            <div class="media-frame">
+              <img src="../../assets/images/projects/flaws-the-shadow/decal.png" alt="Surface Material Decals and Impact Particles" loading="lazy">
+            </div>
+            <div class="media-frame">
+              <img src="../../assets/images/projects/flaws-the-shadow/pickup.png" alt="3D Physical Pickup and Inspection System" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Meta -->
+        <aside class="case-sidebar">
+          <div class="sidebar-panel">
+            <div class="sidebar-title">Core Technologies</div>
+            <div class="toolkit-pill-list">
+              <span class="tag tag-accent">Unreal Engine 5</span>
+              <span class="tag">Enemy AI Perception</span>
+              <span class="tag">Animation Blueprints</span>
+              <span class="tag">Dynamic Decals</span>
+              <span class="tag">Weapon Sway</span>
+              <span class="tag">Physics Systems</span>
+              <span class="tag">Audio Attenuation</span>
+              <span class="tag">Blueprint & C++</span>
+            </div>
+          </div>
+
+          <div class="sidebar-panel">
+            <div class="sidebar-title">Next Project</div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Soul Eater</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: 16px;">
+              Android action roguelike optimized for 60 FPS mobile performance.
+            </p>
+            <a class="btn-text" href="../soul-eater/index.html">
+              <span>View Case Study</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- Contact CTA Banner -->
+    <section class="section section-border-top">
+      <div class="container">
+        <div class="contact-banner">
+          <div class="contact-banner-content">
+            <div class="section-kicker">GET IN TOUCH</div>
+            <h2 class="section-title" style="margin-bottom: 14px;">Interested in FLAWS: The Shadow?</h2>
+            <p style="color: var(--color-muted); font-size: var(--text-body); line-height: 1.6;">
+              Let's connect to discuss first-person combat feel, horror gameplay systems, or prototype development.
+            </p>
+          </div>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="mailto:ayushsonare692@gmail.com">ayushsonare692@gmail.com ↗</a>
+            <a class="btn btn-secondary" href="../../contact/index.html">Contact Information</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">AYUSH SONARE</div>
+        <div class="footer-sub">Unreal Engine Developer · Gameplay Programmer</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:ayushsonare692@gmail.com">Email</a>
+        <a href="../../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume</a>
+        <a href="../../work/index.html">Work</a>
+        <a href="../../about/index.html">About</a>
+        <a href="../../contact/index.html">Contact</a>
+        <span>© <span id="currentYear">2026</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../../assets/js/main.js"></script>
+</body>
+</html>

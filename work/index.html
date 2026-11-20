@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work | Ayush Sonare — Unreal Engine Developer</title>
+  <meta name="description" content="Explore selected game projects, multiplayer systems, AI behaviour, and mobile game optimization case studies by Ayush Sonare.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Selected Work | Ayush Sonare — Unreal Engine Developer">
+  <meta property="og:description" content="Explore selected game projects, multiplayer systems, AI behaviour, and mobile game optimization case studies by Ayush Sonare.">
+  <meta property="og:url" content="https://ayushsonare.github.io/Portfolio/work/">
+
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Ayush Sonare Home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>AYUSH SONARE</span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link is-active" href="../work/index.html">Work</a>
+        <a class="nav-link" href="../about/index.html">About</a>
+        <a class="nav-link" href="../contact/index.html">Contact</a>
+        <a class="nav-resume-btn" href="../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume ↗</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span class="nav-toggle-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+      <a class="nav-link" href="../index.html">Home</a>
+      <a class="nav-link is-active" href="../work/index.html">Work</a>
+      <a class="nav-link" href="../about/index.html">About</a>
+      <a class="nav-link" href="../contact/index.html">Contact</a>
+      <div style="margin-top: 16px;">
+        <a class="btn btn-primary" style="width: 100%;" href="../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Download Resume ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">WORK / PORTFOLIO</div>
+          <h1 class="section-title">Selected Projects</h1>
+          <p class="section-desc">
+            A comprehensive catalog of gameplay systems, online multiplayer architecture, and mobile games developed in Unreal Engine 4 and 5.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="work-filters" role="group" aria-label="Filter projects by category">
+          <button type="button" class="filter-btn is-active" data-filter="all">All Projects</button>
+          <button type="button" class="filter-btn" data-filter="multiplayer">Multiplayer & Online</button>
+          <button type="button" class="filter-btn" data-filter="gameplay">Gameplay & AI</button>
+          <button type="button" class="filter-btn" data-filter="mobile">Mobile Optimization</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="project-grid">
+          <!-- 01. ROAR -->
+          <article class="project-card" data-category="multiplayer gameplay">
+            <a class="project-card-media" href="../projects/roar/index.html" aria-label="View ROAR Case Study">
+              <img src="../assets/images/projects/roar/gameplay-01.png" alt="ROAR Multiplayer Combat & Weapon Systems" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Multiplayer FPS</span>
+                <span>2025 · PC</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/roar/index.html">ROAR</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                EOS authentication, session replication, team assignment, party flow, companion AI behaviour, and weapon mechanics.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">EOS</span>
+                <span class="tag">Replication</span>
+                <span class="tag">Behaviour Trees</span>
+                <span class="tag">C++</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02. AIR EVENTS -->
+          <article class="project-card" data-category="multiplayer gameplay">
+            <a class="project-card-media" href="../projects/air-events/index.html" aria-label="View AIR EVENTS Case Study">
+              <img src="../assets/images/projects/air-events/lobby.png" alt="AIR EVENTS Virtual Lobbies & Multiplayer Space" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Interactive Experience</span>
+                <span>2025 · PC</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/air-events/index.html">AIR EVENTS</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                Multiplayer presence synchronization, avatar customization, presentation media workflows, and connected web services.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">EOS</span>
+                <span class="tag">AWS Integration</span>
+                <span class="tag">Customization</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03. FLAWS: The Shadow -->
+          <article class="project-card" data-category="gameplay">
+            <a class="project-card-media" href="../projects/flaws-the-shadow/index.html" aria-label="View FLAWS Case Study">
+              <img src="../assets/images/projects/flaws-the-shadow/ads.png" alt="FLAWS Dynamic Aiming and Systems" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Narrative Horror Shooter</span>
+                <span>2025 · PC</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/flaws-the-shadow/index.html">FLAWS: The Shadow</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                First-person horror gameplay systems, enemy AI states, physical decals, dynamic aiming, and progression mechanics.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5</span>
+                <span class="tag">Enemy AI</span>
+                <span class="tag">Weapon Handling</span>
+                <span class="tag">Gameplay Systems</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04. Soul Eater -->
+          <article class="project-card" data-category="mobile gameplay">
+            <a class="project-card-media" href="../projects/soul-eater/index.html" aria-label="View Soul Eater Case Study">
+              <img src="../assets/images/projects/soul-eater/horde-survival.jpg" alt="Soul Eater 200+ Horde Survival Combat" loading="lazy">
+            </a>
+            <div class="project-card-body">
+              <div class="project-card-meta">
+                <span>Roguelike Action</span>
+                <span>2024 · Android</span>
+              </div>
+              <h2 class="project-card-title">
+                <a href="../projects/soul-eater/index.html">Soul Eater</a>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h2>
+              <p class="project-card-desc">
+                Top-down mobile shooter loop engineered with ability cooldowns, interface-based decoupling, asset streaming, and device profiling.
+              </p>
+              <div class="project-card-tags">
+                <span class="tag tag-accent">UE5 Mobile</span>
+                <span class="tag">Android Profiling</span>
+                <span class="tag">Interface Decoupling</span>
+                <span class="tag">Horde Spawners</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA Banner -->
+    <section class="section section-border-top">
+      <div class="container">
+        <div class="contact-banner">
+          <div class="contact-banner-content">
+            <div class="section-kicker">GET IN TOUCH</div>
+            <h2 class="section-title" style="margin-bottom: 14px;">Need an Unreal Engine Developer?</h2>
+            <p style="color: var(--color-muted); font-size: var(--text-body); line-height: 1.6;">
+              I am available for employment opportunities and select freelance development contracts.
+            </p>
+          </div>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="mailto:ayushsonare692@gmail.com">ayushsonare692@gmail.com ↗</a>
+            <a class="btn btn-secondary" href="../contact/index.html">Contact Information</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">AYUSH SONARE</div>
+        <div class="footer-sub">Unreal Engine Developer · Gameplay Programmer</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:ayushsonare692@gmail.com">Email</a>
+        <a href="../assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume</a>
+        <a href="../work/index.html">Work</a>
+        <a href="../about/index.html">About</a>
+        <a href="../contact/index.html">Contact</a>
+        <span>© <span id="currentYear">2026</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>

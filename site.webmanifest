@@ -1,0 +1,15 @@
+{
+  "name": "Ayush Sonare | Unreal Engine Developer",
+  "short_name": "Ayush Sonare",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090A0A",
+  "theme_color": "#090A0A",
+  "icons": [
+    {
+      "src": "./assets/images/projects/soul-eater/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
