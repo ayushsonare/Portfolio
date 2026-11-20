@@ -72,13 +72,13 @@
 .hero-logo-stage {
   position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
+  height: clamp(340px, 35vw, 440px);
   aspect-ratio: 1;
   margin: 0 auto;
-  perspective: 1000px;
+  perspective: 1200px;
   pointer-events: none;
-  filter: drop-shadow(0 24px 35px rgba(0, 0, 0, 0.45));
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-logo-rig {
@@ -86,6 +86,7 @@
   inset: 0;
   transform-style: preserve-3d;
   will-change: transform;
+  transform: rotateX(8deg) rotateY(-18deg) rotateZ(0deg);
 }
 
 .a-prism {
@@ -99,25 +100,25 @@
   inset: 0;
   clip-path: polygon(50% 0, 100% 88%, 79% 88%, 50% 36%, 21% 88%, 0 88%);
   background:
-    linear-gradient(118deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .28) 21%, rgba(166, 255, 107, .82) 48%, rgba(255, 255, 255, .2) 70%, rgba(166, 255, 107, .88) 100%),
-    var(--color-accent);
+    linear-gradient(118deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .28) 21%, rgba(166, 255, 107, .85) 48%, rgba(255, 255, 255, .2) 70%, rgba(166, 255, 107, .9) 100%),
+    #111822;
   backface-visibility: visible;
   transition: filter 0.3s ease;
 }
 
 .a-face.front {
-  transform: translateZ(32px);
-  filter: brightness(1.15) drop-shadow(0 0 16px rgba(166, 255, 107, 0.25));
+  transform: translateZ(34px);
+  filter: brightness(1.15) drop-shadow(0 0 24px rgba(166, 255, 107, 0.4));
 }
 
 .a-face.back {
-  transform: translateZ(-32px) rotateY(180deg);
-  filter: brightness(0.4);
+  transform: translateZ(-34px) rotateY(180deg);
+  filter: brightness(0.42);
 }
 
 .a-face.mid {
   transform: translateZ(0);
-  filter: brightness(0.72);
+  filter: brightness(0.75);
   opacity: 0.95;
 }
 
@@ -127,36 +128,36 @@
   top: 51%;
   width: 56%;
   height: 11%;
-  transform: translate(-50%, -50%) translateZ(36px) rotate(-0.5deg);
-  background: var(--color-bg);
+  transform: translate(-50%, -50%) translateZ(38px) rotate(-0.5deg);
+  background: #08090a;
   clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
-  opacity: 0.95;
+  opacity: 0.98;
 }
 
 .orbital {
   position: absolute;
-  inset: -6%;
-  border: 1px solid rgba(166, 255, 107, 0.22);
+  inset: -8%;
+  border: 1.5px solid rgba(166, 255, 107, 0.35);
   border-radius: 50%;
   transform: rotateX(68deg) rotateZ(-20deg);
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 .orbital.two {
   transform: rotateY(70deg) rotateZ(30deg);
-  border-color: rgba(255, 255, 255, 0.15);
-  opacity: 0.35;
+  border-color: rgba(255, 255, 255, 0.22);
+  opacity: 0.45;
 }
 
 .orbit-dot {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--color-accent);
-  left: calc(50% - 4px);
-  top: -4px;
-  box-shadow: 0 0 18px var(--color-accent);
+  left: calc(50% - 5px);
+  top: -5px;
+  box-shadow: 0 0 18px var(--color-accent), 0 0 35px var(--color-accent);
 }
 
 /* Portrait / Mobile View: Position 'A' in the Background */
@@ -172,8 +173,9 @@
     top: 50%;
     transform: translateY(-50%);
     width: clamp(280px, 60vw, 420px);
+    height: clamp(280px, 60vw, 420px);
     opacity: 0.18;
-    filter: blur(1px) drop-shadow(0 0 24px rgba(166, 255, 107, 0.1));
+    filter: blur(1px);
     z-index: 0;
   }
 

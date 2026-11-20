@@ -2,7 +2,7 @@
    Navigation & Mobile Menu Handler + Brand Typewriter Effect
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initNavigation() {
   const navToggle = document.getElementById('navToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
 
@@ -82,4 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start typewriter loop after initial brief delay
     setTimeout(typewriterTick, 1200);
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initNavigation);
+} else {
+  initNavigation();
+}

@@ -2,15 +2,19 @@
    3D Monogram Rig Animation Handler
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ==========================================================================
+   3D Monogram Rig Animation Handler
+   ========================================================================== */
+
+function initMonogram() {
   const heroLogoRig = document.getElementById('heroLogoRig');
   if (!heroLogoRig) return;
 
+  // Immediate default 3D pose
+  heroLogoRig.style.transform = 'rotateX(8deg) rotateY(-18deg) rotateZ(0deg)';
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) {
-    heroLogoRig.style.transform = 'rotateX(8deg) rotateY(-18deg) rotateZ(0deg)';
-    return;
-  }
+  if (reducedMotion) return;
 
   let pointerX = 0;
   let pointerY = 0;
@@ -54,4 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
       rafId = requestAnimationFrame(animateMonogram);
     }
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMonogram);
+} else {
+  initMonogram();
+}
