@@ -703,6 +703,7 @@
 .hud-toast.is-active {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
 }
 
 .hud-toast-content {
@@ -720,6 +721,25 @@
   font-size: 0.82rem;
   color: var(--color-accent);
   letter-spacing: 0.04em;
+}
+
+.hud-toast-link {
+  margin-left: 6px;
+  padding: 2px 8px;
+  background: rgba(166, 255, 107, 0.15);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.hud-toast-link:hover {
+  background: var(--color-accent);
+  color: #000;
 }
 
 /* --------------------------------------------------------------------------

@@ -1,12 +1,14 @@
 /* ==========================================================================
-   Email Copy & HUD Toast Notification
-   Copies email address to clipboard with tactile feedback.
+   Email Redirection & HUD Toast Notification
+   Redirects to email client / compose while copying address to clipboard.
    ========================================================================== */
 
-import { playChime, playClick } from './audio-system.js';
+import { playChime } from './audio-system.js';
 
 function initEmailToast() {
   const email = 'ayushsonare692@gmail.com';
+  const mailtoUrl = `mailto:${email}?subject=Unreal%20Engine%20Project%20Inquiry`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Unreal%20Engine%20Project%20Inquiry`;
 
   function showToast(msg) {
     let toast = document.getElementById('hudToast');
@@ -19,8 +21,9 @@ function initEmailToast() {
 
     toast.innerHTML = `
       <div class="hud-toast-content">
-        <span class="hud-toast-icon">📋</span>
+        <span class="hud-toast-icon">📬</span>
         <span class="hud-toast-text">${msg}</span>
+        <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="hud-toast-link" title="Open directly in Gmail Web">Open Gmail Web ↗</a>
       </div>
     `;
 
@@ -30,21 +33,29 @@ function initEmailToast() {
 
     setTimeout(() => {
       toast.classList.remove('is-active');
-    }, 3200);
+    }, 4500);
   }
 
   document.addEventListener('click', (e) => {
+    // Avoid double triggering if clicking the link inside the toast
+    if (e.target.closest('.hud-toast-link')) return;
+
     const link = e.target.closest('a[href^="mailto:"]');
     if (link) {
-      // Check if navigator clipboard is available
+      playChime();
+
+      // 1. Copy to clipboard
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(() => {
-          playChime();
-          showToast(`COPIED TO CLIPBOARD: ${email}`);
-        }).catch(() => {
-          playClick();
-        });
+        navigator.clipboard.writeText(email).catch(() => {});
       }
+
+      // 2. Show feedback toast
+      showToast(`Redirecting to email... (${email})`);
+
+      // 3. Ensure email redirection fires smoothly
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 150);
     }
   });
 }
