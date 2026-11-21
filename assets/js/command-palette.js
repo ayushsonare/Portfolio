@@ -30,7 +30,7 @@ function initCommandPalette() {
     // Pages
     { title: 'Home', category: 'Page', subtitle: 'Landing page & Hero', url: `${deepRoot}index.html`, icon: '🏠' },
     { title: 'Work', category: 'Page', subtitle: 'Full Selected Projects Archive', url: `${deepRoot}work/index.html`, icon: '📁' },
-    { title: 'About', category: 'Page', subtitle: 'Experience, 4+ Years, CarinaSoftLabs', url: `${deepRoot}about/index.html`, icon: '👤' },
+    { title: 'About', category: 'Page', subtitle: 'Experience, 4+ Years, CarinaSoftLabs, Freelance', url: `${deepRoot}about/index.html`, icon: '👤' },
     { title: 'Contact', category: 'Page', subtitle: 'Get in touch & socials', url: `${deepRoot}contact/index.html`, icon: '✉️' },
 
     // Quick Actions
