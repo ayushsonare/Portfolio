@@ -269,6 +269,31 @@ function initProjectEnhancements() {
       card.style.setProperty('--spotlight-y', `${y}px`);
     });
   });
+
+  // 5. Seamless Full-Card Click Navigation for All Project Cards
+  cards.forEach(card => {
+    const titleLink = card.querySelector('.project-card-title a');
+    const mediaLink = card.querySelector('.project-card-media');
+    const targetUrl = titleLink?.getAttribute('href') || mediaLink?.getAttribute('href');
+    if (!targetUrl) return;
+
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', (e) => {
+      // Don't intercept clicks on interactive nested controls (video reel modal, architecture drawer)
+      if (e.target.closest('.reel-badge, .arch-toggle-btn, .arch-content, button, input, iframe, video')) {
+        return;
+      }
+
+      playClick();
+
+      if (e.ctrlKey || e.metaKey || e.button === 1) {
+        window.open(targetUrl, '_blank');
+      } else {
+        window.location.href = targetUrl;
+      }
+    });
+  });
 }
 
 if (document.readyState === 'loading') {
