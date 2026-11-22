@@ -26,6 +26,8 @@ function initCommandPalette() {
     { title: 'Soul Eater', category: 'Project', subtitle: 'Rogue-lite Horde Survival Mobile', url: `${deepRoot}projects/soul-eater/index.html`, icon: '💀' },
     { title: 'Basketball Mobile', category: 'Project', subtitle: '3v3 Real-Time Physics Sports', url: `${deepRoot}projects/basketball-mobile/index.html`, icon: '🏀' },
     { title: 'VR Tour', category: 'Project', subtitle: 'Interactive ArchViz & Material Swapper', url: `${deepRoot}projects/vr-tour/index.html`, icon: '🥽' },
+    { title: 'Happy Now 2', category: 'Project', subtitle: 'Android Mobile Arcade & Touch Systems', url: `${deepRoot}projects/happy-now-2/index.html`, icon: '⚡' },
+    { title: 'Happy Now', category: 'Project', subtitle: 'Android Obstacle Runner & Timing Loops', url: `${deepRoot}projects/happy-now/index.html`, icon: '🎯' },
 
     // Pages
     { title: 'Home', category: 'Page', subtitle: 'Landing page & Hero', url: `${deepRoot}index.html`, icon: '🏠' },

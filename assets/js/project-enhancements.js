@@ -61,7 +61,7 @@ function initProjectEnhancements() {
       category: ['mobile', 'action'],
       videoType: 'video',
       videoSrc: `${deepRoot}assets/video/SoulEater/Gameplay.mp4`,
-      storeUrl: 'https://play.google.com/store/apps/dev?id=8618654129823842604&hl=en',
+      storeUrl: 'https://play.google.com/store/apps/details?id=com.zedstudioz.souleaterX&hl=en',
       archPoints: [
         'High-density 200+ enemy horde spawner optimized for Android mobile CPU/GPU thermal limits',
         'Interface-driven decoupled ability cooldown system and dynamic object pooling framework',
@@ -87,6 +87,18 @@ function initProjectEnhancements() {
         '6DOF motion controller interaction system built with native Unreal Engine OpenXR',
         'Forward Shading renderer tuning to hold a strict, comfortable 90 FPS VR frame budget'
       ]
+    },
+    'happy now 2': {
+      category: ['mobile', 'action'],
+      videoType: 'video',
+      videoSrc: '',
+      storeUrl: 'https://play.google.com/store/apps/details?id=com.zedstudioz.HappyNow2&hl=en'
+    },
+    'happy now': {
+      category: ['mobile', 'action'],
+      videoType: 'video',
+      videoSrc: '',
+      storeUrl: 'https://play.google.com/store/apps/details?id=com.zedstudioz.HappyNow&hl=en'
     }
   };
 
@@ -164,7 +176,7 @@ function initProjectEnhancements() {
 
     // 1. Add Watch Reel badge over media (and Store badge if available)
     const mediaEl = card.querySelector('.project-card-media');
-    if (mediaEl && !mediaEl.querySelector('.reel-badge')) {
+    if (mediaEl && !mediaEl.querySelector('.reel-badge') && data.videoSrc) {
       const reelBtn = document.createElement('button');
       reelBtn.type = 'button';
       reelBtn.className = 'reel-badge';
