@@ -49,7 +49,7 @@
         <a class="nav-link is-active" href="./index.html">Home</a>
         <a class="nav-link" href="./work/index.html">Work</a>
         <a class="nav-link" href="./about/index.html">About</a>
-        <a class="nav-link" href="./contact/index.html">Contact</a>
+        <a class="nav-link" href="#contact">Contact</a>
         <a class="nav-resume-btn" href="./assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Resume ↗</a>
       </nav>
 
@@ -67,7 +67,7 @@
       <a class="nav-link is-active" href="./index.html">Home</a>
       <a class="nav-link" href="./work/index.html">Work</a>
       <a class="nav-link" href="./about/index.html">About</a>
-      <a class="nav-link" href="./contact/index.html">Contact</a>
+      <a class="nav-link" href="#contact">Contact</a>
       <div style="margin-top: 16px;">
         <a class="btn btn-primary" style="width: 100%;" href="./assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">Download Resume ↗</a>
       </div>
@@ -79,11 +79,6 @@
     <section class="section hero-section">
       <div class="container hero-container">
         <div class="hero-content">
-          <div class="hero-status-pill">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span>Available for work</span>
-          </div>
-
           <h1 class="hero-title">Ayush Sonare</h1>
           <p class="hero-subtitle">Unreal Engine Developer · Gameplay Programmer</p>
 
@@ -799,20 +794,53 @@
       </div>
     </section>
 
-    <!-- Contact CTA Banner -->
-    <section class="section section-border-top">
+    <!-- Contact Form Section -->
+    <section class="section section-border-top" id="contact">
       <div class="container">
-        <div class="contact-banner">
-          <div class="contact-banner-content">
+        <div class="contact-section-grid">
+          <div class="contact-info-col">
             <div class="section-kicker">GET IN TOUCH</div>
-            <h2 class="section-title" style="margin-bottom: 14px;">Have a project in mind?</h2>
-            <p style="color: var(--color-muted); font-size: var(--text-body); line-height: 1.6;">
-              Whether you're looking for a gameplay programmer, multiplayer systems developer, or technical assistance with an Unreal Engine project, let's talk.
+            <h2 class="section-title">Let's build something exceptional.</h2>
+            <p class="section-desc" style="margin-bottom: 32px;">
+              Whether you're looking for an Unreal Engine developer, gameplay programmer, or technical consulting on multiplayer and combat systems, send a message directly.
             </p>
+
+            <div class="contact-direct-cards">
+              <a class="contact-direct-card" href="mailto:ayushsonare692@gmail.com">
+                <span class="direct-card-label">Direct Email</span>
+                <span class="direct-card-val">ayushsonare692@gmail.com ↗</span>
+              </a>
+              <a class="contact-direct-card" href="https://www.linkedin.com/in/ayush-sonare-55155221b" target="_blank" rel="noopener noreferrer">
+                <span class="direct-card-label">LinkedIn</span>
+                <span class="direct-card-val">ayush-sonare-55155221b ↗</span>
+              </a>
+              <a class="contact-direct-card" href="https://github.com/ayushsonare/" target="_blank" rel="noopener noreferrer">
+                <span class="direct-card-label">GitHub</span>
+                <span class="direct-card-val">github.com/ayushsonare ↗</span>
+              </a>
+            </div>
           </div>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a class="btn btn-primary" href="mailto:ayushsonare692@gmail.com">ayushsonare692@gmail.com ↗</a>
-            <a class="btn btn-secondary" href="./contact/index.html">All Contact Details</a>
+
+          <div class="contact-form-card">
+            <form id="portfolioContactForm" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contactName" class="form-label">NAME</label>
+                <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">EMAIL</label>
+                <input type="email" id="contactEmail" name="email" class="form-input" placeholder="your@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">MESSAGE</label>
+                <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Tell me what you're working on..." rows="5" required></textarea>
+              </div>
+
+              <button type="submit" class="form-submit-btn" id="contactSubmitBtn">Send message</button>
+              <div id="contactFormStatus" class="form-status" role="status" aria-live="polite"></div>
+            </form>
           </div>
         </div>
       </div>

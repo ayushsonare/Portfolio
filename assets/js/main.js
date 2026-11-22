@@ -12,4 +12,5 @@ import './command-palette.js';
 import './fab-filter.js';
 import './email-toast.js';
 import './project-enhancements.js';
+import './contact-form.js';
 import './easter-egg.js';

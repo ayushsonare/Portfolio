@@ -234,6 +234,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
+  align-items: stretch;
 }
 
 @media (max-width: 768px) {
