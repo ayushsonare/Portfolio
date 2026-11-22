@@ -61,6 +61,7 @@ function initProjectEnhancements() {
       category: ['mobile', 'action'],
       videoType: 'video',
       videoSrc: `${deepRoot}assets/video/SoulEater/Gameplay.mp4`,
+      storeUrl: 'https://play.google.com/store/apps/dev?id=8618654129823842604&hl=en',
       archPoints: [
         'High-density 200+ enemy horde spawner optimized for Android mobile CPU/GPU thermal limits',
         'Interface-driven decoupled ability cooldown system and dynamic object pooling framework',
@@ -161,7 +162,7 @@ function initProjectEnhancements() {
     // Store categories as data attribute for filtering
     card.setAttribute('data-category', data.category.join(' '));
 
-    // 1. Add Watch Reel badge over media
+    // 1. Add Watch Reel badge over media (and Store badge if available)
     const mediaEl = card.querySelector('.project-card-media');
     if (mediaEl && !mediaEl.querySelector('.reel-badge')) {
       const reelBtn = document.createElement('button');
@@ -178,6 +179,23 @@ function initProjectEnhancements() {
         openVideoModal(data.videoType, data.videoSrc);
       });
       mediaEl.appendChild(reelBtn);
+    }
+
+    if (data.storeUrl && mediaEl && !mediaEl.querySelector('.store-badge')) {
+      const storeBtn = document.createElement('a');
+      storeBtn.href = data.storeUrl;
+      storeBtn.target = '_blank';
+      storeBtn.rel = 'noopener noreferrer';
+      storeBtn.className = 'store-badge';
+      storeBtn.setAttribute('aria-label', `Download ${titleText} on Google Play`);
+      storeBtn.innerHTML = `
+        <span aria-hidden="true">⬇</span>
+        <span>Google Play ↗</span>
+      `;
+      storeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      mediaEl.appendChild(storeBtn);
     }
   });
 
@@ -243,8 +261,8 @@ function initProjectEnhancements() {
     card.style.cursor = 'pointer';
 
     card.addEventListener('click', (e) => {
-      // Don't intercept clicks on interactive nested controls (video reel modal, buttons, inputs)
-      if (e.target.closest('.reel-badge, button, input, iframe, video')) {
+      // Don't intercept clicks on interactive nested controls (video reel modal, store link, buttons, inputs)
+      if (e.target.closest('.reel-badge, .store-badge, button, input, iframe, video, a')) {
         return;
       }
 
