@@ -256,8 +256,10 @@ function initProjectEnhancements() {
       archBtn.className = 'arch-btn';
       archBtn.setAttribute('aria-label', `View ${titleText} Technical Architecture`);
       archBtn.innerHTML = `
-        <span class="arch-btn-icon" aria-hidden="true">⚡</span>
-        <span>Technical Architecture</span>
+        <span class="arch-btn-left" style="display:inline-flex;align-items:center;gap:8px;">
+          <span class="arch-btn-icon" aria-hidden="true">⚡</span>
+          <span>Technical Architecture</span>
+        </span>
         <span class="arch-btn-arrow" aria-hidden="true">↗</span>
       `;
 
