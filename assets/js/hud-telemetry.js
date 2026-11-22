@@ -69,17 +69,12 @@ function initHUD() {
     </div>
   `;
 
-  // Attach to nav-desktop if present, else before navToggle in headerInner
-  const navDesktop = headerInner.querySelector('.nav-desktop');
-  if (navDesktop) {
-    navDesktop.appendChild(wrapper);
+  // Attach wrapper directly into headerInner right before navToggle so it is ALWAYS visible in the navbar on both desktop AND mobile
+  const navToggle = headerInner.querySelector('.nav-toggle');
+  if (navToggle) {
+    headerInner.insertBefore(wrapper, navToggle);
   } else {
-    const navToggle = headerInner.querySelector('.nav-toggle');
-    if (navToggle) {
-      headerInner.insertBefore(wrapper, navToggle);
-    } else {
-      headerInner.appendChild(wrapper);
-    }
+    headerInner.appendChild(wrapper);
   }
 
   // Also support mobile drawer controls
@@ -87,27 +82,30 @@ function initHUD() {
   if (mobileDrawer && !mobileDrawer.querySelector('.mobile-telemetry-row')) {
     const mobileRow = document.createElement('div');
     mobileRow.className = 'mobile-telemetry-row';
-    mobileRow.style.cssText = 'margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px;';
+    mobileRow.style.cssText = 'margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 12px;';
     mobileRow.innerHTML = `
       <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent); display: flex; justify-content: space-between; align-items: center;">
         <span>● UE 5.4+ ENGINE</span>
         <span><span id="mobileFpsVal">60</span> FPS</span>
       </div>
       <div style="display: flex; gap: 8px;">
-        <button class="settings-dropdown-btn" id="mobileModeBtn" style="flex: 1;">VIEW: <span id="mobileModeVal">LIT</span></button>
-        <button class="settings-dropdown-btn" id="mobileBgBtn" style="flex: 1;">BG: <span id="mobileBgVal">GRID</span></button>
-        <button class="settings-dropdown-btn" id="mobileSfxBtn" style="flex: 1;">SFX</button>
+        <button class="settings-dropdown-btn" id="mobileModeBtn" type="button" style="flex: 1; padding: 10px 6px;">VIEW: <span id="mobileModeVal">LIT</span></button>
+        <button class="settings-dropdown-btn" id="mobileBgBtn" type="button" style="flex: 1; padding: 10px 6px;">BG: <span id="mobileBgVal">GRID</span></button>
+        <button class="settings-dropdown-btn" id="mobileSfxBtn" type="button" style="flex: 1; padding: 10px 6px;">SFX</button>
       </div>
     `;
     mobileDrawer.appendChild(mobileRow);
 
-    document.getElementById('mobileModeBtn')?.addEventListener('click', () => {
+    document.getElementById('mobileModeBtn')?.addEventListener('click', (e) => {
+      e.preventDefault();
       document.getElementById('hudModeBtn')?.click();
     });
-    document.getElementById('mobileBgBtn')?.addEventListener('click', () => {
+    document.getElementById('mobileBgBtn')?.addEventListener('click', (e) => {
+      e.preventDefault();
       document.getElementById('hudBgBtn')?.click();
     });
-    document.getElementById('mobileSfxBtn')?.addEventListener('click', () => {
+    document.getElementById('mobileSfxBtn')?.addEventListener('click', (e) => {
+      e.preventDefault();
       document.getElementById('hudSfxBtn')?.click();
     });
   }
@@ -116,6 +114,15 @@ function initHUD() {
   const dropdown = document.getElementById('navSettingsDropdown');
 
   function openDropdown() {
+    // Close mobile drawer if open
+    const navToggleBtn = document.getElementById('navToggle');
+    const mobDrawer = document.getElementById('mobileDrawer');
+    if (navToggleBtn?.getAttribute('aria-expanded') === 'true' && mobDrawer) {
+      navToggleBtn.setAttribute('aria-expanded', 'false');
+      mobDrawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
     toggleBtn.setAttribute('aria-expanded', 'true');
     dropdown.classList.add('is-open');
     playClick();

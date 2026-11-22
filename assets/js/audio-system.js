@@ -22,10 +22,20 @@ function getAudioContext() {
     }
   }
   if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
 }
+
+// Mobile Audio Unlock on first touch/interaction
+function unlockMobileAudio() {
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
+  }
+}
+window.addEventListener('touchstart', unlockMobileAudio, { passive: true });
+window.addEventListener('touchend', unlockMobileAudio, { passive: true });
+window.addEventListener('click', unlockMobileAudio, { passive: true });
 
 export function isAudioEnabled() {
   return !isMuted;
@@ -38,8 +48,16 @@ export function toggleAudio() {
   } catch (e) {}
 
   if (!isMuted) {
-    getAudioContext();
-    playChime();
+    const ctx = getAudioContext();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().then(() => {
+        playChime();
+      }).catch(() => {
+        playChime();
+      });
+    } else {
+      playChime();
+    }
   }
   dispatchAudioStateChange();
   return !isMuted;

@@ -6,19 +6,41 @@ function initNavigation() {
   const navToggle = document.getElementById('navToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
 
+  if (mobileDrawer && mobileDrawer.parentElement !== document.body) {
+    document.body.appendChild(mobileDrawer);
+  }
+
   if (navToggle && mobileDrawer) {
     const toggleMenu = (open) => {
+      // Close settings dropdown if open
+      const settingsToggle = document.getElementById('navSettingsToggle');
+      const settingsDropdown = document.getElementById('navSettingsDropdown');
+      if (settingsDropdown?.classList.contains('is-open')) {
+        settingsToggle?.setAttribute('aria-expanded', 'false');
+        settingsDropdown.classList.remove('is-open');
+      }
+
       const isExpanded = open !== undefined ? open : navToggle.getAttribute('aria-expanded') !== 'true';
       navToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
       mobileDrawer.classList.toggle('is-open', isExpanded);
       document.body.style.overflow = isExpanded ? 'hidden' : '';
     };
 
-    navToggle.addEventListener('click', () => toggleMenu());
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
 
-    // Close menu when clicking outside or on a navigation link
-    mobileDrawer.querySelectorAll('.nav-link').forEach(link => {
+    // Close menu when clicking on a navigation link
+    mobileDrawer.querySelectorAll('.nav-link, a').forEach(link => {
       link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (navToggle.getAttribute('aria-expanded') === 'true' && !mobileDrawer.contains(e.target) && !navToggle.contains(e.target)) {
+        toggleMenu(false);
+      }
     });
 
     // Close on Escape key
