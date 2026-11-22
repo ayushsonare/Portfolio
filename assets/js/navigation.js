@@ -36,51 +36,57 @@ function initNavigation() {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Brand Name Typewriter Loop
+  // Brand Name - Static by default, Typewriter Loop runs as Easter Egg when God Mode is unlocked
   const brandEl = document.querySelector('.brand span:not(.brand-dot)');
   if (brandEl) {
-    const textToType = 'AYUSH SONARE';
-    brandEl.classList.add('brand-text');
+    brandEl.textContent = 'AYUSH SONARE'; // Static name by default
 
-    // Create cursor element
-    const cursor = document.createElement('span');
-    cursor.className = 'brand-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-    brandEl.after(cursor);
+    function startBrandTypewriter() {
+      if (brandEl.classList.contains('brand-typewriter-active')) return;
+      brandEl.classList.add('brand-typewriter-active', 'brand-text');
 
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typewriterTick() {
-      if (!isDeleting) {
-        charIndex++;
-        brandEl.textContent = textToType.substring(0, charIndex);
-
-        if (charIndex === textToType.length) {
-          // Pause at full word before deleting
-          setTimeout(typewriterTick, 2400);
-          isDeleting = true;
-          return;
-        }
-      } else {
-        charIndex--;
-        brandEl.textContent = textToType.substring(0, charIndex);
-
-        if (charIndex === 0) {
-          // Pause at empty string before typing again
-          setTimeout(typewriterTick, 500);
-          isDeleting = false;
-          return;
-        }
+      // Create cursor element if not present
+      if (!brandEl.nextElementSibling?.classList.contains('brand-cursor')) {
+        const cursor = document.createElement('span');
+        cursor.className = 'brand-cursor';
+        cursor.setAttribute('aria-hidden', 'true');
+        brandEl.after(cursor);
       }
 
-      // Faster deletion than typing
-      const speed = isDeleting ? 45 : 100;
-      setTimeout(typewriterTick, speed);
+      const textToType = 'AYUSH SONARE';
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typewriterTick() {
+        if (!isDeleting) {
+          charIndex++;
+          brandEl.textContent = textToType.substring(0, charIndex);
+
+          if (charIndex === textToType.length) {
+            setTimeout(typewriterTick, 2400);
+            isDeleting = true;
+            return;
+          }
+        } else {
+          charIndex--;
+          brandEl.textContent = textToType.substring(0, charIndex);
+
+          if (charIndex === 0) {
+            setTimeout(typewriterTick, 500);
+            isDeleting = false;
+            return;
+          }
+        }
+
+        const speed = isDeleting ? 45 : 100;
+        setTimeout(typewriterTick, speed);
+      }
+
+      setTimeout(typewriterTick, 400);
     }
 
-    // Start typewriter loop after initial brief delay
-    setTimeout(typewriterTick, 1200);
+    // Activated strictly when God Mode is unlocked!
+    window.addEventListener('unlockgodmode', startBrandTypewriter);
   }
 
   // Dynamic Resume Button Visibility:
