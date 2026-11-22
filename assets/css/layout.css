@@ -54,12 +54,7 @@
 }
 
 .brand-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-accent);
-  box-shadow: 0 0 10px var(--color-accent);
-  animation: pulseGreen 1.8s ease-in-out infinite;
+  display: none !important;
 }
 
 .brand-text {
@@ -149,7 +144,14 @@
   text-transform: uppercase;
   color: var(--color-text);
   background-color: var(--color-surface);
-  transition: all var(--transition-fast);
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.nav-resume-btn.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  visibility: hidden;
 }
 
 .nav-resume-btn:hover {

@@ -82,6 +82,24 @@ function initNavigation() {
     // Start typewriter loop after initial brief delay
     setTimeout(typewriterTick, 1200);
   }
+
+  // Dynamic Resume Button Visibility:
+  // Hidden while on the Hero section in index; appears when scrolled to subsequent sections.
+  const heroSection = document.querySelector('.hero-section');
+  const navResumeBtn = document.querySelector('.nav-resume-btn');
+  if (heroSection && navResumeBtn) {
+    function updateResumeVisibility() {
+      const heroRect = heroSection.getBoundingClientRect();
+      if (heroRect.bottom <= 120) {
+        navResumeBtn.classList.remove('is-hidden');
+      } else {
+        navResumeBtn.classList.add('is-hidden');
+      }
+    }
+
+    window.addEventListener('scroll', updateResumeVisibility, { passive: true });
+    updateResumeVisibility();
+  }
 }
 
 if (document.readyState === 'loading') {

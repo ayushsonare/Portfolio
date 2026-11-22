@@ -208,7 +208,7 @@
   min-height: 64px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  margin-top: 0;
+  margin-top: auto;
 }
 
 /* Tag & Pill */
@@ -884,135 +884,7 @@
   border: none;
 }
 
-/* --------------------------------------------------------------------------
-   Technical Architecture Modal & Specs Trigger
-   -------------------------------------------------------------------------- */
-.arch-modal-dialog {
-  padding: 36px;
-  background: #0a0e14;
-  border: 1px solid rgba(166, 255, 107, 0.35);
-  border-radius: var(--radius-md);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(166, 255, 107, 0.15);
-  max-width: 680px;
-  width: min(92vw, 680px);
-}
 
-@media (max-width: 600px) {
-  .arch-modal-dialog {
-    padding: 24px;
-  }
-}
-
-.arch-modal-badge {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--color-accent);
-  margin-bottom: 8px;
-}
-
-.arch-modal-title {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--color-text);
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-}
-
-.arch-modal-meta {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--color-muted);
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.arch-modal-heading {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.arch-spec-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.arch-spec-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #cbd5e1;
-}
-
-.arch-spec-bullet {
-  color: var(--color-accent);
-  font-size: 0.75rem;
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-
-.arch-modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Architecture Specs Button on Cards */
-.arch-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  height: 38px;
-  padding: 0 14px;
-  margin-bottom: 14px;
-  background: rgba(166, 255, 107, 0.05);
-  border: 1px solid rgba(166, 255, 107, 0.22);
-  border-radius: var(--radius-sm);
-  color: var(--color-text);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
-  box-sizing: border-box;
-}
-
-.arch-btn:hover {
-  background: rgba(166, 255, 107, 0.15);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  box-shadow: 0 0 12px rgba(166, 255, 107, 0.2);
-}
-
-.arch-btn-icon {
-  color: var(--color-accent);
-  font-size: 0.85rem;
-}
-
-.arch-btn-arrow {
-  font-size: 0.8rem;
-  transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.arch-btn:hover .arch-btn-arrow {
-  transform: translate(2px, -2px);
-}
 
 /* --------------------------------------------------------------------------
    Minimal Contact Form (Dark Minimalist Theme - User Design)
@@ -1183,41 +1055,7 @@
   color: #ff8585;
 }
 
-.arch-content {
-  display: none;
-  padding: 4px 14px 12px 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
 
-.arch-drawer-wrap.is-open .arch-content {
-  display: block;
-}
-
-.arch-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.arch-list li {
-  position: relative;
-  padding-left: 14px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.arch-list li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--color-accent);
-  font-size: 0.72rem;
-}
 
 /* --------------------------------------------------------------------------
    Unreal Engine Viewport Mode: WIREFRAME / BLUEPRINT MODE

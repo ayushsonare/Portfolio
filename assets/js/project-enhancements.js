@@ -1,9 +1,9 @@
 /* ==========================================================================
    Project Card Enhancements:
    1. Video Lightbox & Watch Reel Badges
-   2. Technical Architecture Drawers
-   3. Platform & Category Filter Toolbar
-   4. Cursor Spotlight Radial Glow (Steam / Epic Games Store Style)
+   2. Platform & Category Filter Toolbar
+   3. Cursor Spotlight Radial Glow (Steam / Epic Games Store Style)
+   4. Seamless Full-Card Click Navigation
    ========================================================================== */
 
 import { playClick } from './audio-system.js';
@@ -124,74 +124,6 @@ function initProjectEnhancements() {
     });
   }
 
-  // Architecture Lightbox Modal Setup (Opens clean modal without deforming card grid)
-  let archModal = document.getElementById('archLightboxModal');
-  if (!archModal) {
-    archModal = document.createElement('div');
-    archModal.id = 'archLightboxModal';
-    archModal.className = 'lightbox-backdrop';
-    archModal.setAttribute('aria-hidden', 'true');
-    archModal.innerHTML = `
-      <div class="lightbox-dialog arch-modal-dialog" role="dialog" aria-modal="true" aria-label="Technical Architecture Specs">
-        <button class="lightbox-close" id="archLightboxCloseBtn" aria-label="Close architecture inspector">✕</button>
-        <div class="arch-modal-inner" id="archModalInner">
-          <!-- Injected dynamically -->
-        </div>
-      </div>
-    `;
-    document.body.appendChild(archModal);
-
-    const closeArchBtn = document.getElementById('archLightboxCloseBtn');
-    function closeArchModal() {
-      archModal.classList.remove('is-open');
-      archModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    closeArchBtn?.addEventListener('click', closeArchModal);
-    archModal.addEventListener('click', (e) => {
-      if (e.target === archModal) closeArchModal();
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && archModal.classList.contains('is-open')) closeArchModal();
-    });
-  }
-
-  function openArchModal(title, meta, points, caseStudyUrl) {
-    playClick();
-    const inner = document.getElementById('archModalInner');
-    if (!inner) return;
-
-    inner.innerHTML = `
-      <div class="arch-modal-header">
-        <div class="arch-modal-badge">⚡ TECHNICAL ARCHITECTURE SPECIFICATION</div>
-        <h2 class="arch-modal-title">${title}</h2>
-        <div class="arch-modal-meta">${meta}</div>
-      </div>
-      <div class="arch-modal-body">
-        <div class="arch-modal-heading">ENGINEERING HIGHLIGHTS & SUBSYSTEMS</div>
-        <ul class="arch-spec-list">
-          ${points.map(pt => `
-            <li class="arch-spec-item">
-              <span class="arch-spec-bullet">◆</span>
-              <span>${pt}</span>
-            </li>
-          `).join('')}
-        </ul>
-      </div>
-      <div class="arch-modal-footer">
-        <a class="btn btn-primary" href="${caseStudyUrl}">
-          <span>Explore Full Case Study</span>
-          <span class="arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    `;
-
-    archModal.classList.add('is-open');
-    archModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
   function openVideoModal(videoType, videoSrc) {
     playClick();
     const wrap = document.getElementById('lightboxVideoWrap');
@@ -246,39 +178,6 @@ function initProjectEnhancements() {
         openVideoModal(data.videoType, data.videoSrc);
       });
       mediaEl.appendChild(reelBtn);
-    }
-
-    // 2. Add Architecture Specs button inside body (Opens modal without displacing grid row heights)
-    const bodyEl = card.querySelector('.project-card-body');
-    if (bodyEl && !bodyEl.querySelector('.arch-btn')) {
-      const archBtn = document.createElement('button');
-      archBtn.type = 'button';
-      archBtn.className = 'arch-btn';
-      archBtn.setAttribute('aria-label', `View ${titleText} Technical Architecture`);
-      archBtn.innerHTML = `
-        <span class="arch-btn-left" style="display:inline-flex;align-items:center;gap:8px;">
-          <span class="arch-btn-icon" aria-hidden="true">⚡</span>
-          <span>Technical Architecture</span>
-        </span>
-        <span class="arch-btn-arrow" aria-hidden="true">↗</span>
-      `;
-
-      archBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const rawTitle = card.querySelector('.project-card-title span')?.textContent || card.querySelector('.project-card-title a')?.textContent || 'Project Architecture';
-        const metaText = card.querySelector('.project-card-meta')?.textContent?.replace(/\s+/g, ' ').trim() || 'Unreal Engine 5';
-        const linkHref = card.querySelector('.project-card-title a')?.getAttribute('href') || '#';
-        openArchModal(rawTitle.trim(), metaText, data.archPoints, linkHref);
-      });
-
-      // Insert before tags
-      const tagsEl = bodyEl.querySelector('.project-card-tags');
-      if (tagsEl) {
-        bodyEl.insertBefore(archBtn, tagsEl);
-      } else {
-        bodyEl.appendChild(archBtn);
-      }
     }
   });
 
@@ -344,8 +243,8 @@ function initProjectEnhancements() {
     card.style.cursor = 'pointer';
 
     card.addEventListener('click', (e) => {
-      // Don't intercept clicks on interactive nested controls (video reel modal, architecture modal trigger, buttons)
-      if (e.target.closest('.reel-badge, .arch-btn, .arch-modal-dialog, button, input, iframe, video')) {
+      // Don't intercept clicks on interactive nested controls (video reel modal, buttons, inputs)
+      if (e.target.closest('.reel-badge, button, input, iframe, video')) {
         return;
       }
 
