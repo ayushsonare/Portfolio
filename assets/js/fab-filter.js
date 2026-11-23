@@ -31,7 +31,7 @@ function initFabFilter() {
       </div>
       <div class="fab-search-box">
         <span class="fab-search-icon" aria-hidden="true">⚡</span>
-        <input type="text" class="fab-search-input" placeholder="Search 14 Fab plugins..." aria-label="Search Fab plugins" />
+        <input type="text" class="fab-search-input" placeholder="Search ${cards.length} Fab plugins..." aria-label="Search Fab plugins" />
       </div>
     `;
 

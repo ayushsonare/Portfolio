@@ -38,7 +38,7 @@ function initCommandPalette() {
     // Quick Actions
     { title: 'Download Resume', category: 'Action', subtitle: 'Ayush_Sonare_Resume.pdf', url: `${deepRoot}assets/documents/Ayush_Sonare_Resume.pdf`, download: true, icon: '📄' },
     { title: 'Email Ayush Sonare', category: 'Action', subtitle: 'ayushsonare692@gmail.com', url: 'mailto:ayushsonare692@gmail.com', icon: '📬' },
-    { title: 'ZedStudioz on Fab Marketplace', category: 'Action', subtitle: '14 Unreal Engine Plugins & Systems', url: 'https://fab.com', external: true, icon: '⚡' },
+    { title: 'ZedStudioz on Fab Marketplace', category: 'Action', subtitle: '21+ Unreal Engine Plugins & Systems', url: 'https://www.fab.com/sellers/ZedStudioz', external: true, icon: '⚡' },
     { title: 'GitHub Profile', category: 'Action', subtitle: 'github.com/ayushsonare', url: 'https://github.com/ayushsonare/', external: true, icon: '🐙' },
     { title: 'LinkedIn Profile', category: 'Action', subtitle: 'Connect with Ayush Sonare', url: 'https://www.linkedin.com/in/ayush-sonare-55155221b', external: true, icon: '💼' },
     { title: 'Unlock Developer God Mode', category: 'Easter Egg', subtitle: 'Konami Code Secret (godmode)', action: 'unlock-godmode', icon: '🏆' },
