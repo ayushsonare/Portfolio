@@ -220,8 +220,8 @@ function initProjectEnhancements() {
       <div class="project-filter-pills">
         <button class="proj-pill-btn is-active" data-filter="all">All (${cards.length})</button>
         <button class="proj-pill-btn" data-filter="multiplayer">Multiplayer & PC</button>
-        <button class="proj-pill-btn" data-filter="mobile">Mobile (Android)</button>
         <button class="proj-pill-btn" data-filter="vr">VR / OpenXR</button>
+        <button class="proj-pill-btn" data-filter="mobile">Mobile (Android)</button>
         <button class="proj-pill-btn" data-filter="action">Action & Combat</button>
       </div>
     `;
