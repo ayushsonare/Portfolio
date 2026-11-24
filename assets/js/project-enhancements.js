@@ -269,7 +269,7 @@ function initProjectEnhancements() {
   }
 
   // 4. Cursor Spotlight Radial Glow on Cards (Steam / Epic Games Store Style)
-  const spotlightCards = document.querySelectorAll('.project-card, .fab-card, .timeline-content');
+  const spotlightCards = document.querySelectorAll('.project-card, .fab-card, .timeline-content, .service-card, .featured-fab-card, .archive-callout-card');
   spotlightCards.forEach(card => {
     card.classList.add('spotlight-card');
     card.addEventListener('pointermove', (e) => {

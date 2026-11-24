@@ -938,18 +938,20 @@
 }
 
 .service-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  padding: 28px;
+  background: #0d121a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 16px);
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-normal), border-color var(--transition-normal);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .service-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: rgba(166, 255, 107, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(166, 255, 107, 0.08);
 }
 
 .service-num {
@@ -957,6 +959,7 @@
   font-size: var(--text-xs);
   color: var(--color-accent);
   margin-bottom: 12px;
+  letter-spacing: 0.06em;
 }
 
 .service-title {
@@ -977,35 +980,68 @@
 .service-deliverables {
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid var(--color-line-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .service-deliverable-title {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .service-deliverable-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 0.82rem;
+  gap: 8px;
+  font-size: 0.85rem;
   color: #cbd5e1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .service-deliverable-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
 }
 
 .service-deliverable-list li::before {
   content: "▹";
   color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.service-engagement-banner {
+  margin-top: 40px;
+  padding: 32px 36px;
+  background: #0d121a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.engagement-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.engagement-desc {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  max-width: 640px;
+  line-height: 1.6;
 }
 
 /* Service Engagement Banner */
