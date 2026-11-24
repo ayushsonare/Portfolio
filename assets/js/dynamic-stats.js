@@ -9,7 +9,7 @@
 export function updateDynamicStats() {
   // 1. Featured Productions Count
   const projectCards = document.querySelectorAll('.project-grid .project-card, .showcase-grid .project-card, .projects-grid .project-card, .work-grid .project-card');
-  const countFeatured = projectCards.length > 0 ? projectCards.length : 9;
+  const countFeatured = Math.max(projectCards.length, 9);
   const formattedFeatured = String(countFeatured).padStart(2, '0');
 
   document.querySelectorAll('[data-stat="featured-count"], #statFeaturedCount').forEach(el => {

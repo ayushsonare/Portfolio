@@ -153,6 +153,24 @@ function initProjectEnhancements() {
     document.body.style.overflow = 'hidden';
   }
 
+  // Hero Reel Trigger Setup
+  const heroReelBtn = document.getElementById('heroReelBtn');
+  const heroReelCard = document.getElementById('heroReelCard');
+  const heroReelUrl = 'https://www.youtube-nocookie.com/embed/7mJBKVK88fc?autoplay=1&rel=0';
+
+  const triggerHeroReel = (e) => {
+    e?.preventDefault();
+    openVideoModal('iframe', heroReelUrl);
+  };
+
+  heroReelBtn?.addEventListener('click', triggerHeroReel);
+  heroReelCard?.addEventListener('click', triggerHeroReel);
+  heroReelCard?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      triggerHeroReel(e);
+    }
+  });
+
   // Iterate over all project cards on the page
   const cards = document.querySelectorAll('.project-card');
   cards.forEach(card => {
@@ -211,9 +229,9 @@ function initProjectEnhancements() {
     }
   });
 
-  // 3. Platform & Category Filter Toolbar for Selected Work
+  // 3. Platform & Category Filter Toolbar (for catalog grids with > 3 items)
   const projectGrid = document.querySelector('.project-grid');
-  if (projectGrid && !projectGrid.previousElementSibling?.classList.contains('project-filter-toolbar')) {
+  if (projectGrid && cards.length > 3 && !projectGrid.previousElementSibling?.classList.contains('project-filter-toolbar')) {
     const filterToolbar = document.createElement('div');
     filterToolbar.className = 'project-filter-toolbar';
     filterToolbar.innerHTML = `
@@ -287,6 +305,69 @@ function initProjectEnhancements() {
       }
     });
   });
+
+  // 6. Interactive Card Stacking Animation on Scroll for Selected Works
+  const stackDeck = document.getElementById('selectedWorkStack');
+  if (stackDeck) {
+    const stackCards = Array.from(stackDeck.querySelectorAll('.stacked-card'));
+    if (stackCards.length > 1) {
+      let isTicking = false;
+
+      function updateCardStack() {
+        const viewportHeight = window.innerHeight;
+        
+        stackCards.forEach((card, i) => {
+          if (i === stackCards.length - 1) {
+            // The last card is at the top of the stack and never scaled down by a successor
+            card.style.transform = 'none';
+            card.style.filter = 'none';
+            return;
+          }
+
+          const nextCard = stackCards[i + 1];
+          const nextRect = nextCard.getBoundingClientRect();
+
+          // Sticky top offset for nextCard (responsive desktop vs mobile)
+          const isMobile = window.innerWidth <= 880;
+          const stickyTopNext = isMobile ? (75 + (i + 1) * 18) : (90 + (i + 1) * 30);
+          const startCoverY = viewportHeight * 0.9;
+          const finishCoverY = stickyTopNext;
+
+          // Progress of nextCard traveling towards its sticky dock
+          const progress = Math.max(0, Math.min(1, (startCoverY - nextRect.top) / (startCoverY - finishCoverY)));
+
+          // Smoothly scale down card and dim slightly as subsequent card stacks over it
+          const scaleReduction = (isMobile ? 0.04 : 0.055) * progress;
+          const brightnessReduction = 0.16 * progress;
+          
+          const currentScale = (1 - scaleReduction).toFixed(4);
+          const currentBrightness = (1 - brightnessReduction).toFixed(3);
+
+          card.style.transform = `scale(${currentScale})`;
+          card.style.filter = `brightness(${currentBrightness})`;
+        });
+
+        isTicking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!isTicking) {
+          window.requestAnimationFrame(updateCardStack);
+          isTicking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        if (!isTicking) {
+          window.requestAnimationFrame(updateCardStack);
+          isTicking = true;
+        }
+      }, { passive: true });
+
+      // Run once on load
+      updateCardStack();
+    }
+  }
 }
 
 if (document.readyState === 'loading') {

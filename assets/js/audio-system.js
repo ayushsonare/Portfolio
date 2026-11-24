@@ -1,15 +1,17 @@
 /* ==========================================================================
-   Procedural Web Audio Engine (Muted by Default)
+   Procedural Web Audio Engine (Enabled by Default)
    High-performance synthetic UI sound effects without external audio assets.
    ========================================================================== */
 
 let audioCtx = null;
-let isMuted = true;
+let isMuted = false; // Enabled by default
 
-// Retrieve persisted mute preference (defaults to muted)
+// Retrieve persisted mute preference (defaults to enabled unless explicitly muted)
 try {
   const saved = localStorage.getItem('ayush_portfolio_audio');
-  if (saved === 'enabled') {
+  if (saved === 'muted') {
+    isMuted = true;
+  } else if (saved === 'enabled') {
     isMuted = false;
   }
 } catch (e) {}

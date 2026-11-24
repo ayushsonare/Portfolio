@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,13 @@
   <meta property="og:title" content="Ayush Sonare | Unreal Engine Developer & Gameplay Programmer">
   <meta property="og:description" content="Portfolio of Ayush Sonare, an Unreal Engine developer and gameplay programmer working across C++, Blueprint, multiplayer systems, AI behaviour, and optimization.">
   <meta property="og:url" content="https://ayushsonare.github.io/Portfolio/">
+  <meta property="og:image" content="https://ayushsonare.github.io/Portfolio/assets/images/projects/roar/gameplay-01.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ayush Sonare | Unreal Engine Developer & Gameplay Programmer">
+  <meta name="twitter:description" content="Unreal Engine Developer specializing in combat mechanics, EOS multiplayer replication, and mobile/VR performance.">
+  <meta name="twitter:image" content="https://ayushsonare.github.io/Portfolio/assets/images/projects/roar/gameplay-01.png">
 
     <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -83,35 +90,53 @@
     <section class="section hero-section">
       <div class="container hero-container">
         <div class="hero-content">
-          <h1 class="hero-title">Ayush Sonare</h1>
-          <p class="hero-subtitle">Unreal Engine Developer · Gameplay Programmer</p>
+          <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.5vw, 3.4rem); line-height: 1.15; margin-bottom: 16px;">
+            Unreal Engine Gameplay & Multiplayer Systems
+          </h1>
+          <p class="hero-subtitle" style="color: var(--color-accent); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 18px; letter-spacing: 0.04em;">
+            C++ · Blueprints · EOS Networking · PC, Mobile & VR Optimization
+          </p>
 
-          <p class="hero-desc">
-            Unreal Engine Developer with 4+ years of experience in gameplay programming, multiplayer systems, and game development using C++ and Blueprint across PC and Android. Also develops and publishes reusable tools through the Fab Marketplace.
+          <p class="hero-desc" style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; max-width: 600px; margin-bottom: 28px;">
+            I help indie studios and development teams build responsive combat mechanics, integrate scalable Epic Online Services (EOS) multiplayer, and diagnose performance bottlenecks across PC, Android, and VR targets.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#selected-work">Explore Selected Work</a>
-            <a class="btn btn-secondary" href="./contact/index.html">Get In Touch</a>
+            <a class="btn btn-primary" href="#contact">Discuss Your Project ↗</a>
+            <button type="button" class="btn btn-secondary hero-reel-btn" id="heroReelBtn" aria-label="Watch Gameplay Reel">
+              <span class="reel-play-icon" aria-hidden="true" style="color: var(--color-accent); margin-right: 6px;">▶</span>
+              <span>Watch Gameplay Reel</span>
+            </button>
             <a class="btn-text" href="./assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">
-              <span>Download Resume</span>
+              <span>Resume (PDF)</span>
               <span class="arrow" aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
 
-        <!-- 3D 'A' Monogram Stage -->
-        <div class="hero-logo-stage" aria-hidden="true">
-          <div class="hero-logo-rig" id="heroLogoRig">
-            <div class="orbital">
-              <div class="orbit-dot"></div>
+        <!-- Hero Gameplay Reel Showcase Stage -->
+        <div class="hero-reel-stage" id="heroReelStage">
+          <div class="hero-reel-card" id="heroReelCard" role="button" tabindex="0" aria-label="Play Unreal Engine Gameplay Reel">
+            <div class="hero-reel-media">
+              <img src="./assets/images/projects/roar/gameplay-01.png" alt="Unreal Engine Gameplay & Combat Showcase" class="hero-reel-img">
+              <div class="hero-reel-overlay">
+                <div class="hero-play-circle" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="hero-play-label">Play Production Reel</span>
+              </div>
+              <div class="hero-reel-badge">
+                <span class="pulse-dot"></span>
+                <span>UE 5.4 · EOS Multiplayer · 60 FPS</span>
+              </div>
             </div>
-            <div class="orbital two"></div>
-            <div class="a-prism">
-              <div class="a-face back"></div>
-              <div class="a-face mid"></div>
-              <div class="a-face front"></div>
-              <div class="a-line"></div>
+            <div class="hero-reel-caption">
+              <div class="hero-reel-taglist">
+                <span class="reel-chip"><strong>ROAR:</strong> EOS Netcode & AI</span>
+                <span class="reel-chip"><strong>LEKH:</strong> 8-Way Melee Combos</span>
+                <span class="reel-chip"><strong>VR Tour:</strong> 6DOF OpenXR</span>
+                <span class="reel-chip"><strong>Soul Eater:</strong> 200+ Horde Spawners</span>
+              </div>
             </div>
           </div>
         </div>
@@ -137,9 +162,9 @@
           <span class="telemetry-sub">ZedStudioz Marketplace Store</span>
         </div>
         <div class="telemetry-card">
-          <span class="telemetry-num">100<span class="accent">%</span></span>
-          <span class="telemetry-label">Gameplay Architecture</span>
-          <span class="telemetry-sub">Player-Centric Systems</span>
+          <span class="telemetry-num">4<span class="accent">+</span></span>
+          <span class="telemetry-label">Target Platforms</span>
+          <span class="telemetry-sub">PC · Android · VR / OpenXR · Web</span>
         </div>
       </div>
     </section>
@@ -155,11 +180,13 @@
           </p>
         </div>
 
-        <div class="project-grid">
+        <!-- Stacked Showcase Deck on Scroll -->
+        <div class="project-stack-deck" id="selectedWorkStack">
           <!-- 01. ROAR -->
-          <article class="project-card">
+          <article class="project-card stacked-card" data-card-index="0" style="--card-index: 0;">
             <a class="project-card-media" href="./projects/roar/index.html" aria-label="View ROAR Case Study">
               <img src="./assets/images/projects/roar/gameplay-01.png" alt="ROAR Multiplayer Combat & Weapon Systems" loading="lazy">
+              <div class="stacked-card-badge">01 / PREMIER CASE STUDY</div>
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -182,13 +209,20 @@
                 <span class="tag">Behaviour Trees</span>
                 <span class="tag">C++ / Blueprint</span>
               </div>
+              <div class="stacked-card-action">
+                <a class="btn btn-secondary" href="./projects/roar/index.html">
+                  <span>Explore ROAR Case Study</span>
+                  <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>
 
           <!-- 02. AIR EVENTS (METAVERSE MEETING) -->
-          <article class="project-card">
+          <article class="project-card stacked-card" data-card-index="1" style="--card-index: 1;">
             <a class="project-card-media" href="./projects/air-events/index.html" aria-label="View AIR EVENTS Case Study">
               <img src="./assets/images/projects/air-events/lobby.png" alt="AIR EVENTS Virtual Lobbies & Multiplayer Space" loading="lazy">
+              <div class="stacked-card-badge">02 / PREMIER CASE STUDY</div>
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -211,13 +245,20 @@
                 <span class="tag">Customization</span>
                 <span class="tag">Spatial Audio</span>
               </div>
+              <div class="stacked-card-action">
+                <a class="btn btn-secondary" href="./projects/air-events/index.html">
+                  <span>Explore AIR EVENTS Case Study</span>
+                  <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>
 
           <!-- 03. VR Tour -->
-          <article class="project-card">
+          <article class="project-card stacked-card" data-card-index="2" style="--card-index: 2;">
             <a class="project-card-media" href="./projects/vr-tour/index.html" aria-label="View VR Tour Case Study">
               <img src="./assets/images/projects/vr-tour/vr-hero.png" alt="VR Tour Architectural and Material Customization" loading="lazy">
+              <div class="stacked-card-badge">03 / PREMIER CASE STUDY</div>
             </a>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -240,648 +281,225 @@
                 <span class="tag">6DOF Interaction</span>
                 <span class="tag">Forward Shading</span>
               </div>
-            </div>
-          </article>
-
-          <!-- 04. LEKH -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/lekh/index.html" aria-label="View LEKH Case Study">
-              <img src="./assets/images/projects/lekh/Lekh.png" alt="LEKH Indian Fantasy Action RPG" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Indian Fantasy RPG · Personal Project</span>
-                <span>2025 · PC</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/lekh/index.html">
-                  <span>LEKH</span>
+              <div class="stacked-card-action">
+                <a class="btn btn-secondary" href="./projects/vr-tour/index.html">
+                  <span>Explore VR Tour Case Study</span>
                   <span class="arrow" aria-hidden="true">↗</span>
                 </a>
-              </h3>
-              <p class="project-card-desc">
-                Fluid melee combo combat mechanics, 8-way locomotion, directional dodge rolls, dynamic camera warping, and companion AI.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE5</span>
-                <span class="tag">Combat Mechanics</span>
-                <span class="tag">Companion AI</span>
-                <span class="tag">Locomotion</span>
-                <span class="tag">C++</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 05. FLAWS: The Shadow -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/flaws-the-shadow/index.html" aria-label="View FLAWS Case Study">
-              <img src="./assets/images/projects/flaws-the-shadow/ads.png" alt="FLAWS Dynamic Aiming and Systems" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Narrative Horror Shooter · Personal Project</span>
-                <span>2025 · PC</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/flaws-the-shadow/index.html">
-                  <span>FLAWS: The Shadow</span>
-                  <span class="arrow" aria-hidden="true">↗</span>
-                </a>
-              </h3>
-              <p class="project-card-desc">
-                First-person horror gameplay systems, enemy AI perception, physical decals, responsive weapon handling, and campaign progression.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE5</span>
-                <span class="tag">Enemy AI</span>
-                <span class="tag">Weapon Handling</span>
-                <span class="tag">Physics Systems</span>
-                <span class="tag">C++ / Blueprint</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 06. Soul Eater -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/soul-eater/index.html" aria-label="View Soul Eater Case Study">
-              <img src="./assets/images/projects/soul-eater/horde-survival.jpg" alt="Soul Eater 200+ Horde Survival Combat" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Roguelike Action · Personal Project</span>
-                <span>2024 · Android</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/soul-eater/index.html">
-                  <span>Soul Eater</span>
-                  <span class="arrow" aria-hidden="true">↗</span>
-                </a>
-              </h3>
-              <p class="project-card-desc">
-                Top-down roguelike mobile shooter engineered with ability cooldown loops, interface decoupling, asset streaming, and device profiling.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE5 Mobile</span>
-                <span class="tag">Android Profiling</span>
-                <span class="tag">Interface Decoupling</span>
-                <span class="tag">Horde Spawners</span>
-                <a class="tag tag-accent" href="https://play.google.com/store/apps/details?id=com.zedstudioz.souleaterX&hl=en" target="_blank" rel="noopener noreferrer" style="font-weight: 600;" title="Get on Google Play">Google Play ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 07. Basketball Mobile -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/basketball-mobile/index.html" aria-label="View Basketball Mobile Case Study">
-              <img src="./assets/images/projects/basketball-mobile/Shoot.png" alt="Basketball Mobile Jump Shot Mechanics" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Multiplayer Arcade · CarinaSoftLabs</span>
-                <span>2025 · Android</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/basketball-mobile/index.html">
-                  <span>Basketball Mobile</span>
-                  <span class="arrow" aria-hidden="true">↗</span>
-                </a>
-              </h3>
-              <p class="project-card-desc">
-                Full-court 5v5 and 3v3 half-court online multiplayer match flows, gesture swipe touch shooting physics, and mobile GPU optimization.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE5</span>
-                <span class="tag">EOS</span>
-                <span class="tag">Ball Physics</span>
-                <span class="tag">Mobile Multiplayer</span>
-                <span class="tag">Android</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 08. Happy Now 2 -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/happy-now-2/index.html" aria-label="View Happy Now 2 Case Study">
-              <img src="./assets/images/HN2/HN2_Cover.png" alt="Happy Now 2 Mobile Arcade" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Mobile Arcade · Personal Project</span>
-                <span>2024 · Android</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/happy-now-2/index.html">
-                  <span>Happy Now 2</span>
-                  <span class="arrow" aria-hidden="true">↗</span>
-                </a>
-              </h3>
-              <p class="project-card-desc">
-                Compact arcade action game engineered with tactile touch controls, progression loops, and mobile GPU optimization.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE5 Mobile</span>
-                <span class="tag">Android</span>
-                <span class="tag">Touch Controls</span>
-                <span class="tag">Progression</span>
-                <a class="tag tag-accent" href="https://play.google.com/store/apps/details?id=com.zedstudioz.HappyNow2&hl=en" target="_blank" rel="noopener noreferrer" style="font-weight: 600;" title="Get on Google Play">Google Play ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 09. Happy Now -->
-          <article class="project-card">
-            <a class="project-card-media" href="./projects/happy-now/index.html" aria-label="View Happy Now Case Study">
-              <img src="./assets/images/HN1/HN1_Gameplay1.png" alt="Happy Now Mobile Arcade Runner" loading="lazy">
-            </a>
-            <div class="project-card-body">
-              <div class="project-card-meta">
-                <span>Mobile Arcade · Personal Project</span>
-                <span>2024 · Android</span>
-              </div>
-              <h3 class="project-card-title">
-                <a href="./projects/happy-now/index.html">
-                  <span>Happy Now</span>
-                  <span class="arrow" aria-hidden="true">↗</span>
-                </a>
-              </h3>
-              <p class="project-card-desc">
-                Tactile arcade obstacle runner featuring precision timing mechanics, dynamic score multipliers, and lightweight mobile rendering.
-              </p>
-              <div class="project-card-tags">
-                <span class="tag tag-accent">UE Mobile</span>
-                <span class="tag">Android</span>
-                <span class="tag">Arcade Physics</span>
-                <span class="tag">Timing Loops</span>
-                <a class="tag tag-accent" href="https://play.google.com/store/apps/details?id=com.zedstudioz.HappyNow&hl=en" target="_blank" rel="noopener noreferrer" style="font-weight: 600;" title="Get on Google Play">Google Play ↗</a>
               </div>
             </div>
           </article>
         </div>
 
-        <div style="margin-top: 48px; text-align: center;">
-          <a class="btn btn-secondary" href="./work/index.html">View All Work & Case Studies ↗</a>
+        <!-- Comprehensive Catalog Callout -->
+        <div class="archive-callout-card" style="margin-top: 36px; padding: 28px 32px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--color-line); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">PRODUCTION ARCHIVE · 09 SHIPPED TITLES</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--color-text); margin-bottom: 6px;">Looking for more specialized mechanics & platform case studies?</h4>
+            <p style="font-size: 0.88rem; color: #94a3b8; max-width: 620px; line-height: 1.6;">
+              Explore the full archive including <strong>LEKH</strong> (melee combo mechanics & dynamic camera warping), <strong>FLAWS: The Shadow</strong> (tactical ballistic ADS), <strong>Soul Eater</strong> (200+ horde mobile survival on Google Play), and mobile sports titles.
+            </p>
+          </div>
+          <a class="btn btn-secondary" href="./work/index.html">
+            <span>Explore All 9 Projects</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Studio Journey & Milestone Timeline Section -->
-    <section class="section section-border-top" id="experience">
+    <!-- Client Services & Engineering Solutions -->
+    <section class="section section-border-top" id="services">
       <div class="container">
         <div class="section-header">
-          <div class="section-kicker">02 / EXPERIENCE & MILESTONES</div>
-          <h2 class="section-title">Studio Journey & Timeline</h2>
+          <div class="section-kicker">02 / SERVICES & CAPABILITIES</div>
+          <h2 class="section-title">How I Help Studios & Teams</h2>
           <p class="section-desc">
-            A chronological timeline of studio roles, shipped commercial deliverables, and published developer systems.
+            Clear technical deliverables tailored for indie studios, commercial productions, and engineering teams needing robust Unreal Engine systems.
           </p>
         </div>
 
-        <div class="timeline-container">
-          <!-- Timeline Item 01: CarinaSoftLabs -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <span class="timeline-dot"></span>
-              <span class="timeline-line"></span>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-meta">
-                <span class="timeline-dates">Jan 2025 — Oct 2026</span>
-                <span class="timeline-badge">Studio Role</span>
-              </div>
-              <h3 class="timeline-title">CarinaSoftLabs · Unreal Engine Developer</h3>
-              <p class="timeline-role">Indore, India · Full-Time Gameplay & Multiplayer Programmer</p>
-              <p class="timeline-desc">
-                Spearheaded gameplay programming, online replication, and physics mechanics across major client and studio productions. Engineered multiplayer weapon handling and bot AI for <strong>ROAR</strong>, networked participant lobbies for <strong>AIR EVENTS</strong>, and 5v5/3v3 swipe physics for <strong>Basketball Mobile</strong>.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag tag-accent">ROAR (FPS)</span>
-                <span class="tag tag-accent">AIR EVENTS (Metaverse)</span>
-                <span class="tag tag-accent">Basketball Mobile</span>
-                <span class="tag">EOS Replication</span>
-                <span class="tag">Behavior Trees</span>
-              </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-num">01 / ARCHITECTURE</div>
+            <h3 class="service-title">Multiplayer & EOS Integration</h3>
+            <p class="service-desc">
+              Dedicated server netcode, player state replication, and online subsystem integration to ensure stable, low-latency multiplayer matches.
+            </p>
+            <div class="service-deliverables">
+              <div class="service-deliverable-title">Typical Deliverables</div>
+              <ul class="service-deliverable-list">
+                <li>Epic Online Services (EOS) authentication & lobby matchmaking</li>
+                <li>Bandwidth-optimized variable & RPC network replication</li>
+                <li>Party management, team assignment & session reconnection</li>
+                <li>Dedicated server & client simulation synchronization</li>
+              </ul>
             </div>
           </div>
 
-          <!-- Timeline Item 02: Freelance Unreal Engine Developer -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <span class="timeline-dot"></span>
-              <span class="timeline-line"></span>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-meta">
-                <span class="timeline-dates">2024 — Present</span>
-                <span class="timeline-badge">Freelance & Contract</span>
-              </div>
-              <h3 class="timeline-title">Freelance · Unreal Engine Developer</h3>
-              <p class="timeline-role">Remote / Global · Gameplay Systems & Technical Consulting</p>
-              <p class="timeline-desc">
-                Engineering bespoke gameplay mechanics, multiplayer replication architecture, and performance optimization for independent studios and private clients. Implementing responsive character controllers, Blueprint-to-C++ refactoring, custom camera systems, and modular framework extensions across PC and mobile targets.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag tag-accent">Freelance</span>
-                <span class="tag tag-accent">Unreal Engine 5</span>
-                <span class="tag">Multiplayer C++</span>
-                <span class="tag">Systems Architecture</span>
-                <span class="tag">Mobile & PC Optimization</span>
-              </div>
+          <div class="service-card">
+            <div class="service-num">02 / SYSTEMS</div>
+            <h3 class="service-title">Combat, Locomotion & AI</h3>
+            <p class="service-desc">
+              Modular gameplay mechanics, tactile weapon pipelines, directional root-motion locomotion, and intelligent companion/enemy perception.
+            </p>
+            <div class="service-deliverables">
+              <div class="service-deliverable-title">Typical Deliverables</div>
+              <ul class="service-deliverable-list">
+                <li>Hitscan & projectile ballistics with procedural ADS & recoil</li>
+                <li>8-way locomotion blending, directional dodges & melee state machines</li>
+                <li>Companion & enemy AI using Behavior Trees, Blackboards & EQS</li>
+                <li>Target lock-on and dynamic camera spring-arm collision warping</li>
+              </ul>
             </div>
           </div>
 
-          <!-- Timeline Item 03: ZedStudioz Fab Marketplace -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <span class="timeline-dot"></span>
-              <span class="timeline-line"></span>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-meta">
-                <span class="timeline-dates">2024 — Present</span>
-                <span class="timeline-badge" data-stat="fab-badge">Fab Marketplace Publisher</span>
-              </div>
-              <h3 class="timeline-title">ZedStudioz · Creator & Lead Tool Author</h3>
-              <p class="timeline-role" data-stat="fab-role">Epic Games Fab Marketplace · 21 Published Systems</p>
-              <p class="timeline-desc">
-                Architected and published 21 production-ready Unreal Engine toolkits solving core workflow and optimization challenges—including Simple Optimizer, Ultimate Save System, Aim Lock Assist, Object Pooling, ArsenalX, Supermarket Simulator, and Top Down Golf Game Kit.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag tag-accent" data-stat="fab-tag">21 Fab Plugins</span>
-                <span class="tag">Workflow Tools</span>
-                <span class="tag">Save Frameworks</span>
-                <span class="tag">Dynamic Optimization</span>
-              </div>
+          <div class="service-card">
+            <div class="service-num">03 / PERFORMANCE</div>
+            <h3 class="service-title">Optimization & Profiling Audits</h3>
+            <p class="service-desc">
+              In-depth profiling to eliminate hitching, reduce draw calls, budget frame times, and optimize memory across PC, Android, and VR hardware.
+            </p>
+            <div class="service-deliverables">
+              <div class="service-deliverable-title">Typical Deliverables</div>
+              <ul class="service-deliverable-list">
+                <li>Unreal Insights & Android CPU/GPU thermal profiling</li>
+                <li>Draw call reduction, texture budgeting & level streaming</li>
+                <li>Blueprint-to-C++ refactoring of performance-critical code</li>
+                <li>Strict 60 FPS mobile and 90 FPS OpenXR forward-shading budgets</li>
+              </ul>
             </div>
           </div>
+        </div>
 
-          <!-- Timeline Item 03: Indie Productions -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <span class="timeline-dot"></span>
+        <!-- Service Engagement Banner -->
+        <div class="service-engagement-banner">
+          <div class="engagement-text">
+            <div class="engagement-title">Production Systems, Architecture & Technical Consulting</div>
+            <div class="engagement-desc">
+              Flexible overlap with US, EU, and APAC time zones (based in IST / UTC+5:30). Typical response within 24 hours.
             </div>
-            <div class="timeline-content">
-              <div class="timeline-meta">
-                <span class="timeline-dates">2023 — 2025</span>
-                <span class="timeline-badge">Indie Productions</span>
-              </div>
-              <h3 class="timeline-title">Indie Gameplay Systems & Innovations</h3>
-              <p class="timeline-role">Independent Game Development · PC, Mobile & VR</p>
-              <p class="timeline-desc">
-                Engineered full-stack indie titles exploring specialized mechanics: <strong>VR Tour</strong> (OpenXR runtime dynamic material customization & 6DOF interaction), <strong>LEKH</strong> (melee combo mechanics & dynamic camera warping), <strong>FLAWS: The Shadow</strong> (tactical ballistic ADS and AI flanking), and <strong>Soul Eater</strong> (200+ horde mobile survival).
-              </p>
-              <div class="timeline-tags">
-                <span class="tag tag-accent">VR Tour</span>
-                <span class="tag tag-accent">OpenXR</span>
-                <span class="tag tag-accent">LEKH</span>
-                <span class="tag tag-accent">FLAWS</span>
-                <span class="tag tag-accent">Soul Eater</span>
-              </div>
-            </div>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="#contact">Discuss Your Project ↗</a>
+            <a class="btn btn-secondary" href="./about/index.html">View Engineering Background</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Capabilities Section -->
-    <section class="section section-border-top">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">03 / EXPERTISE</div>
-          <h2 class="section-title">Capabilities</h2>
-          <p class="section-desc">
-            From the first gameplay prototype to the systems behind a playable experience, I focus on building features that are reliable, maintainable, and ready to integrate.
-          </p>
-        </div>
-
-        <div class="capabilities-grid">
-          <div class="capability-card">
-            <div class="capability-num">01</div>
-            <h3 class="capability-title">Gameplay Programming</h3>
-            <p class="capability-desc">
-              Core mechanics architecture, player locomotion, camera systems, interactive props, item pickups, and modular character state machines in C++ and Blueprint.
-            </p>
-          </div>
-
-          <div class="capability-card">
-            <div class="capability-num">02</div>
-            <h3 class="capability-title">Multiplayer & Online</h3>
-            <p class="capability-desc">
-              Network replication, variable synchronization, RPC management, Epic Online Services (EOS) auth, lobbies, matchmaking, party flows, and REST API integration.
-            </p>
-          </div>
-
-          <div class="capability-card">
-            <div class="capability-num">03</div>
-            <h3 class="capability-title">AI & Behaviour Trees</h3>
-            <p class="capability-desc">
-              Companion and enemy AI built using Behaviour Trees, Blackboards, EQS queries, custom AI controllers, navigation meshes, and sensory perception systems.
-            </p>
-          </div>
-
-          <div class="capability-card">
-            <div class="capability-num">04</div>
-            <h3 class="capability-title">Combat & Weapons</h3>
-            <p class="capability-desc">
-              Hitscan and projectile ballistics, dynamic aiming, recoil patterns, melee combos, collision response, health/damage pipelines, and screen-shake feedback.
-            </p>
-          </div>
-
-          <div class="capability-card">
-            <div class="capability-num">05</div>
-            <h3 class="capability-title">Mobile Optimization</h3>
-            <p class="capability-desc">
-              Texture compression, draw call reduction, level streaming, asset auditing, interface-based decoupling, and profiling for 60 FPS on Android hardware.
-            </p>
-          </div>
-
-          <div class="capability-card">
-            <div class="capability-num">06</div>
-            <h3 class="capability-title">Frameworks & Tools</h3>
-            <p class="capability-desc">
-              Integration of SKGSF, GASP locomotion, VaRest, UMG HUDs, audio attenuation, save/load architectures, and version-controlled Git workflows.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Toolkit Section -->
-    <section class="section section-border-top">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">04 / STACK</div>
-          <h2 class="section-title">Technical Toolkit</h2>
-          <p class="section-desc">
-            Technologies, frameworks, and production tools utilized across Unreal Engine projects.
-          </p>
-        </div>
-
-        <div class="toolkit-groups">
-          <div class="toolkit-group">
-            <h3 class="toolkit-group-title">Engine & Programming</h3>
-            <div class="toolkit-pill-list">
-              <span class="tag tag-accent">Unreal Engine 5</span>
-              <span class="tag tag-accent">Unreal Engine 4</span>
-              <span class="tag">C++</span>
-              <span class="tag">Blueprint Visual Scripting</span>
-              <span class="tag">Roblox / Lua</span>
-              <span class="tag">Gameplay Framework</span>
-              <span class="tag">UMG UI</span>
-              <span class="tag">Save / Load Systems</span>
-              <span class="tag">Animation Blueprints</span>
-            </div>
-          </div>
-
-          <div class="toolkit-group">
-            <h3 class="toolkit-group-title">Multiplayer & Networking</h3>
-            <div class="toolkit-pill-list">
-              <span class="tag tag-accent">Network Replication</span>
-              <span class="tag tag-accent">Epic Online Services (EOS)</span>
-              <span class="tag">RPCs & Synchronization</span>
-              <span class="tag">Party & Friend Invites</span>
-              <span class="tag">Lobby & Matchmaking</span>
-              <span class="tag">VaRest API Plugin</span>
-              <span class="tag">REST Services</span>
-            </div>
-          </div>
-
-          <div class="toolkit-group">
-            <h3 class="toolkit-group-title">Artificial Intelligence</h3>
-            <div class="toolkit-pill-list">
-              <span class="tag tag-accent">Behaviour Trees</span>
-              <span class="tag tag-accent">Blackboards</span>
-              <span class="tag">Environment Query System (EQS)</span>
-              <span class="tag">AIPerception</span>
-              <span class="tag">NavMesh & Pathfinding</span>
-              <span class="tag">Companion AI</span>
-              <span class="tag">Swarm Spawners</span>
-            </div>
-          </div>
-
-          <div class="toolkit-group">
-            <h3 class="toolkit-group-title">Profiling & Production Tools</h3>
-            <div class="toolkit-pill-list">
-              <span class="tag tag-accent">Unreal Insights</span>
-              <span class="tag">Mobile Android Profiling</span>
-              <span class="tag">Texture Compression</span>
-              <span class="tag">Asset Streaming</span>
-              <span class="tag">Git & GitHub</span>
-              <span class="tag">Perforce</span>
-              <span class="tag">Diversion</span>
-              <span class="tag">Visual Studio</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fab Marketplace & Plugins Section -->
+    <!-- Featured Fab Marketplace Toolkits (Trust Signals) -->
     <section class="section section-border-top" id="fab-plugins">
       <div class="container">
         <div class="section-header">
-          <div class="section-kicker" data-stat="fab-kicker">05 / FAB MARKETPLACE PUBLISHER · 21 SYSTEMS</div>
-          <h2 class="section-title">ZedStudioz Plugins & Systems</h2>
+          <div class="section-kicker">03 / FAB MARKETPLACE PUBLISHER · 21 SYSTEMS</div>
+          <h2 class="section-title">Published Developer Systems</h2>
           <p class="section-desc">
-            Production-ready Unreal Engine tools, gameplay mechanics, and developer frameworks built around practical workflow problems and published on the Fab Marketplace.
+            Shipped Unreal Engine plugins and performance systems published under ZedStudioz on Epic Games' Fab Marketplace, solving real-world workflow challenges for developers.
           </p>
         </div>
 
-        <div class="fab-grid">
-          <a class="fab-card" href="https://www.fab.com/listings/a7e754cd-c6e2-4ad1-99dd-ec6630a869b5" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">01</span>
-              <span class="fab-title">Simple Optimizer</span>
+        <div class="featured-fab-grid">
+          <!-- Featured Tool 1: Simple Optimizer -->
+          <a class="featured-fab-card" href="https://www.fab.com/listings/e2118320-b8ec-43e9-913a-a5c9a49f6a7d" target="_blank" rel="noopener noreferrer">
+            <div class="featured-fab-media">
+              <img src="./assets/images/projects/basketball-mobile/Shoot.png" alt="Simple Optimizer for Unreal Engine" loading="lazy">
             </div>
-            <span class="fab-tag">Performance ↗</span>
+            <div class="featured-fab-body">
+              <div class="featured-fab-header">
+                <span class="featured-fab-category">PERFORMANCE & WORKFLOW</span>
+              </div>
+              <h3 class="featured-fab-title">
+                <span>Simple Optimizer</span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h3>
+              <p class="featured-fab-desc">
+                Automated asset auditing and dynamic LOD/texture budgeting toolkit engineered to eliminate memory bloat and boost framerates on mobile and lower-spec PC hardware.
+              </p>
+              <div class="featured-fab-meta">
+                <span>Solves: Draw calls & memory bottlenecks</span>
+                <span style="color: var(--color-accent);">View on Fab ↗</span>
+              </div>
+            </div>
           </a>
 
-          <a class="fab-card" href="https://www.fab.com/listings/86ea1e96-6044-4a3e-8c86-d22ecee5317a" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">02</span>
-              <span class="fab-title">Ultimate Camera Manager</span>
+          <!-- Featured Tool 2: Ultimate Save System -->
+          <a class="featured-fab-card" href="https://www.fab.com/listings/74d7589c-45fb-4299-90d5-71ee55df08b4" target="_blank" rel="noopener noreferrer">
+            <div class="featured-fab-media">
+              <img src="./assets/images/projects/flaws-the-shadow/ads.png" alt="Ultimate Save System for Unreal Engine" loading="lazy">
             </div>
-            <span class="fab-tag">Camera ↗</span>
+            <div class="featured-fab-body">
+              <div class="featured-fab-header">
+                <span class="featured-fab-category">GAMEPLAY ARCHITECTURE</span>
+              </div>
+              <h3 class="featured-fab-title">
+                <span>Ultimate Save System</span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h3>
+              <p class="featured-fab-desc">
+                Modular, type-safe save and load architecture supporting multi-slot persistence, asynchronous disk I/O, binary encryption, and seamless level migration.
+              </p>
+              <div class="featured-fab-meta">
+                <span>Solves: Save corruption & async serialization</span>
+                <span style="color: var(--color-accent);">View on Fab ↗</span>
+              </div>
+            </div>
           </a>
 
-          <a class="fab-card" href="https://www.fab.com/listings/2be129fd-212d-48c0-a028-8b861dc6f147" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">03</span>
-              <span class="fab-title">Advanced Save & Load System</span>
+          <!-- Featured Tool 3: Aim Lock Assist -->
+          <a class="featured-fab-card" href="https://www.fab.com/listings/57dbeeb2-2b27-4ddb-b2b5-555543c72b1d" target="_blank" rel="noopener noreferrer">
+            <div class="featured-fab-media">
+              <img src="./assets/images/projects/roar/gameplay-01.png" alt="Aim Lock Assist for Unreal Engine" loading="lazy">
             </div>
-            <span class="fab-tag">Systems ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/0e943ce4-d49c-46f5-8187-7fbe625e947f" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">04</span>
-              <span class="fab-title">Modular Quest System</span>
+            <div class="featured-fab-body">
+              <div class="featured-fab-header">
+                <span class="featured-fab-category">COMBAT & CONTROLS</span>
+              </div>
+              <h3 class="featured-fab-title">
+                <span>Aim Lock Assist</span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </h3>
+              <p class="featured-fab-desc">
+                Controller and touch-friendly target magnetism system featuring friction zones, sticky camera tracking, and customizable crosshair assist curves for shooters and action games.
+              </p>
+              <div class="featured-fab-meta">
+                <span>Solves: Mobile & gamepad shooting feel</span>
+                <span style="color: var(--color-accent);">View on Fab ↗</span>
+              </div>
             </div>
-            <span class="fab-tag">Gameplay ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/5225bc21-1a84-4409-81c6-ce3a88b9a106" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">05</span>
-              <span class="fab-title">Advanced Aim Assist System</span>
-            </div>
-            <span class="fab-tag">Combat ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/1d17302a-40dc-4bad-b60f-f350a741ff41" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">06</span>
-              <span class="fab-title">Checkpoint Saver</span>
-            </div>
-            <span class="fab-tag">Save ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/05a19f54-301a-465b-b06f-fc4d49d32214" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">07</span>
-              <span class="fab-title">ZPooling (Object Pooling)</span>
-            </div>
-            <span class="fab-tag">Performance ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/99a5d1ae-495f-4ba4-afd6-fd7f8bf79f07" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">08</span>
-              <span class="fab-title">Vehicle Drift System</span>
-            </div>
-            <span class="fab-tag">Vehicle ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/06668d29-347d-4a71-b0bd-9b4204b10d01" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">09</span>
-              <span class="fab-title">Cheat System Pro</span>
-            </div>
-            <span class="fab-tag">Utility ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/ded1b478-3215-491d-b91a-40134798d878" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">10</span>
-              <span class="fab-title">Bone Breaker: Dismemberment</span>
-            </div>
-            <span class="fab-tag">Combat ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/50345791-4719-4df8-ba00-062719d3635b" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">11</span>
-              <span class="fab-title">Blueprint Node Profiler Pro</span>
-            </div>
-            <span class="fab-tag">Debug ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/74a65399-0d2a-4431-99a9-789b16d8ce66" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">12</span>
-              <span class="fab-title">Mobile Vehicle Control System</span>
-            </div>
-            <span class="fab-tag">Mobile ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/01af148c-f278-404e-aeba-9e8a679a0f1d" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">13</span>
-              <span class="fab-title">Top Down Golf Game Kit</span>
-            </div>
-            <span class="fab-tag">Template ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/d88a02ef-7927-45cb-838c-1dab01eb0820" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">14</span>
-              <span class="fab-title">Procedural Level Builder</span>
-            </div>
-            <span class="fab-tag">JSON / Tool ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/1ef99ec0-af1d-44d6-ba93-87518df113f5" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">15</span>
-              <span class="fab-title">ArsenalX: Weapon Customizer</span>
-            </div>
-            <span class="fab-tag">Combat ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/56c374b4-eb02-448f-8cb0-38964fdf4ed7" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">16</span>
-              <span class="fab-title">Supermarket Simulator Template</span>
-            </div>
-            <span class="fab-tag">Template ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/4864be9f-26e3-4c05-aa45-318dbb05f011" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">17</span>
-              <span class="fab-title">Ultimate FPS Combat Toolkit</span>
-            </div>
-            <span class="fab-tag">Combat ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/14b4269f-ce56-47c2-9557-2e02612c49eb" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">18</span>
-              <span class="fab-title">ZDeepLink: URL Protocol</span>
-            </div>
-            <span class="fab-tag">Utility ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/18cfdebd-7a06-41ad-8fe3-6f32b132a5d1" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">19</span>
-              <span class="fab-title">Bike Component: Rideable Vehicle</span>
-            </div>
-            <span class="fab-tag">Vehicle ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/652585de-8201-4f77-8453-21c76c8885b9" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">20</span>
-              <span class="fab-title">Damage Indicator System</span>
-            </div>
-            <span class="fab-tag">Combat ↗</span>
-          </a>
-
-          <a class="fab-card" href="https://www.fab.com/listings/36119885-ed6b-4e35-9ed0-454bdabb46b6" target="_blank" rel="noopener noreferrer">
-            <div class="fab-card-left">
-              <span class="fab-num">21</span>
-              <span class="fab-title">Object Pooling Core</span>
-            </div>
-            <span class="fab-tag">Performance ↗</span>
           </a>
         </div>
 
-        <div style="margin-top: 36px; text-align: center;">
+        <div style="margin-top: 32px; text-align: center;">
           <a class="btn btn-secondary" href="https://www.fab.com/sellers/ZedStudioz" target="_blank" rel="noopener noreferrer">
-            <span>View ZedStudioz Seller Profile on Fab</span>
+            <span>Browse All 21 Published Toolkits on Fab Marketplace</span>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Experience & About Highlight -->
-    <section class="section section-border-top">
+    <!-- Production Background Section -->
+    <section class="section section-border-top" id="experience">
       <div class="container">
         <div class="section-header">
-          <div class="section-kicker">05 / BACKGROUND</div>
-          <h2 class="section-title">Production Experience</h2>
+          <div class="section-kicker">04 / BACKGROUND</div>
+          <h2 class="section-title">Production Background</h2>
+          <p class="section-desc">
+            A track record of engineering multiplayer game systems, commercial client deliverables, and published tools.
+          </p>
         </div>
 
         <div class="about-grid">
           <div>
-            <p style="font-size: var(--text-body-lg); line-height: 1.7; color: var(--color-text); margin-bottom: 24px;">
-              I'm an Unreal Engine Developer and Gameplay Programmer with over 4 years of experience working on games for PC and Android across multiplayer games, combat systems, enemy AI, EOS online integrations, and C++/Blueprint gameplay mechanics.
+            <p style="font-size: var(--text-body-lg); line-height: 1.7; color: var(--color-text); margin-bottom: 20px;">
+              I'm an Unreal Engine Developer and Gameplay Programmer with over 4 years of experience delivering games for PC and Android. Over the years, I've built scalable multiplayer architecture, responsive combat mechanics, companion and enemy AI, and online integrations using Epic Online Services (EOS).
             </p>
-            <p style="font-size: var(--text-body); color: var(--color-muted); line-height: 1.7; margin-bottom: 32px;">
-              I enjoy solving gameplay problems and building modular systems that are easy to maintain and expand. Alongside client work at CarinaSoftLabs and freelance engagements, I build and publish Unreal Engine tools and plugins on the Fab Marketplace under ZedStudioz.
+            <p style="font-size: var(--text-body); color: var(--color-muted); line-height: 1.7; margin-bottom: 28px;">
+              I prefer keeping systems modular, decoupled, and straightforward to maintain as production scales. Alongside studio work and freelance contracts, I develop and publish Unreal Engine tools on Epic's Fab Marketplace under ZedStudioz.
             </p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-              <a class="btn btn-secondary" href="./about/index.html">Read Full Biography & Background ↗</a>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a class="btn btn-secondary" href="./about/index.html">Read Full Biography & Timeline ↗</a>
               <a class="btn-text" href="./assets/documents/Ayush_Sonare_Resume.pdf" download="Ayush_Sonare_Resume.pdf">
                 <span>Download Resume (PDF)</span>
                 <span class="arrow" aria-hidden="true">↓</span>
@@ -892,21 +510,31 @@
           <div>
             <div class="timeline-item">
               <span class="timeline-dot" aria-hidden="true"></span>
-              <div class="timeline-period">2024 — Present</div>
-              <div class="timeline-role">Freelance Unreal Engine Developer</div>
-              <div class="timeline-company">Independent Contracts & Consulting</div>
-              <div class="timeline-desc">
-                Custom gameplay mechanics, multiplayer replication, Blueprint/C++ architecture, and performance optimization for indie teams and private clients.
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="timeline-dot" aria-hidden="true"></span>
               <div class="timeline-period">January 2025 to October 2026</div>
               <div class="timeline-role">Unreal Engine Developer</div>
               <div class="timeline-company">CarinaSoftLabs</div>
               <div class="timeline-desc">
                 Multiplayer gameplay implementation, EOS session and party integration, AI companion systems, network replication testing, and gameplay stabilization across Unreal Engine 5 client projects.
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <div class="timeline-period">2024 — Present</div>
+              <div class="timeline-role">Freelance Unreal Engine Developer</div>
+              <div class="timeline-company">Independent Contracts & Consulting</div>
+              <div class="timeline-desc">
+                Engineering custom gameplay mechanics, multiplayer replication frameworks, Blueprint-to-C++ optimization, and modular systems for indie teams and clients across PC and mobile.
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <span class="timeline-dot" aria-hidden="true"></span>
+              <div class="timeline-period">2024 — Present</div>
+              <div class="timeline-role">Tool Author & Publisher</div>
+              <div class="timeline-company">ZedStudioz · Epic Games Fab Marketplace</div>
+              <div class="timeline-desc">
+                Architected and published 21 production-ready tools and templates, solving memory optimization, save/load, and combat mechanics for developers worldwide.
               </div>
             </div>
           </div>

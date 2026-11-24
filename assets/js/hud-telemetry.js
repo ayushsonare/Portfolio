@@ -54,9 +54,9 @@ function initHUD() {
 
       <div class="settings-dropdown-row">
         <span class="settings-row-label">AUDIO SFX</span>
-        <button class="settings-dropdown-btn" id="hudSfxBtn" title="Toggle UI Sound Effects">
-          <span id="hudSfxIcon">🔇</span>
-          <span id="hudSfxText">SFX OFF</span>
+        <button class="settings-dropdown-btn is-active" id="hudSfxBtn" title="Toggle UI Sound Effects">
+          <span id="hudSfxIcon">🔊</span>
+          <span id="hudSfxText">SFX ON</span>
         </button>
       </div>
 
