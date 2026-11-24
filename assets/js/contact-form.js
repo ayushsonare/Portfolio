@@ -1,9 +1,11 @@
 /* ==========================================================================
-   Minimal Contact Form Handler
-   Handles form validation, visual feedback, and seamless email composition.
+   Direct Contact Form Handler
+   Sends messages directly to Ayush's Gmail inbox via Google Apps Script Web App.
    ========================================================================== */
 
 import { playChime, playClick } from './audio-system.js';
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsCseR8VhdY7-tQga7-ITySe5JetSj6krrAwVaQk7ABuBoN_Sosyi1k3NE3d0P3mx_/exec';
 
 export function initContactForm() {
   const form = document.getElementById('portfolioContactForm');
@@ -15,7 +17,7 @@ export function initContactForm() {
   const statusEl = document.getElementById('contactFormStatus');
   const submitBtn = document.getElementById('contactSubmitBtn');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = (nameInput?.value || '').trim();
@@ -26,44 +28,74 @@ export function initContactForm() {
     if (!name || !email || !message) {
       if (statusEl) {
         statusEl.className = 'form-status is-error';
+        statusEl.style.display = 'block';
         statusEl.textContent = 'Please fill in all fields before sending.';
       }
       return;
     }
 
-    playChime();
+    // Email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      if (statusEl) {
+        statusEl.className = 'form-status is-error';
+        statusEl.style.display = 'block';
+        statusEl.textContent = 'Please provide a valid email address.';
+      }
+      return;
+    }
+
+    playClick();
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Preparing...';
+      submitBtn.textContent = 'Sending message...';
     }
 
-    // Construct mailto URL with prefilled fields
-    const toEmail = 'ayushsonare692@gmail.com';
-    const subject = encodeURIComponent(`Unreal Engine Inquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n---\nSender: ${name}\nEmail: ${email}`);
-    const mailtoUrl = `mailto:${toEmail}?subject=${subject}&body=${body}`;
-
-    // Copy formatted text to clipboard
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(`Inquiry from ${name} (${email}):\n\n${message}`).catch(() => {});
-    }
-
-    // Update status
     if (statusEl) {
-      statusEl.className = 'form-status is-success';
-      statusEl.innerHTML = `✓ Thank you, <strong>${name}</strong>! Redirecting to email compose...`;
+      statusEl.className = 'form-status';
+      statusEl.style.display = 'none';
+      statusEl.textContent = '';
     }
 
-    // Redirect to email client after short tactile feedback
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
+    try {
+      // Send directly to Google Apps Script Web App
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message
+        })
+      });
+
+      // Google Apps Script processes the request and sends the email directly to ayushsonare692@gmail.com
+      playChime();
+
+      if (statusEl) {
+        statusEl.className = 'form-status is-success';
+        statusEl.style.display = 'block';
+        statusEl.innerHTML = `✓ Thank you, <strong>${name}</strong>! Your message has been sent directly to Ayush's Gmail inbox.`;
+      }
+
+      form.reset();
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      if (statusEl) {
+        statusEl.className = 'form-status is-error';
+        statusEl.style.display = 'block';
+        statusEl.innerHTML = `Unable to send directly. You can also reach out directly via email at <a href="mailto:ayushsonare692@gmail.com" style="color:inherit;text-decoration:underline;">ayushsonare692@gmail.com</a>.`;
+      }
+    } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send message';
       }
-      form.reset();
-    }, 450);
+    }
   });
 }
 
