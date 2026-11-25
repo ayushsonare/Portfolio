@@ -77,7 +77,7 @@ function initHUD() {
     headerInner.appendChild(wrapper);
   }
 
-  // Also support mobile drawer controls
+  // Also support mobile drawer controls (Unifies Nav & Engine Controls in one menu for phones)
   const mobileDrawer = document.getElementById('mobileDrawer');
   if (mobileDrawer && !mobileDrawer.querySelector('.mobile-telemetry-row')) {
     const mobileRow = document.createElement('div');
@@ -93,6 +93,9 @@ function initHUD() {
         <button class="settings-dropdown-btn" id="mobileBgBtn" type="button" style="flex: 1; padding: 10px 6px;">BG: <span id="mobileBgVal">GRID</span></button>
         <button class="settings-dropdown-btn" id="mobileSfxBtn" type="button" style="flex: 1; padding: 10px 6px;">SFX</button>
       </div>
+      <button class="settings-dropdown-btn" id="mobileCmdBtn" type="button" style="width: 100%; padding: 10px 8px; font-family: var(--font-mono); font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <span>COMMAND PALETTE (${shortcutKey})</span>
+      </button>
     `;
     mobileDrawer.appendChild(mobileRow);
 
@@ -107,6 +110,14 @@ function initHUD() {
     document.getElementById('mobileSfxBtn')?.addEventListener('click', (e) => {
       e.preventDefault();
       document.getElementById('hudSfxBtn')?.click();
+    });
+    document.getElementById('mobileCmdBtn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const navToggle = document.getElementById('navToggle');
+      if (navToggle && navToggle.getAttribute('aria-expanded') === 'true') {
+        navToggle.click();
+      }
+      document.getElementById('hudCmdBtn')?.click();
     });
   }
 
